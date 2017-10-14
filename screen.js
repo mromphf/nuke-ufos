@@ -16,8 +16,18 @@ var screen = (function() {
         context.fillStyle = "#00f";
     }
 
-    function render(player) {
+    function drawStars(stars) {
+        stars.forEach(function(star) {
+            context.beginPath();
+            context.arc(star.x, star.y, 2, 0, 2 * Math.PI);
+            context.fillStyle = "#eee";
+            context.fill();
+        });
+    }
+
+    function render(player, stars) {
         drawBackground();
+        drawStars(stars);
         drawPlayer(player);
         context.fill();
     }
