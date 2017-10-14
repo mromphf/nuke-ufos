@@ -32,18 +32,10 @@ var game = (function() {
         }
     };
 
-    function randomWidth() {
-        return Math.floor((Math.random() * maxWidth) + 1);
-    }
-
-    function randomHeight() {
-        return Math.floor((Math.random() * maxHeight) + 1);
-    }
-
     function randomStarsAnywhere(numExistingStars) {
         var result = [];
         for (var i = 0; i < (30 - numExistingStars); i++) {
-            result.push({x: randomWidth(), y: randomHeight()});
+            result.push(randomStar.anywhere());
         }
         return result;
     }
@@ -51,7 +43,7 @@ var game = (function() {
     function randomStarsFromTop(numExistingStars) {
         var result = [];
         for (var i = 0; i < (30 - numExistingStars); i++) {
-            result.push({x: randomWidth(), y: 0});
+            result.push(randomStar.somewhereAtTheTop());
         }
         return result;
     }
@@ -68,8 +60,8 @@ var game = (function() {
     }
 
     var initialize = function() {
-        player.x = maxWidth / 2;
-        player.y = maxHeight - (maxHeight * 0.2);
+        this.player.x = maxWidth / 2;
+        this.player.y = maxHeight - (maxHeight * 0.2);
         this.stars = randomStarsAnywhere(0);
     }
 
