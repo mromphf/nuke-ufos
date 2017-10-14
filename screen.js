@@ -5,9 +5,21 @@ var screen = (function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    function render() {
+    function drawBackground() {
         context.fillStyle = "#020202";
         context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawPlayer(player) {
+        context.beginPath();
+        context.arc(player.x, player.y, 30, 0, 2 * Math.PI);
+        context.fillStyle = "#00f";
+    }
+
+    function render(player) {
+        drawBackground();
+        drawPlayer(player);
+        context.fill();
     }
 
     return {
