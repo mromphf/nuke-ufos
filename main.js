@@ -1,5 +1,10 @@
-var canvas = document.getElementById("screen");
-var context = canvas.getContext("2d");
+var nukeUfos = (function() {
+    function runGame() {
+        setTimeout(function() {
+            screen.render();
+            runGame();
+        }, 250);
+    }
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    runGame();
+})();
