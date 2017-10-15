@@ -1,30 +1,31 @@
 var player = function(maxWidth, maxHeight) {
     var maxWidth = maxWidth;
     var maxHeight = maxHeight;
+    var velocity = 25;
     var x = maxWidth / 2;
     var y = maxHeight - (maxHeight * 0.2);
 
     function moveLeft() {
-        if ((this.x - 20) > 0) {
-            this.x = this.x - 20;
+        if ((this.x - velocity) > 0) {
+            this.x = this.x - velocity;
         }
     }
 
     function moveUp() {
-        if ((this.y - 20) > 0) {
-            this.y = this.y - 20;
+        if ((this.y - velocity) > 0) {
+            this.y = this.y - velocity;
         }
     }
 
     function moveRight() {
-        if ((this.x + 20) < maxWidth) {
-            this.x = this.x + 20;
+        if ((this.x + velocity) < maxWidth) {
+            this.x = this.x + velocity;
         }
     }
 
     function moveDown() {
-        if ((this.y + 20) < maxHeight) {
-            this.y = this.y + 20;
+        if ((this.y + velocity) < maxHeight) {
+            this.y = this.y + velocity;
         }
     }
 
