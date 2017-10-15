@@ -31,7 +31,9 @@ var player = function(maxWidth, maxHeight) {
 
     function draw(context) {
         context.beginPath();
-        context.arc(this.x, this.y, 30, 0, 2 * Math.PI);
+        context.moveTo(this.x, this.y);
+        context.lineTo((this.x + 50), (this.y + 70));
+        context.lineTo((this.x - 50), (this.y + 70));
         context.fillStyle = "#00f";
     }
 
