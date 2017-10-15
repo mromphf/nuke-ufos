@@ -1,7 +1,7 @@
 var nukeUfos = (function() {
     function runGame() {
         setTimeout(function() {
-            screen.render(game.player, game.stars);
+            screen.render(game.drawables());
             game.moveStars();
             runGame();
         }, 16);

@@ -23,18 +23,22 @@ var game = (function() {
 
     var moveStars = function() {
         var oldStars = [];
-        this.stars.forEach(function(star) {
+        stars.forEach(function(star) {
             if (star.isStillAbove(maxHeight)) {
                 star.move();
                 oldStars.push(star);
             }
         });
-        this.stars = oldStars.concat(randomStarsFromTop(oldStars.length));
+        stars = oldStars.concat(randomStarsFromTop(oldStars.length));
+    }
+
+    var drawables = function() {
+        return stars.concat([ply]);
     }
 
     return {
         moveStars: moveStars,
         player: ply,
-        stars: stars
+        drawables: drawables
     };
 })();

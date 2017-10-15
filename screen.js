@@ -9,12 +9,11 @@ var screen = (function() {
         context.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    function render(player, stars) {
+    function render(drawables) {
         drawBackground();
-        stars.forEach(function(star) {
-            star.draw(context);
+        drawables.forEach(function(drawable) {
+            drawable.draw(context);
         });
-        player.draw(context);
         context.fill();
     }
 
