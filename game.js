@@ -1,12 +1,13 @@
 var game = (function() {
     var maxWidth = window.innerWidth;
     var maxHeight = window.innerHeight;
+    var totalStars = 30;
     var stars = randomStarsAnywhere();
     var ply = new player(maxWidth, maxHeight);
 
     function randomStarsAnywhere() {
         var result = [];
-        for (var i = 0; i < 30; i++) {
+        for (var i = 0; i < totalStars; i++) {
             result.push(randomStar.anywhere());
         }
         return result;
@@ -14,7 +15,7 @@ var game = (function() {
 
     function randomStarsFromTop(numExistingStars) {
         var result = [];
-        for (var i = 0; i < (30 - numExistingStars); i++) {
+        for (var i = 0; i < (totalStars - numExistingStars); i++) {
             result.push(randomStar.somewhereAtTheTop());
         }
         return result;
@@ -23,8 +24,8 @@ var game = (function() {
     var moveStars = function() {
         var oldStars = [];
         this.stars.forEach(function(star) {
-            if ((star.y + 2) < maxHeight ) {
-                star.y = star.y + 2;
+            if (star.isStillAbove(maxHeight)) {
+                star.move();
                 oldStars.push(star);
             }
         });

@@ -11,17 +11,11 @@ var randomStar = (function() {
     }
 
     var anywhere = function() {
-        return {
-            x: randomWidth(),
-            y: randomHeight()
-        };
+        return new Star(randomWidth(), randomHeight());
     }
 
     var somewhereAtTheTop = function() {
-        return {
-            x: randomWidth(),
-            y: 0
-        };
+        return new Star(randomWidth(), 0);
     }
 
     return {
