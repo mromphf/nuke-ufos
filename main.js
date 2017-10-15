@@ -8,6 +8,5 @@ var nukeUfos = (function() {
     }
 
     keyboard.registerListeners();
-    game.initialize();
     runGame();
 })();
