@@ -2,8 +2,8 @@ var Ufo = function(x, y) {
     var x = x;
     var y = y;
 
-    function isStillAbove(maxScreenHeight) {
-        return (y + 3) < maxScreenHeight;
+    function isStillAbove(bottomOfTheScreen) {
+        return (y + 3) < bottomOfTheScreen;
     }
 
     function move() {

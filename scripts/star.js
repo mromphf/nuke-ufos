@@ -2,8 +2,8 @@ var Star = function(x, y) {
     var x = x;
     var y = y;
 
-    function isStillAbove(maxScreenHeight) {
-        return (y + 2) < maxScreenHeight;
+    function isStillAbove(bottomOfTheScreen) {
+        return (y + 2) < bottomOfTheScreen;
     }
 
     function move() {

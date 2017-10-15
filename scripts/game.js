@@ -25,9 +25,9 @@ var game = (function() {
     }
 
     var moveEverything = function() {
-        var oldStars = [];
-        var oldLasers = [];
-        var oldEnemies = [];
+        var exisitingStars = [];
+        var existingStars = [];
+        var exisitingEnemies = [];
         var randomTop = Math.floor((Math.random() * maxWidth) + 1);
 
         if ( elapsedTime > 4000 && enemies.length < 1 ) {
@@ -37,26 +37,26 @@ var game = (function() {
         stars.forEach(function(star) {
             if (star.isStillAbove(maxHeight)) {
                 star.move();
-                oldStars.push(star);
+                exisitingStars.push(star);
             }
         });
-        stars = oldStars.concat(randomStarsFromTop(oldStars.length));
+        stars = exisitingStars.concat(randomStarsFromTop(exisitingStars.length));
 
         lasers.forEach(function(laser) {
             if (laser.isStillBelow(0)) {
                 laser.move();
-                oldLasers.push(laser);
+                existingStars.push(laser);
             }
         });
-        lasers = oldLasers;
+        lasers = existingStars;
 
         enemies.forEach(function(enemy) {
             if (enemy.isStillAbove(maxHeight)) {
                 enemy.move();
-                oldEnemies.push(enemy);
+                exisitingEnemies.push(enemy);
             }
         });
-        enemies = oldEnemies;
+        enemies = exisitingEnemies;
     }
 
     var playerShoots = function() {
@@ -69,8 +69,8 @@ var game = (function() {
         return stars.concat(lasers).concat(enemies).concat([ply]);
     }
 
-    var expireTimer = function(millisecondsPassed) {
-        elapsedTime = elapsedTime + millisecondsPassed;
+    var addMillisecondsToTimer = function(milliseconds) {
+        elapsedTime = elapsedTime + milliseconds;
     }
 
     return {
@@ -78,6 +78,6 @@ var game = (function() {
         player: ply,
         drawables: drawables,
         playerShoots: playerShoots,
-        expireTimer: expireTimer
+        addMillisecondsToTimer: addMillisecondsToTimer
     };
 })();
