@@ -4,7 +4,9 @@ var game = (function() {
     var totalStars = 30;
     var stars = randomStarsAnywhere();
     var lasers = [];
+    var enemies = [];
     var ply = new player(maxWidth, maxHeight);
+    var elapsedTime = 0;
 
     function randomStarsAnywhere() {
         var result = [];
@@ -25,6 +27,12 @@ var game = (function() {
     var moveEverything = function() {
         var oldStars = [];
         var oldLasers = [];
+        var oldEnemies = [];
+        var randomTop = Math.floor((Math.random() * maxWidth) + 1);
+
+        if ( elapsedTime > 4000 && enemies.length < 1 ) {
+            enemies.push(new Ufo(randomTop, 0));
+        }
 
         stars.forEach(function(star) {
             if (star.isStillAbove(maxHeight)) {
@@ -40,7 +48,15 @@ var game = (function() {
                 oldLasers.push(laser);
             }
         });
-        lasers = oldLasers.concat();
+        lasers = oldLasers;
+
+        enemies.forEach(function(enemy) {
+            if (enemy.isStillAbove(maxHeight)) {
+                enemy.move();
+                oldEnemies.push(enemy);
+            }
+        });
+        enemies = oldEnemies;
     }
 
     var playerShoots = function() {
@@ -50,13 +66,18 @@ var game = (function() {
     }
 
     var drawables = function() {
-        return stars.concat(lasers).concat([ply]);
+        return stars.concat(lasers).concat(enemies).concat([ply]);
+    }
+
+    var expireTimer = function(millisecondsPassed) {
+        elapsedTime = elapsedTime + millisecondsPassed;
     }
 
     return {
         moveEverything: moveEverything,
         player: ply,
         drawables: drawables,
-        playerShoots: playerShoots
+        playerShoots: playerShoots,
+        expireTimer: expireTimer
     };
 })();

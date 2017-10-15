@@ -3,8 +3,9 @@ var nukeUfos = (function() {
         setTimeout(function() {
             screen.render(game.drawables());
             game.moveEverything();
+            game.expireTimer(17);
             runGame();
-        }, 16);
+        }, 17);
     }
 
     keyboard.registerListeners();
