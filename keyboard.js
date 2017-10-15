@@ -19,6 +19,10 @@ var keyboard = (function() {
             else if (key == 40) {
                 game.player.moveDown();
             }
+            // Space bar
+            else if (key == 32) {
+                game.playerShoots();
+            }
         }
     }
 

@@ -2,6 +2,10 @@ var Laser = function(x, y) {
     var x = x;
     var y = y;
 
+    function isStillBelow(minScreenHeight) {
+        return (y - 2) > minScreenHeight;
+    }
+
     function draw(context) {
         context.beginPath();
         context.arc(x, y, 5, 0, 2 * Math.PI);
@@ -14,6 +18,7 @@ var Laser = function(x, y) {
     }
 
     return {
+        isStillBelow: isStillBelow,
         draw: draw,
         move: move
     }
