@@ -45,10 +45,10 @@ var game = (function() {
         lasers.forEach(function(laser) {
             if (laser.isStillBelow(0)) {
                 laser.move();
-                existingStars.push(laser);
+                existingLasers.push(laser);
             }
         });
-        lasers = existingStars;
+        lasers = existingLasers;
 
         enemies.forEach(function(enemy) {
             if (enemy.isStillAbove(maxHeight)) {
