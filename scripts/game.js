@@ -16,18 +16,10 @@ var game = (function() {
         return result;
     }
 
-    function randomStarsFromTop(numExistingStars) {
-        var result = [];
-        for (var i = 0; i < (totalStars - numExistingStars); i++) {
-            result.push(randomStar.somewhereAtTheTop());
-        }
-        return result;
-    }
-
     var moveEverything = function() {
-        var exisitingStars = [];
         var existingStars = [];
-        var exisitingEnemies = [];
+        var existingLasers = [];
+        var existingEnemies = [];
         var randomTop = Math.floor((Math.random() * maxWidth) + 1);
 
         if ( elapsedTime > 4000 && enemies.length < 1 ) {
@@ -37,10 +29,13 @@ var game = (function() {
         stars.forEach(function(star) {
             if (star.isStillAbove(maxHeight)) {
                 star.move();
-                exisitingStars.push(star);
+                existingStars.push(star);
+            }
+            else {
+                existingStars.push(randomStar.somewhereAtTheTop());
             }
         });
-        stars = exisitingStars.concat(randomStarsFromTop(exisitingStars.length));
+        stars = existingStars;
 
         lasers.forEach(function(laser) {
             if (laser.isStillBelow(0)) {
@@ -53,10 +48,10 @@ var game = (function() {
         enemies.forEach(function(enemy) {
             if (enemy.isStillAbove(maxHeight)) {
                 enemy.move();
-                exisitingEnemies.push(enemy);
+                existingEnemies.push(enemy);
             }
         });
-        enemies = exisitingEnemies;
+        enemies = existingEnemies;
     }
 
     var playerShoots = function() {
