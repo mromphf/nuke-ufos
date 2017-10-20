@@ -14,7 +14,6 @@ var screen = (function() {
         drawables.forEach(function(drawable) {
             drawable.draw(context);
         });
-        context.fill();
     }
 
     return {

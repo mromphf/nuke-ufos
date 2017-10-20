@@ -35,6 +35,7 @@ var player = function(maxWidth, maxHeight) {
         context.lineTo((this.x + 50), (this.y + 70));
         context.lineTo((this.x - 50), (this.y + 70));
         context.fillStyle = "#00f";
+        context.fill();
     }
 
     return {
