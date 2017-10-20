@@ -2,8 +2,8 @@ var Laser = function(x, y) {
     var x = x;
     var y = y;
 
-    function isStillBelow(minScreenHeight) {
-        return (y - 2) > minScreenHeight;
+    function hasRoomToMove() {
+        return (y - 2) > 0;
     }
 
     function draw(context) {
@@ -17,8 +17,13 @@ var Laser = function(x, y) {
         y = y - 5;
     }
 
+    function isTypeOf(type) {
+        return type === "laser";
+    }
+
     return {
-        isStillBelow: isStillBelow,
+        hasRoomToMove: hasRoomToMove,
+        isTypeOf: isTypeOf,
         draw: draw,
         move: move
     }

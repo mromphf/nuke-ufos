@@ -2,8 +2,8 @@ var Star = function(x, y) {
     var x = x;
     var y = y;
 
-    function isStillAbove(bottomOfTheScreen) {
-        return (y + 2) < bottomOfTheScreen;
+    function hasRoomToMove(maxWidth, maxHeight) {
+        return (y + 2) < maxHeight;
     }
 
     function move() {
@@ -17,8 +17,13 @@ var Star = function(x, y) {
         context.fill();
     }
 
+    function isTypeOf(type) {
+        return type === "star";
+    }
+
     return {
-        isStillAbove: isStillAbove,
+        hasRoomToMove: hasRoomToMove,
+        isTypeOf: isTypeOf,
         move: move,
         draw: draw
     }

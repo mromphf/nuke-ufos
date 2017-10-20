@@ -2,8 +2,8 @@ var Ufo = function(x, y) {
     var x = x;
     var y = y;
 
-    function isStillAbove(bottomOfTheScreen) {
-        return (y + 3) < bottomOfTheScreen;
+    function hasRoomToMove(maxWidth, maxHeight) {
+        return (y + 3) < maxWidth;
     }
 
     function move() {
@@ -17,8 +17,13 @@ var Ufo = function(x, y) {
         context.fill();
     }
 
+    function isTypeOf(type) {
+        return type === "ufo";
+    }
+
     return {
-        isStillAbove: isStillAbove,
+        hasRoomToMove: hasRoomToMove,
+        isTypeOf: isTypeOf,
         move: move,
         draw: draw
     }
