@@ -21,10 +21,15 @@ var Star = function(x, y) {
         return type === "star";
     }
 
+    function isAlive() {
+        return true;
+    }
+
     return {
         hasRoomToMove: hasRoomToMove,
         isTypeOf: isTypeOf,
         move: move,
-        draw: draw
+        draw: draw,
+        isAlive: isAlive
     }
 };

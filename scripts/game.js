@@ -18,20 +18,24 @@ var game = (function() {
         return Math.floor((Math.random() * maxWidth) + 1);
     }
 
-    var numberOfTypes = function(type) {
+    var gameOver = function() {
+        location.reload();
+    }
+
+    var objectsOfType = function(type) {
         return moveables.filter(function(x) {
-            return x.isTypeOf(type)
-        }).length;
+            return x.isTypeOf(type) && x.isAlive();
+        });
     }
 
     var moveEverything = function() {
         var existingMoveables = [];
 
-        if ( elapsedTime > 4000 && numberOfTypes("ufo") < 1 ) {
+        if ( elapsedTime > 4000 && objectsOfType("ufo").length < 1 ) {
             moveables.push(new Ufo(randomTop(), 0));
         }
 
-        if (numberOfTypes("star") < totalStars) {
+        if (objectsOfType("star").length < totalStars) {
             moveables.push(randomStar.somewhereAtTheTop());
         }
 
@@ -41,18 +45,34 @@ var game = (function() {
                 existingMoveables.push(moveable);
             }
         });
-
         moveables = existingMoveables;
     }
 
+    var detectCollisions = function() {
+        objectsOfType("ufo").forEach(function(ufo) {
+            if (collision.hasOccuredBetween(ufo, ply)) {
+                gameOver();
+            }
+
+            objectsOfType("laser").forEach(function(laser) {
+                if (collision.hasOccuredBetween(ufo, laser)) {
+                    ufo.die();
+                    laser.die();
+                }
+            });
+        });
+    }
+
     var playerShoots = function() {
-        if (numberOfTypes("laser") < 3) {
+        if (objectsOfType("laser").length < 3) {
             moveables.push(new Laser(ply.x, ply.y));
         }
     }
 
     var drawables = function() {
-        return moveables.concat([ply]);
+        return moveables.concat([ply]).filter(function(x) {
+            return x.isAlive();
+        });
     }
 
     var addMillisecondsToTimer = function(milliseconds) {
@@ -61,6 +81,7 @@ var game = (function() {
 
     return {
         moveEverything: moveEverything,
+        detectCollisions: detectCollisions,
         player: ply,
         drawables: drawables,
         playerShoots: playerShoots,

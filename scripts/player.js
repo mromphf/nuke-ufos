@@ -4,6 +4,7 @@ var player = function(maxWidth, maxHeight) {
     var velocity = 25;
     var x = maxWidth / 2;
     var y = maxHeight - (maxHeight * 0.2);
+    var isDead = false;
 
     function moveLeft() {
         if ((this.x - velocity) > 0) {
@@ -38,13 +39,24 @@ var player = function(maxWidth, maxHeight) {
         context.fill();
     }
 
+    function die() {
+        isDead = true;
+    }
+
+    function isAlive() {
+        return isDead === false;
+    }
+
     return {
         x: x,
         y: y,
+        radius: 5,
         moveLeft: moveLeft,
         moveUp: moveUp,
         moveRight: moveRight,
         moveDown: moveDown,
-        draw: draw
+        draw: draw,
+        die: die,
+        isAlive: isAlive
     }
 }
