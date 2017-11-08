@@ -1,3 +1,5 @@
+"use strict";
+
 var randomStar = (function() {
     var maxWidth = window.innerWidth;
     var maxHeight = window.innerHeight;

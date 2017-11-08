@@ -1,3 +1,5 @@
+"use strict";
+
 var game = (function() {
     var maxWidth = window.innerWidth;
     var maxHeight = window.innerHeight;

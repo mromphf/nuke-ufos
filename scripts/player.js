@@ -1,3 +1,5 @@
+"use strict";
+
 var player = function(maxWidth, maxHeight) {
     var maxWidth = maxWidth;
     var maxHeight = maxHeight;

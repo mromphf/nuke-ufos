@@ -1,3 +1,5 @@
+"use strict";
+
 var Laser = function(x, y) {
     var x = x;
     var y = y;

@@ -1,3 +1,5 @@
+"use strict";
+
 var keyboard = (function() {
     function registerListeners() {
         window.onkeydown = function(e) {

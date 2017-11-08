@@ -1,3 +1,5 @@
+"use strict";
+
 var collision = (function() {
     var hasOccuredBetween = function(circle1, circle2) {
         var dx = circle1.x - circle2.x;

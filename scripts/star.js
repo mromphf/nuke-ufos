@@ -1,3 +1,5 @@
+"use strict";
+
 var Star = function(x, y) {
     var x = x;
     var y = y;

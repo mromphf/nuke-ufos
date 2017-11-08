@@ -1,3 +1,5 @@
+"use strict";
+
 var nukeUfos = (function() {
     function runGame() {
         setTimeout(function() {
