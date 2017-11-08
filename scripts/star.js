@@ -3,6 +3,7 @@
 var Star = function(x, y) {
     var x = x;
     var y = y;
+    var isDead = false;
 
     function hasRoomToMove(maxWidth, maxHeight) {
         return (y + 2) < maxHeight;
@@ -23,8 +24,12 @@ var Star = function(x, y) {
         return type === "star";
     }
 
+    function die() {
+        isDead = true;
+    }
+
     function isAlive() {
-        return true;
+        return isDead === false;
     }
 
     return {
@@ -32,6 +37,7 @@ var Star = function(x, y) {
         isTypeOf: isTypeOf,
         move: move,
         draw: draw,
+        die: die,
         isAlive: isAlive
     }
 };

@@ -37,8 +37,6 @@ var game = (function() {
     }
 
     var moveEverything = function() {
-        var existingMoveables = [];
-
         if ( elapsedTime > 4000 && objectsOfType("ufo").length < 1 ) {
             moveables.push(new Ufo(randomTop(), 0));
         }
@@ -50,10 +48,11 @@ var game = (function() {
         moveables.forEach(function(moveable) {
             if (moveable.hasRoomToMove(maxWidth, maxHeight)) {
                 moveable.move();
-                existingMoveables.push(moveable);
+            }
+            else {
+                moveable.die();
             }
         });
-        moveables = existingMoveables;
     }
 
     var detectCollisions = function() {
