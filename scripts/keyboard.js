@@ -3,20 +3,20 @@ var keyboard = (function() {
         window.onkeydown = function(e) {
             var key = e.keyCode;
 
-            // Left arrow
-            if (key == 37) {
+            // Left arrow (or 'h')
+            if (key == 37 || key == 72) {
                 game.player.moveLeft();
             }
-            // Up arrow
-            else if (key == 38) {
+            // Up arrow (or 'k')
+            else if (key == 38 || key == 75) {
                 game.player.moveUp();
             }
-            // Right arrow
-            else if (key == 39) {
+            // Right arrow (or 'l')
+            else if (key == 39 || key == 76) {
                 game.player.moveRight();
             }
-            // Down arrow
-            else if (key == 40) {
+            // Down arrow (or 'j')
+            else if (key == 40 || key == 74) {
                 game.player.moveDown();
             }
             // Space bar
