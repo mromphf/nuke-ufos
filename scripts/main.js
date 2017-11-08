@@ -5,6 +5,7 @@ var nukeUfos = (function() {
             game.moveEverything();
             game.detectCollisions();
             game.addMillisecondsToTimer(17);
+            game.filterDeadObjects();
             runGame();
         }, 17);
     }

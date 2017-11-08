@@ -28,6 +28,12 @@ var game = (function() {
         });
     }
 
+    var filterDeadObjects = function() {
+        moveables = moveables.filter(function(moveable) {
+            return moveable.isAlive();
+        });
+    }
+
     var moveEverything = function() {
         var existingMoveables = [];
 
@@ -82,6 +88,7 @@ var game = (function() {
     return {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
+        filterDeadObjects: filterDeadObjects,
         player: ply,
         drawables: drawables,
         playerShoots: playerShoots,
