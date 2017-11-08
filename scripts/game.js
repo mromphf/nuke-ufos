@@ -5,7 +5,7 @@ var game = (function() {
     var maxHeight = window.innerHeight;
     var totalStars = 30;
     var moveables = randomStarsAnywhere();
-    var ply = new player(maxWidth, maxHeight);
+    var ply = new Player(maxWidth, maxHeight);
     var elapsedTime = 0;
 
     function randomStarsAnywhere() {

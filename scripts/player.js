@@ -1,6 +1,6 @@
 "use strict";
 
-var player = function(maxWidth, maxHeight) {
+var Player = function(maxWidth, maxHeight) {
     var maxWidth = maxWidth;
     var maxHeight = maxHeight;
     var velocity = 25;
