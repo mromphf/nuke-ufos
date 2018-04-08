@@ -1,47 +1,35 @@
 "use strict";
 
-var Ufo = function(x, y) {
-    var x = x;
-    var y = y;
-    var radius = 30;
-    var isDead = false;
-
-    function hasRoomToMove(maxWidth, maxHeight) {
-        return (this.y + 3) < maxWidth;
-    }
-
-    function move() {
-        this.y = this.y + 3;
-    }
-
-    function draw(context) {
-        context.beginPath();
-        context.arc(this.x, this.y, radius, 0, 2 * Math.PI);
-        context.fillStyle = "#f00";
-        context.fill();
-    }
-
-    function isTypeOf(type) {
-        return type === "ufo";
-    }
-
-    function die() {
-        isDead = true;
-    }
-
-    function isAlive() {
-        return isDead === false;
-    }
-
-    return {
-        x: x,
-        y: y,
-        radius: radius,
-        hasRoomToMove: hasRoomToMove,
-        isTypeOf: isTypeOf,
-        move: move,
-        draw: draw,
-        die: die,
-        isAlive: isAlive
-    }
+function Ufo(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 30;
+    this.isDead = false;
 }
+
+Ufo.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
+    return (this.y + 3) < maxWidth;
+};
+
+Ufo.prototype.move = function() {
+    this.y = this.y + 3;
+};
+
+Ufo.prototype.draw = function(context) {
+    context.beginPath();
+    context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+    context.fillStyle = "#f00";
+    context.fill();
+};
+
+Ufo.prototype.isTypeOf = function(type) {
+    return type === "ufo";
+};
+
+Ufo.prototype.die = function() {
+    this.isDead = true;
+};
+
+Ufo.prototype.isAlive = function() {
+    return this.isDead === false;
+};
