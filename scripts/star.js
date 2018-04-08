@@ -1,43 +1,34 @@
 "use strict";
 
-var Star = function(x, y) {
-    var x = x;
-    var y = y;
-    var isDead = false;
+function Star(x, y) {
+    this.x = x;
+    this.y = y;
+    this.isDead = false;
+};
 
-    function hasRoomToMove(maxWidth, maxHeight) {
-        return (y + 2) < maxHeight;
-    }
+Star.prototype.move = function() {
+    this.y = this.y + 2;
+};
 
-    function move() {
-        y = y + 2;
-    }
+Star.prototype.isAlive = function() {
+    return this.isDead === false;
+};
 
-    function draw(context) {
-        context.beginPath();
-        context.arc(x, y, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#eee";
-        context.fill();
-    }
+Star.prototype.hasRoomToMove = function(maxWidth, maxHeight) {
+    return (this.y + 2) < maxHeight;
+};
 
-    function isTypeOf(type) {
-        return type === "star";
-    }
+Star.prototype.draw = function(context) {
+    context.beginPath();
+    context.arc(this.x, this.y, 2, 0, 2 * Math.PI);
+    context.fillStyle = "#eee";
+    context.fill();
+};
 
-    function die() {
-        isDead = true;
-    }
+Star.prototype.isTypeOf = function(type) {
+    return type === "star";
+};
 
-    function isAlive() {
-        return isDead === false;
-    }
-
-    return {
-        hasRoomToMove: hasRoomToMove,
-        isTypeOf: isTypeOf,
-        move: move,
-        draw: draw,
-        die: die,
-        isAlive: isAlive
-    }
+Star.prototype.die = function() {
+    this.isDead = true;
 };
