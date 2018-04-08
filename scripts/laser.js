@@ -1,46 +1,35 @@
 "use strict";
 
-var Laser = function(x, y) {
-    var x = x;
-    var y = y;
-    var isDead = false;
+function Laser(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 5;
+    this.isDead = false;
+};
 
-    function hasRoomToMove() {
-        return (this.y - 2) > 0;
-    }
+Laser.prototype.hasRoomToMove = function() {
+    return (this.y - 2) > 0;
+};
 
-    function draw(context) {
-        context.beginPath();
-        context.arc(this.x, this.y, 5, 0, 2 * Math.PI);
-        context.fillStyle = "#0f0";
-        context.fill();
-    }
+Laser.prototype.draw = function(context) {
+    context.beginPath();
+    context.arc(this.x, this.y, 5, 0, 2 * Math.PI);
+    context.fillStyle = "#0f0";
+    context.fill();
+};
 
-    function move() {
-        this.y = this.y - 5;
-    }
+Laser.prototype.move = function() {
+    this.y = this.y - 5;
+};
 
-    function isTypeOf(type) {
-        return type === "laser";
-    }
+Laser.prototype.isTypeOf = function(type) {
+    return type === "laser";
+};
 
-    function die() {
-        isDead = true;
-    }
+Laser.prototype.die = function() {
+    this.isDead = true;
+};
 
-    function isAlive() {
-        return isDead === false;
-    }
-
-    return {
-        x: x,
-        y: y,
-        radius: 5,
-        hasRoomToMove: hasRoomToMove,
-        isTypeOf: isTypeOf,
-        draw: draw,
-        move: move,
-        die: die,
-        isAlive: isAlive
-    }
+Laser.prototype.isAlive = function() {
+    return this.isDead === false;
 };
