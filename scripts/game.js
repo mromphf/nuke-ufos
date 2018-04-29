@@ -7,6 +7,7 @@ var game = (function() {
     var moveables = randomStarsAnywhere();
     var ply = new Player(maxWidth, maxHeight);
     var elapsedTime = 0;
+    var score = 0;
 
     function randomStarsAnywhere() {
         var result = [];
@@ -65,6 +66,8 @@ var game = (function() {
                 if (collision.hasOccuredBetween(ufo, laser)) {
                     ufo.die();
                     laser.die();
+                    score = score + 100;
+                    document.getElementById("score").innerHTML = score;
                 }
             });
         });
