@@ -11,7 +11,8 @@ var game = (function() {
         stars: randomStarsAnywhere()
     };
     var elapsedTime = 0;
-    var keysPressed = {}
+    var keysPressed = {};
+    var score = 0;
 
     function randomStarsAnywhere() {
         var result = [];
@@ -93,7 +94,8 @@ var game = (function() {
                 if (collision.hasOccuredBetween(ufo, laser)) {
                     ufo.die();
                     laser.die();
-                    score.increase(100);
+                    score = score + 100;
+                    screen.updateScore(score);
                 }
             });
         });
@@ -123,6 +125,7 @@ var game = (function() {
         drawables: drawables,
         playerShoots: playerShoots,
         addMillisecondsToTimer: addMillisecondsToTimer,
-        keysPressed: keysPressed
+        keysPressed: keysPressed,
+        score: score
     };
 })();

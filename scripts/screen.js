@@ -18,7 +18,12 @@ var screen = (function() {
         });
     }
 
+    function updateScore(score) {
+        document.getElementById("score").innerHTML = score;
+    }
+
     return {
-        render: render
+        render: render,
+        updateScore: updateScore
     };
 })();
