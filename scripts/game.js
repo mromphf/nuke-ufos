@@ -7,6 +7,7 @@ var game = (function() {
     var moveables = randomStarsAnywhere();
     var ply = new Player(maxWidth, maxHeight);
     var elapsedTime = 0;
+    var keysPressed = {}
 
     function randomStarsAnywhere() {
         var result = [];
@@ -37,6 +38,8 @@ var game = (function() {
     }
 
     var moveEverything = function() {
+        movePlayer();
+
         if ( elapsedTime > 4000 && objectsOfType("ufo").length < 1 ) {
             moveables.push(new Ufo(randomTop(), 0));
         }
@@ -53,6 +56,25 @@ var game = (function() {
                 moveable.die();
             }
         });
+    }
+
+    var movePlayer = function() {
+        // Left arrow
+        if (keysPressed[37]) {
+            ply.moveLeft();
+        }
+        // Up arrow
+        else if (keysPressed[38]) {
+            ply.moveUp();
+        }
+        // Right arrow
+        else if (keysPressed[39]) {
+            ply.moveRight();
+        }
+        // Down arrow
+        else if (keysPressed[40]) {
+            ply.moveDown();
+        }
     }
 
     var detectCollisions = function() {
@@ -94,6 +116,7 @@ var game = (function() {
         player: ply,
         drawables: drawables,
         playerShoots: playerShoots,
-        addMillisecondsToTimer: addMillisecondsToTimer
+        addMillisecondsToTimer: addMillisecondsToTimer,
+        keysPressed: keysPressed
     };
 })();

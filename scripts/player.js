@@ -3,7 +3,7 @@
 var Player = function(maxWidth, maxHeight) {
     var maxWidth = maxWidth;
     var maxHeight = maxHeight;
-    var velocity = 25;
+    var velocity = 10;
     var x = maxWidth / 2;
     var y = maxHeight - (maxHeight * 0.2);
     var isDead = false;
