@@ -25,10 +25,6 @@ Star.prototype.draw = function(context) {
     context.fill();
 };
 
-Star.prototype.isTypeOf = function(type) {
-    return type === "star";
-};
-
 Star.prototype.die = function() {
     this.isDead = true;
 };

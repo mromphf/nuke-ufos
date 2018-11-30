@@ -22,10 +22,6 @@ Ufo.prototype.draw = function(context) {
     context.fill();
 };
 
-Ufo.prototype.isTypeOf = function(type) {
-    return type === "ufo";
-};
-
 Ufo.prototype.die = function() {
     this.isDead = true;
 };

@@ -22,10 +22,6 @@ Laser.prototype.move = function() {
     this.y = this.y - 5;
 };
 
-Laser.prototype.isTypeOf = function(type) {
-    return type === "laser";
-};
-
 Laser.prototype.die = function() {
     this.isDead = true;
 };
