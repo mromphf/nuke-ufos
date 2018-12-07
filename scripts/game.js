@@ -44,9 +44,7 @@ var game = (function() {
         moveables.ufos = moveables.ufos.filter(objectsStillAlive);
     }
 
-    var moveEverything = function() {
-        movePlayer();
-
+    var spawnNewThings = function() {
         if (elapsedTime > 4000 && moveables.ufos.length < 1) {
             moveables.ufos.push(new Ufo(randomTop(), 0));
         }
@@ -54,6 +52,10 @@ var game = (function() {
         if (moveables.stars.length < totalStars) {
             moveables.stars.push(randomStar.somewhereAtTheTop());
         }
+    }
+
+    var moveEverything = function() {
+        movePlayer();
 
         allMoveables().forEach(function(moveable) {
             if (moveable.hasRoomToMove(maxWidth, maxHeight)) {
@@ -118,6 +120,7 @@ var game = (function() {
     }
 
     return {
+        spawnNewThings: spawnNewThings,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         filterDeadObjects: filterDeadObjects,
