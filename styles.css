@@ -1,13 +1,15 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #000000;
+    color: yellow;
 }
 
 span {
-    color: yellow;
     font-family: 'arial';
     position: absolute;
     z-index: 1;
     font-size: 1.3em;
     margin: 10px 0px 0px 10px;
+    display: none;
 }

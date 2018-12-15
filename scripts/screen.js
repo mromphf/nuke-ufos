@@ -11,6 +11,21 @@ var screen = (function() {
         context.fillRect(0, 0, canvas.width, canvas.height);
     }
 
+    function showStartText() {
+        context.font = "80px arial";
+        context.fillStyle = "yellow";
+        context.textAlign = "center";
+        context.fillText("NUKE UFOS", canvas.width / 2, canvas.height / 2);
+
+        context.font = "40px arial";
+        context.fillText("Press any key to begin...", canvas.width / 2, (canvas.height + 200) / 2);
+    }
+
+    function hideStartText() {
+        document.getElementsByTagName("span")[0].style.display = "inline";
+        drawBackground();
+    }
+
     function render(drawables) {
         drawBackground();
         drawables.forEach(function(drawable) {
@@ -24,6 +39,8 @@ var screen = (function() {
 
     return {
         render: render,
-        updateScore: updateScore
+        updateScore: updateScore,
+        showStartText: showStartText,
+        hideStartText: hideStartText
     };
 })();

@@ -1,7 +1,13 @@
 "use strict";
 
 var keyboard = (function() {
-    function registerListeners() {
+    function registerStartListeners(startGame) {
+        window.onkeydown = function() {
+            startGame();
+        }
+    }
+
+    function registerGameListeners() {
         window.onkeydown = function(e) {
             game.keysPressed[e.keyCode || e.which] = true;
             // Space bar
@@ -16,6 +22,7 @@ var keyboard = (function() {
     }
 
     return {
-        registerListeners: registerListeners
+        registerStartListeners: registerStartListeners,
+        registerGameListeners: registerGameListeners
     }
 })();

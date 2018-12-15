@@ -1,6 +1,12 @@
 "use strict";
 
 var nukeUfos = (function() {
+    function startGame() {
+        screen.hideStartText();
+        keyboard.registerGameListeners();
+        runGame();
+    }
+
     function runGame() {
         setTimeout(function() {
             screen.render(game.drawables());
@@ -13,6 +19,6 @@ var nukeUfos = (function() {
         }, 17);
     }
 
-    keyboard.registerListeners();
-    runGame();
+    screen.showStartText();
+    keyboard.registerStartListeners(startGame);
 })();
