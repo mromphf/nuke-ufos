@@ -15,10 +15,13 @@ var screen = (function() {
         context.font = "80px arial";
         context.fillStyle = "yellow";
         context.textAlign = "center";
-        context.fillText("NUKE UFOS", canvas.width / 2, canvas.height / 2);
+        context.fillText("NUKE UFOS", (canvas.width / 2), (canvas.height / 2) - 100);
 
         context.font = "40px arial";
-        context.fillText("Press any key to begin...", canvas.width / 2, (canvas.height + 200) / 2);
+        context.fillText("ARROWS: Move      SPACE: Shoot", canvas.width / 2, (canvas.height) / 2);
+
+        context.font = "40px arial";
+        context.fillText("Press any key to launch...", canvas.width / 2, (canvas.height + 200) / 2);
     }
 
     function hideStartText() {
