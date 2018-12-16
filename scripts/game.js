@@ -1,10 +1,10 @@
 "use strict";
 
 var game = (function() {
-    var maxWidth = window.innerWidth;
-    var maxHeight = window.innerHeight;
-    var totalStars = 30;
-    var ply = new Player(maxWidth, maxHeight);
+    const MAX_WIDTH = window.innerWidth;
+    const MAX_HEIGHT = window.innerHeight;
+    const MAX_STARS = 30;
+    var ply = new Player(MAX_WIDTH, MAX_HEIGHT);
     var gameObjects = {
         ufos: [],
         lasers: [],
@@ -16,14 +16,14 @@ var game = (function() {
 
     function randomStarsAnywhere() {
         var result = [];
-        for (var i = 0; i < totalStars; i++) {
+        for (var i = 0; i < MAX_STARS; i++) {
             result.push(randomStar.anywhere());
         }
         return result;
     }
 
     var randomTop = function() {
-        return Math.floor((Math.random() * maxWidth) + 1);
+        return Math.floor((Math.random() * MAX_WIDTH) + 1);
     }
 
     var allMoveables = function() {
@@ -49,7 +49,7 @@ var game = (function() {
             gameObjects.ufos.push(new Ufo(randomTop(), 0));
         }
 
-        if (gameObjects.stars.length < totalStars) {
+        if (gameObjects.stars.length < MAX_STARS) {
             gameObjects.stars.push(randomStar.somewhereAtTheTop());
         }
     }
@@ -58,7 +58,7 @@ var game = (function() {
         movePlayer();
 
         allMoveables().forEach(function(moveable) {
-            if (moveable.hasRoomToMove(maxWidth, maxHeight)) {
+            if (moveable.hasRoomToMove(MAX_WIDTH, MAX_HEIGHT)) {
                 moveable.move();
             }
             else {
