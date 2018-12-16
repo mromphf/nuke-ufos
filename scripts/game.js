@@ -4,15 +4,15 @@ var game = (function() {
     const MAX_WIDTH = window.innerWidth;
     const MAX_HEIGHT = window.innerHeight;
     const MAX_STARS = 30;
-    var ply = new Player(MAX_WIDTH, MAX_HEIGHT);
+    var keysPressed = {};
     var gameObjects = {
+        player: new Player(MAX_WIDTH, MAX_HEIGHT),
         ufos: [],
         lasers: [],
-        stars: randomStarsAnywhere()
+        stars: randomStarsAnywhere(),
+        elapsedTime: 0,
+        score: 0
     };
-    var elapsedTime = 0;
-    var keysPressed = {};
-    var score = 0;
 
     function randomStarsAnywhere() {
         var result = [];
@@ -45,7 +45,7 @@ var game = (function() {
     }
 
     var spawnNewThings = function() {
-        if (elapsedTime > 4000 && gameObjects.ufos.length < 1) {
+        if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 1) {
             gameObjects.ufos.push(new Ufo(randomTop(), 0));
         }
 
@@ -70,25 +70,25 @@ var game = (function() {
     var movePlayer = function() {
         // Left arrow
         if (keysPressed[37]) {
-            ply.moveLeft();
+            gameObjects.player.moveLeft();
         }
         // Up arrow
         else if (keysPressed[38]) {
-            ply.moveUp();
+            gameObjects.player.moveUp();
         }
         // Right arrow
         else if (keysPressed[39]) {
-            ply.moveRight();
+            gameObjects.player.moveRight();
         }
         // Down arrow
         else if (keysPressed[40]) {
-            ply.moveDown();
+            gameObjects.player.moveDown();
         }
     }
 
     var detectCollisions = function() {
         gameObjects.ufos.forEach(function(ufo) {
-            if (collision.hasOccuredBetween(ufo, ply)) {
+            if (collision.hasOccuredBetween(ufo, gameObjects.player)) {
                 gameOver();
             }
 
@@ -96,8 +96,8 @@ var game = (function() {
                 if (collision.hasOccuredBetween(ufo, laser)) {
                     ufo.die();
                     laser.die();
-                    score = score + 100;
-                    screen.updateScore(score);
+                    gameObjects.score = gameObjects.score + 100;
+                    screen.updateScore(gameObjects.score);
                 }
             });
         });
@@ -105,18 +105,18 @@ var game = (function() {
 
     var playerShoots = function() {
         if (gameObjects.lasers.length < 3) {
-            gameObjects.lasers.push(new Laser(ply.x, ply.y));
+            gameObjects.lasers.push(new Laser(gameObjects.player.x, gameObjects.player.y));
         }
     }
 
     var drawables = function() {
-        return allMoveables().concat(ply).filter(function(x) {
+        return allMoveables().concat(gameObjects.player).filter(function(x) {
             return x.isAlive;
         });
     }
 
     var addMillisecondsToTimer = function(milliseconds) {
-        elapsedTime = elapsedTime + milliseconds;
+        gameObjects.elapsedTime = gameObjects.elapsedTime + milliseconds;
     }
 
     return {
@@ -124,11 +124,11 @@ var game = (function() {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         removeDeadObjects: removeDeadObjects,
-        player: ply,
+        player: gameObjects.player,
         drawables: drawables,
         playerShoots: playerShoots,
         addMillisecondsToTimer: addMillisecondsToTimer,
         keysPressed: keysPressed,
-        score: score
+        score: gameObjects.score
     };
 })();
