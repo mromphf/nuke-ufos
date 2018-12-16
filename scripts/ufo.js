@@ -4,7 +4,7 @@ function Ufo(x, y) {
     this.x = x;
     this.y = y;
     this.radius = 30;
-    this.isDead = false;
+    this.isAlive = true;
 }
 
 Ufo.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
@@ -23,9 +23,5 @@ Ufo.prototype.draw = function(context) {
 };
 
 Ufo.prototype.die = function() {
-    this.isDead = true;
-};
-
-Ufo.prototype.isAlive = function() {
-    return this.isDead === false;
+    this.isAlive = false;
 };

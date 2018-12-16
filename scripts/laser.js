@@ -4,7 +4,7 @@ function Laser(x, y) {
     this.x = x;
     this.y = y;
     this.radius = 5;
-    this.isDead = false;
+    this.isAlive = true;
 };
 
 Laser.prototype.hasRoomToMove = function() {
@@ -23,9 +23,5 @@ Laser.prototype.move = function() {
 };
 
 Laser.prototype.die = function() {
-    this.isDead = true;
-};
-
-Laser.prototype.isAlive = function() {
-    return this.isDead === false;
+    this.isAlive = false;
 };

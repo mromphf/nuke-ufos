@@ -35,7 +35,7 @@ var game = (function() {
     }
 
     var objectsStillAlive = function(o) {
-        return o.isAlive();
+        return o.isAlive;
     }
 
     var removeDeadObjects = function() {
@@ -111,7 +111,7 @@ var game = (function() {
 
     var drawables = function() {
         return allMoveables().concat(ply).filter(function(x) {
-            return x.isAlive();
+            return x.isAlive;
         });
     }
 
