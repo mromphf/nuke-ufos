@@ -1,20 +1,9 @@
 "use strict";
 
 var game = (function() {
-    const MAX_WIDTH = window.innerWidth;
-    const MAX_HEIGHT = window.innerHeight;
-    const MAX_STARS = 30;
     var keysPressed = {};
-    var gameObjects = {
-        player: new Player(MAX_WIDTH, MAX_HEIGHT),
-        ufos: [],
-        lasers: [],
-        stars: randomStarsAnywhere(),
-        elapsedTime: 0,
-        score: 0
-    };
 
-    function randomStarsAnywhere() {
+    function randomStarsAnywhere(MAX_STARS) {
         var result = [];
         for (var i = 0; i < MAX_STARS; i++) {
             result.push(randomStar.anywhere());
@@ -22,11 +11,11 @@ var game = (function() {
         return result;
     }
 
-    var randomTop = function() {
+    var randomTop = function(MAX_WIDTH) {
         return Math.floor((Math.random() * MAX_WIDTH) + 1);
     }
 
-    var allMoveables = function() {
+    var allMoveables = function(gameObjects) {
         return gameObjects.stars.concat(gameObjects.lasers).concat(gameObjects.ufos);
     }
 
@@ -38,15 +27,15 @@ var game = (function() {
         return o.isAlive;
     }
 
-    var removeDeadObjects = function() {
+    var removeDeadObjects = function(gameObjects) {
         gameObjects.stars = gameObjects.stars.filter(objectsStillAlive);
         gameObjects.lasers = gameObjects.lasers.filter(objectsStillAlive);
         gameObjects.ufos = gameObjects.ufos.filter(objectsStillAlive);
     }
 
-    var spawnNewThings = function() {
+    var spawnNewThings = function(gameObjects, MAX_STARS, MAX_WIDTH) {
         if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 1) {
-            gameObjects.ufos.push(new Ufo(randomTop(), 0));
+            gameObjects.ufos.push(new Ufo(randomTop(MAX_WIDTH), 0));
         }
 
         if (gameObjects.stars.length < MAX_STARS) {
@@ -54,10 +43,10 @@ var game = (function() {
         }
     }
 
-    var moveEverything = function() {
-        movePlayer();
+    var moveEverything = function(gameObjects, MAX_WIDTH, MAX_HEIGHT) {
+        movePlayer(gameObjects.player);
 
-        allMoveables().forEach(function(moveable) {
+        allMoveables(gameObjects).forEach(function(moveable) {
             if (moveable.hasRoomToMove(MAX_WIDTH, MAX_HEIGHT)) {
                 moveable.move();
             }
@@ -67,26 +56,26 @@ var game = (function() {
         });
     }
 
-    var movePlayer = function() {
+    var movePlayer = function(player) {
         // Left arrow
         if (keysPressed[37]) {
-            gameObjects.player.moveLeft();
+            player.moveLeft();
         }
         // Up arrow
         else if (keysPressed[38]) {
-            gameObjects.player.moveUp();
+            player.moveUp();
         }
         // Right arrow
         else if (keysPressed[39]) {
-            gameObjects.player.moveRight();
+            player.moveRight();
         }
         // Down arrow
         else if (keysPressed[40]) {
-            gameObjects.player.moveDown();
+            player.moveDown();
         }
     }
 
-    var detectCollisions = function() {
+    var detectCollisions = function(gameObjects) {
         gameObjects.ufos.forEach(function(ufo) {
             if (collision.hasOccuredBetween(ufo, gameObjects.player)) {
                 gameOver();
@@ -103,32 +92,26 @@ var game = (function() {
         });
     }
 
-    var playerShoots = function() {
+    var playerShoots = function(gameObjects) {
         if (gameObjects.lasers.length < 3) {
             gameObjects.lasers.push(new Laser(gameObjects.player.x, gameObjects.player.y));
         }
     }
 
-    var drawables = function() {
-        return allMoveables().concat(gameObjects.player).filter(function(x) {
+    var drawables = function(gameObjects) {
+        return allMoveables(gameObjects).concat(gameObjects.player).filter(function(x) {
             return x.isAlive;
         });
     }
 
-    var addMillisecondsToTimer = function(milliseconds) {
-        gameObjects.elapsedTime = gameObjects.elapsedTime + milliseconds;
-    }
-
     return {
+        randomStarsAnywhere: randomStarsAnywhere,
         spawnNewThings: spawnNewThings,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         removeDeadObjects: removeDeadObjects,
-        player: gameObjects.player,
         drawables: drawables,
         playerShoots: playerShoots,
-        addMillisecondsToTimer: addMillisecondsToTimer,
         keysPressed: keysPressed,
-        score: gameObjects.score
     };
 })();

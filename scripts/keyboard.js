@@ -7,12 +7,12 @@ var keyboard = (function() {
         }
     }
 
-    function registerGameListeners() {
+    function registerGameListeners(gameObjects) {
         window.onkeydown = function(e) {
             game.keysPressed[e.keyCode || e.which] = true;
             // Space bar
             if (e.keyCode == 32) {
-                game.playerShoots();
+                game.playerShoots(gameObjects);
             }
         }
 
