@@ -31,10 +31,7 @@ var game = (function() {
     }
 
     var spawnEnemies = function(gameObjects) {
-        if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 3) {
-            gameObjects.ufos.push(spawn.ufo());
-        }
-        return gameObjects.ufos;
+        return spawn.ufo(gameObjects);
     }
 
     var replenishStars = function(stars) {
