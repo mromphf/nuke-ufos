@@ -22,10 +22,11 @@ var nukeUfos = (function() {
     function runGame(gameObjects) {
         setTimeout(function() {
             screen.render(game.drawables(gameObjects));
-            game.spawnNewThings(gameObjects, MAX_STARS, MAX_WIDTH);
-            game.moveEverything(gameObjects, MAX_WIDTH, MAX_HEIGHT);
-            game.detectCollisions(gameObjects);
-            game.removeDeadObjects(gameObjects);
+            gameObjects.stars = game.replenishStars(gameObjects.stars);
+            gameObjects.ufos = game.spawnEnemies(gameObjects)
+            gameObjects = game.moveEverything(gameObjects, MAX_WIDTH, MAX_HEIGHT);
+            gameObjects = game.detectCollisions(gameObjects);
+            gameObjects = game.removeDeadObjects(gameObjects);
             gameObjects.elapsedTime = gameObjects.elapsedTime + 17;
             runGame(gameObjects);
         }, 17);

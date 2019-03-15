@@ -27,16 +27,21 @@ var game = (function() {
         gameObjects.stars = gameObjects.stars.filter(objectsStillAlive);
         gameObjects.lasers = gameObjects.lasers.filter(objectsStillAlive);
         gameObjects.ufos = gameObjects.ufos.filter(objectsStillAlive);
+        return gameObjects;
     }
 
-    var spawnNewThings = function(gameObjects, max_stars, MAX_WIDTH) {
+    var spawnEnemies = function(gameObjects) {
         if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 3) {
             gameObjects.ufos.push(spawn.ufo());
         }
+        return gameObjects.ufos;
+    }
 
-        if (gameObjects.stars.length < max_stars) {
-            gameObjects.stars.push(randomStar.somewhereAtTheTop());
+    var replenishStars = function(stars) {
+        if (randomStar.isNeeded(stars)) {
+            stars.push(randomStar.somewhereAtTheTop());
         }
+        return stars;
     }
 
     var moveEverything = function(gameObjects, MAX_WIDTH, MAX_HEIGHT) {
@@ -50,6 +55,8 @@ var game = (function() {
                 moveable.die();
             }
         });
+
+        return gameObjects;
     }
 
     var movePlayer = function(player) {
@@ -86,6 +93,8 @@ var game = (function() {
                 }
             });
         });
+
+        return gameObjects;
     }
 
     var playerShoots = function(gameObjects) {
@@ -102,12 +111,13 @@ var game = (function() {
 
     return {
         randomStarsAnywhere: randomStarsAnywhere,
-        spawnNewThings: spawnNewThings,
+        spawnEnemies: spawnEnemies,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         removeDeadObjects: removeDeadObjects,
         drawables: drawables,
         playerShoots: playerShoots,
         keysPressed: keysPressed,
+        replenishStars: replenishStars
     };
 })();

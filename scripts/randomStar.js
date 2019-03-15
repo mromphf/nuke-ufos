@@ -20,8 +20,13 @@ var randomStar = (function() {
         return new Star(randomWidth(), 0);
     }
 
+    var isNeeded = function(stars) {
+        return stars.length < 30;
+    }
+
     return {
         anywhere: anywhere,
-        somewhereAtTheTop: somewhereAtTheTop
+        somewhereAtTheTop: somewhereAtTheTop,
+        isNeeded: isNeeded
     };
 })();
