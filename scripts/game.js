@@ -3,9 +3,9 @@
 var game = (function() {
     var keysPressed = {};
 
-    function randomStarsAnywhere(MAX_STARS) {
+    function randomStarsAnywhere(max_stars) {
         var result = [];
-        for (var i = 0; i < MAX_STARS; i++) {
+        for (var i = 0; i < max_stars; i++) {
             result.push(randomStar.anywhere());
         }
         return result;
@@ -29,12 +29,12 @@ var game = (function() {
         gameObjects.ufos = gameObjects.ufos.filter(objectsStillAlive);
     }
 
-    var spawnNewThings = function(gameObjects, MAX_STARS, MAX_WIDTH) {
+    var spawnNewThings = function(gameObjects, max_stars, MAX_WIDTH) {
         if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 3) {
             gameObjects.ufos.push(spawn.ufo());
         }
 
-        if (gameObjects.stars.length < MAX_STARS) {
+        if (gameObjects.stars.length < max_stars) {
             gameObjects.stars.push(randomStar.somewhereAtTheTop());
         }
     }
