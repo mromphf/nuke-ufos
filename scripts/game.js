@@ -11,10 +11,6 @@ var game = (function() {
         return result;
     }
 
-    var randomTop = function(MAX_WIDTH) {
-        return Math.floor((Math.random() * MAX_WIDTH) + 1);
-    }
-
     var allMoveables = function(gameObjects) {
         return gameObjects.stars.concat(gameObjects.lasers).concat(gameObjects.ufos);
     }
@@ -34,8 +30,8 @@ var game = (function() {
     }
 
     var spawnNewThings = function(gameObjects, MAX_STARS, MAX_WIDTH) {
-        if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 1) {
-            gameObjects.ufos.push(new Ufo(randomTop(MAX_WIDTH), 0));
+        if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 3) {
+            gameObjects.ufos.push(spawn.ufo());
         }
 
         if (gameObjects.stars.length < MAX_STARS) {
