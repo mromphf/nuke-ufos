@@ -1,8 +1,6 @@
 "use strict";
 
 var game = (function() {
-    var keysPressed = {};
-
     function randomStarsAnywhere(max_stars) {
         var result = [];
         for (var i = 0; i < max_stars; i++) {
@@ -58,19 +56,19 @@ var game = (function() {
 
     var movePlayer = function(player) {
         // Left arrow
-        if (keysPressed[37]) {
+        if (keyboard.keysPressed[37]) {
             player.moveLeft();
         }
         // Up arrow
-        else if (keysPressed[38]) {
+        else if (keyboard.keysPressed[38]) {
             player.moveUp();
         }
         // Right arrow
-        else if (keysPressed[39]) {
+        else if (keyboard.keysPressed[39]) {
             player.moveRight();
         }
         // Down arrow
-        else if (keysPressed[40]) {
+        else if (keyboard.keysPressed[40]) {
             player.moveDown();
         }
     }
@@ -114,7 +112,6 @@ var game = (function() {
         removeDeadObjects: removeDeadObjects,
         drawables: drawables,
         playerShoots: playerShoots,
-        keysPressed: keysPressed,
         replenishStars: replenishStars
     };
 })();

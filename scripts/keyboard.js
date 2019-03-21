@@ -1,6 +1,8 @@
 "use strict";
 
 var keyboard = (function() {
+    var keysPressed = {};
+
     function registerStartListeners(startGame) {
         window.onkeydown = function() {
             startGame();
@@ -9,7 +11,7 @@ var keyboard = (function() {
 
     function registerGameListeners(gameObjects) {
         window.onkeydown = function(e) {
-            game.keysPressed[e.keyCode || e.which] = true;
+            keysPressed[e.keyCode || e.which] = true;
             // Space bar
             if (e.keyCode == 32) {
                 game.playerShoots(gameObjects);
@@ -17,11 +19,12 @@ var keyboard = (function() {
         }
 
         window.onkeyup = function(e) {
-            game.keysPressed[e.keyCode || e.which] = false;
+            keysPressed[e.keyCode || e.which] = false;
         }
     }
 
     return {
+        keysPressed: keysPressed,
         registerStartListeners: registerStartListeners,
         registerGameListeners: registerGameListeners
     }
