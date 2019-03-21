@@ -1,14 +1,6 @@
 "use strict";
 
 var game = (function() {
-    function randomStarsAnywhere(max_stars) {
-        var result = [];
-        for (var i = 0; i < max_stars; i++) {
-            result.push(randomStar.anywhere());
-        }
-        return result;
-    }
-
     var allMoveables = function(gameObjects) {
         return gameObjects.stars.concat(gameObjects.lasers).concat(gameObjects.ufos);
     }
@@ -105,7 +97,6 @@ var game = (function() {
     }
 
     return {
-        randomStarsAnywhere: randomStarsAnywhere,
         spawnEnemies: spawnEnemies,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,

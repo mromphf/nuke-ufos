@@ -8,10 +8,18 @@ var nukeUfos = (function() {
         player: new Player(MAX_WIDTH, MAX_HEIGHT),
         ufos: [],
         lasers: [],
-        stars: game.randomStarsAnywhere(MAX_STARS),
+        stars: randomStarsAnywhere(MAX_STARS),
         elapsedTime: 0,
         score: 0
     };
+
+    function randomStarsAnywhere(max_stars) {
+        var result = [];
+        for (var i = 0; i < max_stars; i++) {
+            result.push(randomStar.anywhere());
+        }
+        return result;
+    }
 
     function startGame() {
         screen.hideStartText();
