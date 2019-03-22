@@ -5,8 +5,8 @@ var game = (function() {
         location.reload();
     }
 
-    function ufos(moveables) {
-        return moveables.filter(m => m instanceof Ufo);
+    function enemies(moveables) {
+        return moveables.filter(m => m instanceof Ufo || m instanceof Kamikaze);
     }
 
     function lasers(moveables) {
@@ -27,14 +27,14 @@ var game = (function() {
     }
 
     var detectCollisions = function(gameObjects) {
-        ufos(gameObjects.moveables).forEach(function(ufo) {
-            if (collision.hasOccuredBetween(ufo, gameObjects.player)) {
+        enemies(gameObjects.moveables).forEach(function(enemy) {
+            if (collision.hasOccuredBetween(enemy, gameObjects.player)) {
                 gameOver();
             }
 
             lasers(gameObjects.moveables).forEach(function(laser) {
-                if (collision.hasOccuredBetween(ufo, laser)) {
-                    ufo.die();
+                if (collision.hasOccuredBetween(enemy, laser)) {
+                    enemy.die();
                     laser.die();
                     gameObjects.score = gameObjects.score + 10;
                     screen.updateScore(gameObjects.score);
