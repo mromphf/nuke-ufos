@@ -30,27 +30,6 @@ var game = (function() {
         return moveables;
     }
 
-    var movePlayer = function(player) {
-        // Left arrow
-        if (keyboard.keysPressed[37]) {
-            player.moveLeft();
-        }
-        // Up arrow
-        else if (keyboard.keysPressed[38]) {
-            player.moveUp();
-        }
-        // Right arrow
-        else if (keyboard.keysPressed[39]) {
-            player.moveRight();
-        }
-        // Down arrow
-        else if (keyboard.keysPressed[40]) {
-            player.moveDown();
-        }
-
-        return player;
-    }
-
     var detectCollisions = function(gameObjects) {
         ufos(gameObjects.moveables).forEach(function(ufo) {
             if (collision.hasOccuredBetween(ufo, gameObjects.player)) {
@@ -77,7 +56,6 @@ var game = (function() {
     }
 
     return {
-        movePlayer: movePlayer,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots

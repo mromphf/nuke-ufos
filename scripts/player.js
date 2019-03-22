@@ -1,12 +1,10 @@
 "use strict";
 
-var Player = function(maxWidth, maxHeight) {
-    this.maxWidth = maxWidth;
-    this.maxHeight = maxHeight;
+var Player = function(x, y) {
     this.velocity = 10;
     this.radius = 5;
-    this.x = maxWidth / 2;
-    this.y = maxHeight - (maxHeight * 0.2);
+    this.x = x;
+    this.y = y;
     this.isAlive = true;
 }
 
@@ -22,14 +20,14 @@ Player.prototype.moveUp = function() {
     }
 }
 
-Player.prototype.moveRight = function() {
-    if ((this.x + this.velocity) < this.maxWidth) {
+Player.prototype.moveRight = function(maxWidth) {
+    if ((this.x + this.velocity) < maxWidth) {
         this.x = this.x + this.velocity;
     }
 }
 
-Player.prototype.moveDown = function() {
-    if ((this.y + this.velocity) < this.maxHeight) {
+Player.prototype.moveDown = function(maxHeight) {
+    if ((this.y + this.velocity) < maxHeight) {
         this.y = this.y + this.velocity;
     }
 }
