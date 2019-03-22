@@ -6,21 +6,13 @@ var nukeUfos = (function() {
     const MAX_STARS = 30;
     var gameObjects = {
         player: new Player(MAX_WIDTH, MAX_HEIGHT),
-        moveables: randomStarsAnywhere(MAX_STARS),
+        moveables: randomStar.fill(MAX_STARS),
         elapsedTime: 0,
         score: 0
     };
 
     function allOfType(type) {
         return gameObjects.moveables.filter(m => m instanceof type);
-    }
-
-    function randomStarsAnywhere(max_stars) {
-        var result = [];
-        for (var i = 0; i < max_stars; i++) {
-            result.push(randomStar.anywhere());
-        }
-        return result;
     }
 
     function startGame() {

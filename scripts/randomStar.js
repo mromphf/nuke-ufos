@@ -24,9 +24,18 @@ var randomStar = (function() {
         return stars.length < 30;
     }
 
+    var fill = function(max_stars) {
+        var result = [];
+        for (var i = 0; i < max_stars; i++) {
+            result.push(randomStar.anywhere());
+        }
+        return result;
+    }
+
     return {
         anywhere: anywhere,
         somewhereAtTheTop: somewhereAtTheTop,
-        isNeeded: isNeeded
+        isNeeded: isNeeded,
+        fill: fill
     };
 })();
