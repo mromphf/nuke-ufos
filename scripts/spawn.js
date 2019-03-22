@@ -9,14 +9,17 @@ var spawn = (function() {
         return moveables.filter(m => m instanceof Ufo);
     }
 
-    var ufo = function(gameObjects) {
-        if (gameObjects.elapsedTime > 4000 && ufos(gameObjects.moveables).length < 1) {
-            gameObjects.moveables.push(new Ufo(randomTop(screen.WIDTH), 0));
+    var randomEnemy = function(gameObjects) {
+        if (gameObjects.elapsedTime > 3000
+            && (gameObjects.elapsedTime - gameObjects.lastSpawnTime > 2000)
+            && ufos(gameObjects.moveables).length < 3) {
+                gameObjects.moveables.push(new Ufo(randomTop(screen.WIDTH), 0));
+                gameObjects.lastSpawnTime = gameObjects.elapsedTime;
         }
         return gameObjects.moveables;
     }
 
     return {
-        ufo: ufo
+        randomEnemy: randomEnemy
     };
 })();
