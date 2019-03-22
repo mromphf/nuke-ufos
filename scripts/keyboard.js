@@ -14,7 +14,7 @@ var keyboard = (function() {
             keysPressed[e.keyCode || e.which] = true;
             // Space bar
             if (e.keyCode == 32) {
-                game.playerShoots(gameObjects);
+                interactions.playerShoots(gameObjects);
             }
         }
 

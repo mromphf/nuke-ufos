@@ -1,6 +1,6 @@
 "use strict";
 
-var game = (function() {
+var interactions = (function() {
     var gameOver = function() {
         location.reload();
     }
