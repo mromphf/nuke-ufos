@@ -16,7 +16,7 @@ var spawn = (function() {
         if (gameObjects.elapsedTime > 4000 && ufos(gameObjects.moveables).length < 1) {
             gameObjects.moveables.push(new Ufo(randomTop(MAX_WIDTH), 0));
         }
-        return gameObjects;
+        return gameObjects.moveables;
     }
 
     return {

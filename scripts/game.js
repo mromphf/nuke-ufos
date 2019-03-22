@@ -9,10 +9,6 @@ var game = (function() {
         return moveables.filter(m => m.isAlive);
     }
 
-    var spawnEnemies = function(gameObjects) {
-        return spawn.ufo(gameObjects);
-    }
-
     function stars(moveables) {
         return moveables.filter(m => m instanceof Star);
     }
@@ -92,7 +88,6 @@ var game = (function() {
     }
 
     return {
-        spawnEnemies: spawnEnemies,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         removeDeadObjects: removeDeadObjects,
