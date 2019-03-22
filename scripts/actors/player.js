@@ -33,10 +33,8 @@ Player.prototype.move = function(keysPressed, maxWidth, maxHeight) {
             return new Player(this.x, this.y + this.velocity);
         }
     }
-    // No key
-    else {
-        return this;
-    }
+
+    return this;
 }
 
 Player.prototype.draw = function(context) {
