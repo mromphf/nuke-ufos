@@ -5,10 +5,6 @@ var game = (function() {
         location.reload();
     }
 
-    function stars(moveables) {
-        return moveables.filter(m => m instanceof Star);
-    }
-
     function ufos(moveables) {
         return moveables.filter(m => m instanceof Ufo);
     }
