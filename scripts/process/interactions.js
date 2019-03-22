@@ -14,16 +14,14 @@ var interactions = (function() {
     }
 
     var moveEverything = function(moveables, maxWidth, maxHeight) {
-        moveables.forEach(function(moveable) {
+        return moveables.map(function(moveable) {
             if (moveable.hasRoomToMove(maxWidth, maxHeight)) {
-                moveable.move();
+                return moveable.move();
             }
             else {
-                moveable.die();
+                return moveable.die();
             }
         });
-
-        return moveables;
     }
 
     var detectCollisions = function(gameObjects) {

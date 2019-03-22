@@ -3,9 +3,9 @@
 function Kamikaze(x, y) {
     this.x = x;
     this.y = y;
+    this.isAlive = true;
     this.radius = 15;
     this.velocity = 10;
-    this.isAlive = true;
 }
 
 Kamikaze.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
@@ -13,7 +13,7 @@ Kamikaze.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
 }
 
 Kamikaze.prototype.move = function() {
-    this.y = this.y + this.velocity;
+    return new Kamikaze(this.x, this.y + this.velocity);
 }
 
 Kamikaze.prototype.draw = function(context) {
@@ -27,4 +27,5 @@ Kamikaze.prototype.draw = function(context) {
 
 Kamikaze.prototype.die = function() {
     this.isAlive = false;
+    return this;
 }

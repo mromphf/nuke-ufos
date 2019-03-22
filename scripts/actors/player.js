@@ -1,40 +1,42 @@
 "use strict";
 
 var Player = function(x, y) {
-    this.velocity = 10;
-    this.radius = 5;
     this.x = x;
     this.y = y;
     this.isAlive = true;
+    this.velocity = 10;
+    this.radius = 5;
 }
 
 Player.prototype.move = function(keysPressed, maxWidth, maxHeight) {
     // Left arrow
     if (keysPressed[37]) {
         if ((this.x - this.velocity) > 0) {
-            this.x = this.x - this.velocity;
+            return new Player(this.x - this.velocity, this.y);
         }
     }
     // Up arrow
     else if (keysPressed[38]) {
         if ((this.y - this.velocity) > 0) {
-            this.y = this.y - this.velocity;
+            return new Player(this.x, this.y - this.velocity);
         }
     }
     // Right arrow
     else if (keysPressed[39]) {
         if ((this.x + this.velocity) < maxWidth) {
-            this.x = this.x + this.velocity;
+            return new Player(this.x + this.velocity, this.y);
         }
     }
     // Down arrow
     else if (keysPressed[40]) {
         if ((this.y + this.velocity) < maxHeight) {
-            this.y = this.y + this.velocity;
+            return new Player(this.x, this.y + this.velocity);
         }
     }
-
-    return this;
+    // No key
+    else {
+        return this;
+    }
 }
 
 Player.prototype.draw = function(context) {
@@ -48,4 +50,5 @@ Player.prototype.draw = function(context) {
 
 Player.prototype.die = function() {
     this.isAlive = false;
+    return this;
 }

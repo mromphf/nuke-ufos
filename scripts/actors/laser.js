@@ -3,8 +3,8 @@
 function Laser(x, y) {
     this.x = x;
     this.y = y;
-    this.radius = 5;
     this.isAlive = true;
+    this.radius = 5;
 };
 
 Laser.prototype.hasRoomToMove = function() {
@@ -19,9 +19,10 @@ Laser.prototype.draw = function(context) {
 };
 
 Laser.prototype.move = function() {
-    this.y = this.y - 5;
+    return new Laser(this.x, this.y - 5);
 };
 
 Laser.prototype.die = function() {
     this.isAlive = false;
+    return this;
 };

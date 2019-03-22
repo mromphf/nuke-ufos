@@ -7,7 +7,7 @@ function Star(x, y) {
 };
 
 Star.prototype.move = function() {
-    this.y = this.y + 2;
+    return new Star(this.x, this.y + 2);
 };
 
 Star.prototype.hasRoomToMove = function(maxWidth, maxHeight) {
@@ -23,4 +23,5 @@ Star.prototype.draw = function(context) {
 
 Star.prototype.die = function() {
     this.isAlive = false;
+    return this;
 };
