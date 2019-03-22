@@ -36,7 +36,7 @@ var game = (function() {
                 if (collision.hasOccuredBetween(ufo, laser)) {
                     ufo.die();
                     laser.die();
-                    gameObjects.score = gameObjects.score + 100;
+                    gameObjects.score = gameObjects.score + 10;
                     screen.updateScore(gameObjects.score);
                 }
             });
