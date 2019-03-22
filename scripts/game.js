@@ -28,10 +28,8 @@ var game = (function() {
         return moveables;
     }
 
-    var moveEverything = function(gameObjects, MAX_WIDTH, MAX_HEIGHT) {
-        movePlayer(gameObjects.player);
-
-        gameObjects.moveables.forEach(function(moveable) {
+    var moveEverything = function(moveables, MAX_WIDTH, MAX_HEIGHT) {
+        moveables.forEach(function(moveable) {
             if (moveable.hasRoomToMove(MAX_WIDTH, MAX_HEIGHT)) {
                 moveable.move();
             }
@@ -40,7 +38,7 @@ var game = (function() {
             }
         });
 
-        return gameObjects;
+        return moveables;
     }
 
     var movePlayer = function(player) {
@@ -60,6 +58,8 @@ var game = (function() {
         else if (keyboard.keysPressed[40]) {
             player.moveDown();
         }
+
+        return player;
     }
 
     var detectCollisions = function(gameObjects) {
@@ -78,7 +78,7 @@ var game = (function() {
             });
         });
 
-        return gameObjects;
+        return gameObjects.moveables;
     }
 
     var playerShoots = function(gameObjects) {
@@ -88,6 +88,7 @@ var game = (function() {
     }
 
     return {
+        movePlayer: movePlayer,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         removeDeadObjects: removeDeadObjects,
