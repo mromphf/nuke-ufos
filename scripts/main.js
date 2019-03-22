@@ -1,7 +1,7 @@
 "use strict";
 
 var nukeUfos = (function() {
-    var gameObjects = {
+    var game = {
         player: playerAtStartingPosition(),
         moveables: randomStar.fill(),
         elapsedTime: 0,
@@ -15,21 +15,21 @@ var nukeUfos = (function() {
 
     function startGame() {
         screen.hideStartText();
-        keyboard.registerGameListeners(gameObjects);
-        runGame(gameObjects);
+        keyboard.registerGameListeners(game);
+        runGame(game);
     }
 
-    function runGame(gameObjects) {
+    function runGame(game) {
         setTimeout(function() {
-            screen.render(gameObjects.moveables.concat(gameObjects.player));
-            gameObjects.player = gameObjects.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
-            gameObjects.moveables = randomStar.replenish(gameObjects.moveables);
-            gameObjects.moveables = spawn.randomEnemy(gameObjects);
-            gameObjects.moveables = interactions.moveEverything(gameObjects.moveables, screen.WIDTH, screen.HEIGHT);
-            gameObjects.moveables = interactions.detectCollisions(gameObjects);
-            gameObjects.moveables = gameObjects.moveables.filter(m => m.isAlive);
-            gameObjects.elapsedTime = gameObjects.elapsedTime + 17;
-            runGame(gameObjects);
+            screen.render(game.moveables.concat(game.player));
+            game.player = game.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
+            game.moveables = randomStar.replenish(game.moveables);
+            game.moveables = spawn.randomEnemy(game);
+            game.moveables = interactions.moveEverything(game.moveables, screen.WIDTH, screen.HEIGHT);
+            game.moveables = interactions.detectCollisions(game);
+            game.moveables = game.moveables.filter(m => m.isAlive);
+            game.elapsedTime = game.elapsedTime + 17;
+            runGame(game);
         }, 17);
     }
 
