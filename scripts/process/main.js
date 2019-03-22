@@ -21,7 +21,7 @@ var nukeUfos = (function() {
 
     function runGame(game) {
         setTimeout(function() {
-            screen.render(game.moveables.concat(game.player));
+            screen.render(game.moveables.concat(game.player), game.score);
             game.player = game.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
             game.moveables = randomStar.replenish(game.moveables);
             game.moveables = spawn.randomEnemy(game);

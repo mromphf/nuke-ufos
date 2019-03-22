@@ -27,26 +27,28 @@ var screen = (function() {
     }
 
     function hideStartText() {
-        document.getElementsByTagName("span")[0].style.display = "inline";
+        updateScore(0);
         drawBackground();
     }
 
-    function render(drawables) {
+    function render(drawables, score) {
         drawBackground();
         drawables.forEach(function(drawable) {
             drawable.draw(context);
         });
+        updateScore(score);
     }
 
     function updateScore(score) {
-        document.getElementById("score").innerHTML = score;
+        context.font = "20px arial";
+        context.fillStyle = "yellow";
+        context.fillText(("SCORE: " + score), 60, 30);
     }
 
     return {
         HEIGHT: HEIGHT,
         WIDTH: WIDTH,
         render: render,
-        updateScore: updateScore,
         showStartText: showStartText,
         hideStartText: hideStartText
     };

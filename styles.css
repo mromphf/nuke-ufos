@@ -4,12 +4,3 @@ body {
     background-color: #000000;
     color: yellow;
 }
-
-span {
-    font-family: 'arial';
-    position: absolute;
-    z-index: 1;
-    font-size: 1.3em;
-    margin: 10px 0px 0px 10px;
-    display: none;
-}

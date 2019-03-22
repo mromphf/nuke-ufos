@@ -35,7 +35,6 @@ var interactions = (function() {
                     enemy.die();
                     laser.die();
                     gameObjects.score = gameObjects.score + 10;
-                    screen.updateScore(gameObjects.score);
                 }
             });
         });
