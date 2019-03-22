@@ -1,8 +1,6 @@
 "use strict";
 
 var nukeUfos = (function() {
-    const MAX_WIDTH = window.innerWidth;
-    const MAX_HEIGHT = window.innerHeight;
     const MAX_STARS = 30;
 
     var gameObjects = {
@@ -13,7 +11,7 @@ var nukeUfos = (function() {
     };
 
     function playerAtStartingPosition() {
-        return new Player(MAX_WIDTH / 2, MAX_HEIGHT - (MAX_HEIGHT * 0.2));
+        return new Player(screen.WIDTH / 2, screen.HEIGHT - (screen.HEIGHT * 0.2));
     }
 
     function startGame() {
@@ -27,8 +25,8 @@ var nukeUfos = (function() {
             screen.render(gameObjects.moveables.concat(gameObjects.player));
             gameObjects.moveables = randomStar.replenish(gameObjects.moveables);
             gameObjects.moveables = spawn.ufo(gameObjects);
-            gameObjects.player = gameObjects.player.move(keyboard.keysPressed, MAX_WIDTH, MAX_HEIGHT);
-            gameObjects.moveables = game.moveEverything(gameObjects.moveables, MAX_WIDTH, MAX_HEIGHT);
+            gameObjects.player = gameObjects.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
+            gameObjects.moveables = game.moveEverything(gameObjects.moveables, screen.WIDTH, screen.HEIGHT);
             gameObjects.moveables = game.detectCollisions(gameObjects);
             gameObjects.moveables = gameObjects.moveables.filter(m => m.isAlive);
             gameObjects.elapsedTime = gameObjects.elapsedTime + 17;

@@ -1,16 +1,14 @@
 "use strict";
 
 var randomStar = (function() {
-    var maxWidth = window.innerWidth;
-    var maxHeight = window.innerHeight;
     const MAX_STARS = 30;
 
     function randomWidth() {
-        return Math.floor((Math.random() * maxWidth) + 1);
+        return Math.floor((Math.random() * screen.WIDTH) + 1);
     }
 
     function randomHeight() {
-        return Math.floor((Math.random() * maxHeight) + 1);
+        return Math.floor((Math.random() * screen.HEIGHT) + 1);
     }
 
     function anywhere() {

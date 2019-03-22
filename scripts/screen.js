@@ -1,10 +1,12 @@
 "use strict";
 
 var screen = (function() {
+    const WIDTH = window.innerWidth;
+    const HEIGHT = window.innerHeight;
     var canvas = document.getElementById("screen");
     var context = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
 
     function drawBackground() {
         context.fillStyle = "#020202";
@@ -41,6 +43,8 @@ var screen = (function() {
     }
 
     return {
+        HEIGHT: HEIGHT,
+        WIDTH: WIDTH,
         render: render,
         updateScore: updateScore,
         showStartText: showStartText,

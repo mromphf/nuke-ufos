@@ -13,9 +13,9 @@ var game = (function() {
         return moveables.filter(m => m instanceof Laser);
     }
 
-    var moveEverything = function(moveables, MAX_WIDTH, MAX_HEIGHT) {
+    var moveEverything = function(moveables, maxWidth, maxHeight) {
         moveables.forEach(function(moveable) {
-            if (moveable.hasRoomToMove(MAX_WIDTH, MAX_HEIGHT)) {
+            if (moveable.hasRoomToMove(maxWidth, maxHeight)) {
                 moveable.move();
             }
             else {
