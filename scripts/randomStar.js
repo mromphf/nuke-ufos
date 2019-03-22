@@ -3,6 +3,7 @@
 var randomStar = (function() {
     var maxWidth = window.innerWidth;
     var maxHeight = window.innerHeight;
+    const MAX_STARS = 30;
 
     function randomWidth() {
         return Math.floor((Math.random() * maxWidth) + 1);
@@ -12,30 +13,32 @@ var randomStar = (function() {
         return Math.floor((Math.random() * maxHeight) + 1);
     }
 
-    var anywhere = function() {
+    function anywhere() {
         return new Star(randomWidth(), randomHeight());
     }
 
-    var somewhereAtTheTop = function() {
+    function somewhereAtTheTop() {
         return new Star(randomWidth(), 0);
     }
 
-    var isNeeded = function(stars) {
-        return stars.length < 30;
+    var replenish = function(moveables) {
+        if (moveables.filter(m => m instanceof Star).length < MAX_STARS) {
+            moveables.push(somewhereAtTheTop());
+        }
+
+        return moveables;
     }
 
-    var fill = function(max_stars) {
+    var fill = function() {
         var result = [];
-        for (var i = 0; i < max_stars; i++) {
-            result.push(randomStar.anywhere());
+        for (var i = 0; i < MAX_STARS; i++) {
+            result.push(anywhere());
         }
         return result;
     }
 
     return {
-        anywhere: anywhere,
-        somewhereAtTheTop: somewhereAtTheTop,
-        isNeeded: isNeeded,
+        replenish: replenish,
         fill: fill
     };
 })();

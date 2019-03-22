@@ -17,13 +17,6 @@ var game = (function() {
         return moveables.filter(m => m instanceof Laser);
     }
 
-    var replenishStars = function(moveables) {
-        if (randomStar.isNeeded(stars(moveables))) {
-            moveables.push(randomStar.somewhereAtTheTop());
-        }
-        return moveables;
-    }
-
     var moveEverything = function(moveables, MAX_WIDTH, MAX_HEIGHT) {
         moveables.forEach(function(moveable) {
             if (moveable.hasRoomToMove(MAX_WIDTH, MAX_HEIGHT)) {
@@ -87,7 +80,6 @@ var game = (function() {
         movePlayer: movePlayer,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
-        playerShoots: playerShoots,
-        replenishStars: replenishStars
+        playerShoots: playerShoots
     };
 })();
