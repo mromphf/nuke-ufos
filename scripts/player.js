@@ -8,28 +8,33 @@ var Player = function(x, y) {
     this.isAlive = true;
 }
 
-Player.prototype.moveLeft = function() {
-    if ((this.x - this.velocity) > 0) {
-        this.x = this.x - this.velocity;
+Player.prototype.move = function(keysPressed, maxWidth, maxHeight) {
+    // Left arrow
+    if (keysPressed[37]) {
+        if ((this.x - this.velocity) > 0) {
+            this.x = this.x - this.velocity;
+        }
     }
-}
+    // Up arrow
+    else if (keysPressed[38]) {
+        if ((this.y - this.velocity) > 0) {
+            this.y = this.y - this.velocity;
+        }
+    }
+    // Right arrow
+    else if (keysPressed[39]) {
+        if ((this.x + this.velocity) < maxWidth) {
+            this.x = this.x + this.velocity;
+        }
+    }
+    // Down arrow
+    else if (keysPressed[40]) {
+        if ((this.y + this.velocity) < maxHeight) {
+            this.y = this.y + this.velocity;
+        }
+    }
 
-Player.prototype.moveUp = function() {
-    if ((this.y - this.velocity) > 0) {
-        this.y = this.y - this.velocity;
-    }
-}
-
-Player.prototype.moveRight = function(maxWidth) {
-    if ((this.x + this.velocity) < maxWidth) {
-        this.x = this.x + this.velocity;
-    }
-}
-
-Player.prototype.moveDown = function(maxHeight) {
-    if ((this.y + this.velocity) < maxHeight) {
-        this.y = this.y + this.velocity;
-    }
+    return this;
 }
 
 Player.prototype.draw = function(context) {
