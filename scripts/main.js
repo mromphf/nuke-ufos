@@ -37,7 +37,7 @@ var nukeUfos = (function() {
             gameObjects.player = game.movePlayer(gameObjects.player);
             gameObjects.moveables = game.moveEverything(gameObjects.moveables, MAX_WIDTH, MAX_HEIGHT);
             gameObjects.moveables = game.detectCollisions(gameObjects);
-            gameObjects.moveables = game.removeDeadObjects(gameObjects.moveables);
+            gameObjects.moveables = gameObjects.moveables.filter(m => m.isAlive);
             gameObjects.elapsedTime = gameObjects.elapsedTime + 17;
             runGame(gameObjects);
         }, 17);

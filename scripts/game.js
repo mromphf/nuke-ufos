@@ -5,10 +5,6 @@ var game = (function() {
         location.reload();
     }
 
-    var removeDeadObjects = function(moveables) {
-        return moveables.filter(m => m.isAlive);
-    }
-
     function stars(moveables) {
         return moveables.filter(m => m instanceof Star);
     }
@@ -91,7 +87,6 @@ var game = (function() {
         movePlayer: movePlayer,
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
-        removeDeadObjects: removeDeadObjects,
         playerShoots: playerShoots,
         replenishStars: replenishStars
     };
