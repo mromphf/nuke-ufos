@@ -21,9 +21,9 @@ var nukeUfos = (function() {
     function runGame(gameObjects) {
         setTimeout(function() {
             screen.render(gameObjects.moveables.concat(gameObjects.player));
+            gameObjects.player = gameObjects.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
             gameObjects.moveables = randomStar.replenish(gameObjects.moveables);
             gameObjects.moveables = spawn.ufo(gameObjects);
-            gameObjects.player = gameObjects.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
             gameObjects.moveables = game.moveEverything(gameObjects.moveables, screen.WIDTH, screen.HEIGHT);
             gameObjects.moveables = game.detectCollisions(gameObjects);
             gameObjects.moveables = gameObjects.moveables.filter(m => m.isAlive);
