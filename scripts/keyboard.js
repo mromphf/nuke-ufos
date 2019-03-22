@@ -4,8 +4,11 @@ var keyboard = (function() {
     var keysPressed = {};
 
     function registerStartListeners(startGame) {
-        window.onkeydown = function() {
-            startGame();
+        window.onkeydown = function(e) {
+            // Enter key
+            if (e.keyCode === 13) {
+                startGame();
+            }
         }
     }
 
