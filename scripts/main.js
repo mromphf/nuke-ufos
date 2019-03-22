@@ -1,8 +1,6 @@
 "use strict";
 
 var nukeUfos = (function() {
-    const MAX_STARS = 30;
-
     var gameObjects = {
         player: playerAtStartingPosition(),
         moveables: randomStar.fill(),
