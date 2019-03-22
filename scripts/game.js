@@ -1,40 +1,41 @@
 "use strict";
 
 var game = (function() {
-    var allMoveables = function(gameObjects) {
-        return gameObjects.stars.concat(gameObjects.lasers).concat(gameObjects.ufos);
-    }
-
     var gameOver = function() {
         location.reload();
     }
 
-    var objectsStillAlive = function(o) {
-        return o.isAlive;
-    }
-
-    var removeDeadObjects = function(gameObjects) {
-        gameObjects.stars = gameObjects.stars.filter(objectsStillAlive);
-        gameObjects.lasers = gameObjects.lasers.filter(objectsStillAlive);
-        gameObjects.ufos = gameObjects.ufos.filter(objectsStillAlive);
-        return gameObjects;
+    var removeDeadObjects = function(moveables) {
+        return moveables.filter(m => m.isAlive);
     }
 
     var spawnEnemies = function(gameObjects) {
         return spawn.ufo(gameObjects);
     }
 
-    var replenishStars = function(stars) {
-        if (randomStar.isNeeded(stars)) {
-            stars.push(randomStar.somewhereAtTheTop());
+    function stars(moveables) {
+        return moveables.filter(m => m instanceof Star);
+    }
+
+    function ufos(moveables) {
+        return moveables.filter(m => m instanceof Ufo);
+    }
+
+    function lasers(moveables) {
+        return moveables.filter(m => m instanceof Laser);
+    }
+
+    var replenishStars = function(moveables) {
+        if (randomStar.isNeeded(stars(moveables))) {
+            moveables.push(randomStar.somewhereAtTheTop());
         }
-        return stars;
+        return moveables;
     }
 
     var moveEverything = function(gameObjects, MAX_WIDTH, MAX_HEIGHT) {
         movePlayer(gameObjects.player);
 
-        allMoveables(gameObjects).forEach(function(moveable) {
+        gameObjects.moveables.forEach(function(moveable) {
             if (moveable.hasRoomToMove(MAX_WIDTH, MAX_HEIGHT)) {
                 moveable.move();
             }
@@ -66,12 +67,12 @@ var game = (function() {
     }
 
     var detectCollisions = function(gameObjects) {
-        gameObjects.ufos.forEach(function(ufo) {
+        ufos(gameObjects.moveables).forEach(function(ufo) {
             if (collision.hasOccuredBetween(ufo, gameObjects.player)) {
                 gameOver();
             }
 
-            gameObjects.lasers.forEach(function(laser) {
+            lasers(gameObjects.moveables).forEach(function(laser) {
                 if (collision.hasOccuredBetween(ufo, laser)) {
                     ufo.die();
                     laser.die();
@@ -85,15 +86,9 @@ var game = (function() {
     }
 
     var playerShoots = function(gameObjects) {
-        if (gameObjects.lasers.length < 3) {
-            gameObjects.lasers.push(new Laser(gameObjects.player.x, gameObjects.player.y));
+        if (lasers(gameObjects.moveables).length < 3) {
+            gameObjects.moveables.push(new Laser(gameObjects.player.x, gameObjects.player.y));
         }
-    }
-
-    var drawables = function(gameObjects) {
-        return allMoveables(gameObjects).concat(gameObjects.player).filter(function(x) {
-            return x.isAlive;
-        });
     }
 
     return {
@@ -101,7 +96,6 @@ var game = (function() {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         removeDeadObjects: removeDeadObjects,
-        drawables: drawables,
         playerShoots: playerShoots,
         replenishStars: replenishStars
     };

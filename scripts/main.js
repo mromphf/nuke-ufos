@@ -6,12 +6,14 @@ var nukeUfos = (function() {
     const MAX_STARS = 30;
     var gameObjects = {
         player: new Player(MAX_WIDTH, MAX_HEIGHT),
-        ufos: [],
-        lasers: [],
-        stars: randomStarsAnywhere(MAX_STARS),
+        moveables: randomStarsAnywhere(MAX_STARS),
         elapsedTime: 0,
         score: 0
     };
+
+    function allOfType(type) {
+        return gameObjects.moveables.filter(m => m instanceof type);
+    }
 
     function randomStarsAnywhere(max_stars) {
         var result = [];
@@ -29,12 +31,12 @@ var nukeUfos = (function() {
 
     function runGame(gameObjects) {
         setTimeout(function() {
-            screen.render(game.drawables(gameObjects));
-            gameObjects.stars = game.replenishStars(gameObjects.stars);
+            screen.render(gameObjects.moveables.concat(gameObjects.player));
+            gameObjects.moveables = game.replenishStars(gameObjects.moveables);
             gameObjects = game.spawnEnemies(gameObjects)
             gameObjects = game.moveEverything(gameObjects, MAX_WIDTH, MAX_HEIGHT);
             gameObjects = game.detectCollisions(gameObjects);
-            gameObjects = game.removeDeadObjects(gameObjects);
+            gameObjects.moveables = game.removeDeadObjects(gameObjects.moveables);
             gameObjects.elapsedTime = gameObjects.elapsedTime + 17;
             runGame(gameObjects);
         }, 17);

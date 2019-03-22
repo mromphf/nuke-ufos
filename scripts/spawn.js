@@ -8,9 +8,13 @@ var spawn = (function() {
         return Math.floor((Math.random() * MAX_WIDTH) + 1);
     }
 
+    function ufos(moveables) {
+        return moveables.filter(m => m instanceof Ufo);
+    }
+
     var ufo = function(gameObjects) {
-        if (gameObjects.elapsedTime > 4000 && gameObjects.ufos.length < 3) {
-            gameObjects.ufos.push(new Ufo(randomTop(MAX_WIDTH), 0));
+        if (gameObjects.elapsedTime > 4000 && ufos(gameObjects.moveables).length < 1) {
+            gameObjects.moveables.push(new Ufo(randomTop(MAX_WIDTH), 0));
         }
         return gameObjects;
     }
