@@ -19,12 +19,12 @@ var randomStar = (function() {
         return new Star(randomWidth(), 0);
     }
 
-    var replenish = function(moveables) {
-        if (moveables.filter(m => m instanceof Star).length < MAX_STARS) {
-            moveables.push(somewhereAtTheTop());
+    var replenish = function(actors) {
+        if (actors.filter(a => a instanceof Star).length < MAX_STARS) {
+            actors.push(somewhereAtTheTop());
         }
 
-        return moveables;
+        return actors;
     }
 
     var fill = function() {
