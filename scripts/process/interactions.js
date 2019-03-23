@@ -42,12 +42,7 @@ let interactions = (function() {
 
     function playerHasBeenHit(gameObjects, gameOver, runGame) {
         let collisions = enemies(gameObjects.actors).map(function(enemy) {
-            if (collision.hasOccuredBetween(enemy, gameObjects.player)) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return collision.hasOccuredBetween(enemy, gameObjects.player);
         });
 
         if (collisions.some(c => c === true)) {
