@@ -4,7 +4,7 @@ function Kamikaze(x, y) {
     this.x = x;
     this.y = y;
     this.isAlive = true;
-    this.radius = 15;
+    this.radius = 20;
     this.velocity = 10;
 }
 
@@ -18,9 +18,9 @@ Kamikaze.prototype.move = function() {
 
 Kamikaze.prototype.draw = function(context) {
     context.beginPath();
-    context.moveTo(this.x, this.y);
-    context.lineTo((this.x - 30), (this.y - 50));
-    context.lineTo((this.x + 30), (this.y - 50));
+    context.moveTo(this.x, this.y + 20);
+    context.lineTo((this.x - 20), (this.y - 20));
+    context.lineTo((this.x + 20), (this.y - 20));
     context.fillStyle = "#c00";
     context.fill();
 }
