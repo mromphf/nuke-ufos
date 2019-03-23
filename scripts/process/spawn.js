@@ -1,13 +1,12 @@
 "use strict";
 
-var spawn = (function() {
+let spawn = (function() {
     function randomTop() {
         return Math.floor((Math.random() * screen.WIDTH) + 1);
     }
 
     function generateRandomEnemy() {
-        let die = Math.random();
-        if (die > 0.5) {
+        if (Math.random() > 0.5) {
             return new Kamikaze(randomTop(screen.WIDTH), 0);
         }
         else {
@@ -19,7 +18,7 @@ var spawn = (function() {
         return actors.filter(a => a instanceof Ufo);
     }
 
-    var randomEnemy = function(gameObjects) {
+    let randomEnemy = function(gameObjects) {
         if (gameObjects.elapsedTime > 3000
             && (gameObjects.elapsedTime - gameObjects.lastSpawnTime > 2000)
             && ufos(gameObjects.actors).length < 3) {

@@ -1,10 +1,10 @@
 "use strict";
 
-var screen = (function() {
+let screen = (function() {
     const WIDTH = window.innerWidth;
     const HEIGHT = window.innerHeight;
-    var canvas = document.getElementById("screen");
-    var context = canvas.getContext("2d");
+    let canvas = document.getElementById("screen");
+    let context = canvas.getContext("2d");
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
 

@@ -1,7 +1,7 @@
 "use strict";
 
-var interactions = (function() {
-    var gameOver = function() {
+let interactions = (function() {
+    let gameOver = function() {
         location.reload();
     }
 
@@ -13,7 +13,7 @@ var interactions = (function() {
         return actors.filter(a => a instanceof Laser);
     }
 
-    var moveEverything = function(actors, maxWidth, maxHeight) {
+    let moveEverything = function(actors, maxWidth, maxHeight) {
         return actors.map(function(actor) {
             if (actor.hasRoomToMove(maxWidth, maxHeight)) {
                 return actor.move();
@@ -24,7 +24,7 @@ var interactions = (function() {
         });
     }
 
-    var detectCollisions = function(gameObjects) {
+    let detectCollisions = function(gameObjects) {
         enemies(gameObjects.actors).forEach(function(enemy) {
             if (collision.hasOccuredBetween(enemy, gameObjects.player)) {
                 gameOver();
@@ -42,7 +42,7 @@ var interactions = (function() {
         return gameObjects.actors;
     }
 
-    var playerShoots = function(gameObjects) {
+    let playerShoots = function(gameObjects) {
         if (lasers(gameObjects.actors).length < 3) {
             gameObjects.actors.push(new Laser(gameObjects.player.x, gameObjects.player.y));
         }

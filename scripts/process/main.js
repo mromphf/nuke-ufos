@@ -1,7 +1,7 @@
 "use strict";
 
-var nukeUfos = (function() {
-    var game = {
+let nukeUfos = (function() {
+    let game = {
         player: playerAtStartingPosition(),
         actors: randomStar.fill(),
         elapsedTime: 0,

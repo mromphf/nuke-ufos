@@ -1,6 +1,6 @@
 "use strict";
 
-var Player = function(x, y) {
+function Player(x, y) {
     this.x = x;
     this.y = y;
     this.isAlive = true;

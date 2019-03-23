@@ -1,6 +1,6 @@
 "use strict";
 
-var randomStar = (function() {
+let randomStar = (function() {
     const MAX_STARS = 30;
 
     function randomWidth() {
@@ -19,7 +19,7 @@ var randomStar = (function() {
         return new Star(randomWidth(), 0);
     }
 
-    var replenish = function(actors) {
+    function replenish(actors) {
         if (actors.filter(a => a instanceof Star).length < MAX_STARS) {
             actors.push(somewhereAtTheTop());
         }
@@ -27,9 +27,9 @@ var randomStar = (function() {
         return actors;
     }
 
-    var fill = function() {
-        var result = [];
-        for (var i = 0; i < MAX_STARS; i++) {
+    function fill() {
+        let result = [];
+        for (let i = 0; i < MAX_STARS; i++) {
             result.push(anywhere());
         }
         return result;

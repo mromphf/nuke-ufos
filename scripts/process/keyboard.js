@@ -1,7 +1,7 @@
 "use strict";
 
-var keyboard = (function() {
-    var keysPressed = {};
+let keyboard = (function() {
+    let keysPressed = {};
 
     function registerStartListeners(startGame) {
         window.onkeydown = function(e) {
