@@ -19,6 +19,10 @@ let nukeUfos = (function() {
         runGame(game);
     }
 
+    function gameOver() {
+        location.reload();
+    }
+
     function runGame(game) {
         setTimeout(function() {
             screen.render(game.actors.concat(game.player), game.score);
@@ -29,7 +33,7 @@ let nukeUfos = (function() {
             game.actors = interactions.detectCollisions(game);
             game.actors = game.actors.filter(m => m.isAlive);
             game.elapsedTime = game.elapsedTime + 17;
-            runGame(game);
+            interactions.playerHasBeenHit(game, gameOver, runGame)(game);
         }, 17);
     }
 

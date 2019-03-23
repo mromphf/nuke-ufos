@@ -1,10 +1,6 @@
 "use strict";
 
 let interactions = (function() {
-    let gameOver = function() {
-        location.reload();
-    }
-
     function enemies(actors) {
         return actors.filter(a => a instanceof Ufo || a instanceof Kamikaze);
     }
@@ -26,10 +22,6 @@ let interactions = (function() {
 
     let detectCollisions = function(gameObjects) {
         enemies(gameObjects.actors).forEach(function(enemy) {
-            if (collision.hasOccuredBetween(enemy, gameObjects.player)) {
-                gameOver();
-            }
-
             lasers(gameObjects.actors).forEach(function(laser) {
                 if (collision.hasOccuredBetween(enemy, laser)) {
                     enemy.die();
@@ -48,9 +40,27 @@ let interactions = (function() {
         }
     }
 
+    function playerHasBeenHit(gameObjects, gameOver, runGame) {
+        let collisions = enemies(gameObjects.actors).map(function(enemy) {
+            if (collision.hasOccuredBetween(enemy, gameObjects.player)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
+        if (collisions.some(c => c === true)) {
+            return gameOver;
+        }
+
+        return runGame;
+    }
+
     return {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
-        playerShoots: playerShoots
+        playerShoots: playerShoots,
+        playerHasBeenHit: playerHasBeenHit
     };
 })();
