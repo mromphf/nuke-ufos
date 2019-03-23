@@ -5,7 +5,7 @@ function Player(x, y) {
     this.y = y;
     this.isAlive = true;
     this.velocity = 10;
-    this.radius = 5;
+    this.radius = 40;
 }
 
 Player.prototype.move = function(keysPressed, maxWidth, maxHeight) {
@@ -39,9 +39,9 @@ Player.prototype.move = function(keysPressed, maxWidth, maxHeight) {
 
 Player.prototype.draw = function(context) {
     context.beginPath();
-    context.moveTo(this.x, this.y);
-    context.lineTo((this.x + 50), (this.y + 70));
-    context.lineTo((this.x - 50), (this.y + 70));
+    context.moveTo(this.x, this.y - 40);
+    context.lineTo((this.x - 40), (this.y + 40));
+    context.lineTo((this.x + 40), (this.y + 40));
     context.fillStyle = "#00f";
     context.fill();
 }
