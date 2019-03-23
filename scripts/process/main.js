@@ -1,26 +1,30 @@
 "use strict";
 
 let nukeUfos = (function() {
-    let game = {
-        player: playerAtStartingPosition(),
-        actors: randomStar.fill(),
-        elapsedTime: 0,
-        lastSpawnTime: 0,
-        score: 0
-    };
+    function newGame() {
+        return {
+            player: playerAtStartingPosition(),
+            actors: randomStar.fill(),
+            elapsedTime: 0,
+            lastSpawnTime: 0,
+            score: 0
+        };
+    }
 
     function playerAtStartingPosition() {
         return new Player(screen.WIDTH / 2, screen.HEIGHT - (screen.HEIGHT * 0.2));
     }
 
     function startGame() {
-        screen.hideStartText();
+        let game = newGame();
+        screen.reset();
         keyboard.registerGameListeners(game);
         runGame(game);
     }
 
-    function gameOver() {
-        location.reload();
+    function gameOver(game) {
+        keyboard.registerStartListeners(startGame);
+        screen.showGameOver(game.score);
     }
 
     function runGame(game) {

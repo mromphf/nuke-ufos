@@ -26,7 +26,7 @@ let screen = (function() {
         context.fillText("Press Enter to launch...", canvas.width / 2, (canvas.height + 200) / 2);
     }
 
-    function hideStartText() {
+    function reset() {
         updateScore(0);
         drawBackground();
     }
@@ -45,11 +45,24 @@ let screen = (function() {
         context.fillText(("SCORE: " + score), 60, 30);
     }
 
+    function showGameOver(score) {
+        drawBackground();
+
+        context.font = "80px arial";
+        context.fillStyle = "yellow";
+        context.textAlign = "center";
+        context.fillText("GAME OVER", (canvas.width / 2), (canvas.height / 2) - 100);
+
+        context.font = "40px arial";
+        context.fillText("Score: " + score, canvas.width / 2, (canvas.height) / 2);
+    }
+
     return {
         HEIGHT: HEIGHT,
         WIDTH: WIDTH,
         render: render,
         showStartText: showStartText,
-        hideStartText: hideStartText
+        reset: reset,
+        showGameOver: showGameOver
     };
 })();
