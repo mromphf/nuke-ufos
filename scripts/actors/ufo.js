@@ -15,11 +15,56 @@ Ufo.prototype.move = function() {
     return new Ufo(this.x, this.y + 3);
 };
 
-Ufo.prototype.draw = function(context) {
-    context.beginPath();
-    context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-    context.fillStyle = "#f00";
-    context.fill();
+Ufo.prototype.draw = function(c) {
+    c.beginPath();
+    c.arc(this.x, this.y, 30, 0, 2 * Math.PI);
+    c.fillStyle = "#666";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x, this.y + 23, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x, this.y - 23, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x + 23, this.y, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x - 23, this.y, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x + 15, this.y + 15, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x - 15, this.y - 15, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x - 15, this.y + 15, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x + 15, this.y - 15, 2, 0, 2 * Math.PI);
+    c.fillStyle = "#333";
+    c.fill();
+
+    c.beginPath();
+    c.arc(this.x, this.y, 15, 0, 2 * Math.PI);
+    c.fillStyle = "#f00";
+    c.fill();
 };
 
 Ufo.prototype.die = function() {
