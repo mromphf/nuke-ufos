@@ -40,22 +40,18 @@ let interactions = (function() {
         }
     }
 
-    function playerHasBeenHit(gameObjects, gameOver, runGame) {
+    function isGameOver(gameObjects) {
         let collisions = enemies(gameObjects.actors).map(function(enemy) {
             return collision.hasOccuredBetween(enemy, gameObjects.player);
         });
 
-        if (collisions.some(c => c === true)) {
-            return gameOver;
-        }
-
-        return runGame;
+        return collisions.some(c => c === true);
     }
 
     return {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
-        playerHasBeenHit: playerHasBeenHit
+        isGameOver: isGameOver
     };
 })();
