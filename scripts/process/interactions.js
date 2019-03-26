@@ -41,11 +41,9 @@ let interactions = (function() {
     }
 
     function isGameOver(gameObjects) {
-        let collisions = enemies(gameObjects.actors).map(function(enemy) {
-            return collision.hasOccuredBetween(enemy, gameObjects.player);
-        });
-
-        return collisions.some(c => c === true);
+        return enemies(gameObjects.actors)
+            .map(e => collision.hasOccuredBetween(e, gameObjects.player))
+            .some(c => c === true);
     }
 
     return {

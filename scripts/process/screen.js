@@ -33,9 +33,7 @@ let screen = (function() {
 
     function render(drawables, score) {
         drawBackground();
-        drawables.forEach(function(drawable) {
-            drawable.draw(context);
-        });
+        drawables.forEach(d => d.draw(context));
         updateScore(score);
     }
 
