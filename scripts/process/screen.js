@@ -49,10 +49,10 @@ let screen = (function() {
         context.font = "80px arial";
         context.fillStyle = "yellow";
         context.textAlign = "center";
-        context.fillText("GAME OVER", (canvas.width / 2), (canvas.height / 2) - 100);
+        context.fillText("GAME OVER", (WIDTH / 2), (HEIGHT / 2) - 100);
 
         context.font = "40px arial";
-        context.fillText("Score: " + score, canvas.width / 2, (canvas.height) / 2);
+        context.fillText("Score: " + score, (WIDTH / 2), (HEIGHT / 2));
     }
 
     return {
