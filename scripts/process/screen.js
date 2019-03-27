@@ -17,13 +17,13 @@ let screen = (function() {
         context.font = "80px arial";
         context.fillStyle = "yellow";
         context.textAlign = "center";
-        context.fillText("NUKE UFOS", (canvas.width / 2), (canvas.height / 2) - 100);
+        context.fillText("NUKE UFOS", (WIDTH / 2), (HEIGHT / 2) - 100);
 
         context.font = "40px arial";
-        context.fillText("ARROWS: Move      SPACE: Shoot", canvas.width / 2, (canvas.height) / 2);
+        context.fillText("ARROWS: Move      SPACE: Shoot", (WIDTH / 2), (HEIGHT / 2));
 
         context.font = "40px arial";
-        context.fillText("Press Enter to launch...", canvas.width / 2, (canvas.height + 200) / 2);
+        context.fillText("Press Enter to launch...", (WIDTH / 2), (HEIGHT + 200) / 2);
     }
 
     function reset() {
