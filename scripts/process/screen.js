@@ -10,7 +10,7 @@ let screen = (function() {
 
     function drawBackground() {
         context.fillStyle = "#020202";
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillRect(0, 0, WIDTH, HEIGHT);
     }
 
     function showStartText() {
