@@ -23,7 +23,7 @@ let screen = (function() {
         context.fillText("ARROWS: Move      SPACE: Shoot", (WIDTH / 2), (HEIGHT / 2));
 
         context.font = "40px arial";
-        context.fillText("Press Enter to launch...", (WIDTH / 2), (HEIGHT + 200) / 2);
+        context.fillText("Press Enter to launch", (WIDTH / 2), (HEIGHT + 200) / 2);
     }
 
     function reset() {
@@ -53,6 +53,8 @@ let screen = (function() {
 
         context.font = "40px arial";
         context.fillText("Score: " + score, (WIDTH / 2), (HEIGHT / 2));
+
+        context.fillText("Press ENTER to try again", (WIDTH / 2), (HEIGHT / 2) + 100);
     }
 
     return {
