@@ -9,7 +9,7 @@ let interactions = (function() {
         return actors.filter(a => a instanceof Laser);
     }
 
-    let moveEverything = function(actors, maxWidth, maxHeight) {
+    function moveEverything(actors, maxWidth, maxHeight) {
         return actors.map(function(actor) {
             if (actor.hasRoomToMove(maxWidth, maxHeight)) {
                 return actor.move();
@@ -20,7 +20,7 @@ let interactions = (function() {
         });
     }
 
-    let detectCollisions = function(gameObjects) {
+    function detectCollisions(gameObjects) {
         enemies(gameObjects.actors).forEach(function(enemy) {
             lasers(gameObjects.actors).forEach(function(laser) {
                 if (collision.hasOccuredBetween(enemy, laser)) {
@@ -34,7 +34,7 @@ let interactions = (function() {
         return gameObjects.actors;
     }
 
-    let playerShoots = function(gameObjects) {
+    function playerShoots(gameObjects) {
         if (lasers(gameObjects.actors).length < 3) {
             gameObjects.actors.push(new Laser(gameObjects.player.x, gameObjects.player.y));
         }

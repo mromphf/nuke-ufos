@@ -18,7 +18,7 @@ let spawn = (function() {
         return actors.filter(a => a instanceof Ufo);
     }
 
-    let randomEnemy = function(gameObjects) {
+    function randomEnemy(gameObjects) {
         if (gameObjects.elapsedTime > 3000
             && (gameObjects.elapsedTime - gameObjects.lastSpawnTime > 2000)
             && ufos(gameObjects.actors).length < 3) {

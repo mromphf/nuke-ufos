@@ -1,7 +1,7 @@
 "use strict";
 
 let collision = (function() {
-    let hasOccuredBetween = function(circle1, circle2) {
+    function hasOccuredBetween(circle1, circle2) {
         let dx = circle1.x - circle2.x;
         let dy = circle1.y - circle2.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
