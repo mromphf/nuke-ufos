@@ -21,17 +21,19 @@ let interactions = (function() {
     }
 
     function detectCollisions(gameObjects) {
-        enemies(gameObjects.actors).forEach(function(enemy) {
-            lasers(gameObjects.actors).forEach(function(laser) {
-                if (collision.hasOccuredBetween(enemy, laser)) {
-                    enemy.die();
-                    laser.die();
-                    gameObjects.score = gameObjects.score + 10;
-                }
-            });
+        return gameObjects.actors.map(function(actor) {
+            if ((actor instanceof Ufo || actor instanceof Kamikaze) &&
+                    lasers(gameObjects.actors).some(l => collision.hasOccuredBetween(actor, l))) {
+                return actor.die();
+            }
+            else if (actor instanceof Laser &&
+                        enemies(gameObjects.actors).some(e => collision.hasOccuredBetween(actor, e))) {
+                return actor.die();
+            }
+            else {
+                return actor;
+            }
         });
-
-        return gameObjects.actors;
     }
 
     function playerShoots(gameObjects) {
@@ -46,10 +48,15 @@ let interactions = (function() {
             .some(c => c === true);
     }
 
+    function tallyScore(actors) {
+        return enemies(actors).filter(a => !(a.isAlive) && (a.y + a.radius) < screen.HEIGHT).length * 10;
+    }
+
     return {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
-        isGameOver: isGameOver
+        isGameOver: isGameOver,
+        tallyScore: tallyScore
     };
 })();
