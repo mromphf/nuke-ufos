@@ -8,6 +8,7 @@ function Kamikaze(x, y, spawnTime) {
     this.velocity = 10;
     this.isEnemy = true;
     this.spawnTime = spawnTime;
+    this.value = 30;
 }
 
 Kamikaze.prototype.hasRoomToMove = function(maxHeight, maxWidth) {

@@ -48,7 +48,11 @@ let interactions = (function() {
     }
 
     function tallyScore(actors) {
-        return enemies(actors).filter(a => !(a.isAlive) && (a.y + a.radius) < screen.HEIGHT).length * 10;
+        return enemies(actors)
+            .filter(a => !(a.isAlive) && (a.y + a.radius) < screen.HEIGHT)
+            .reduce(function(acc, curr) {
+                return acc + curr.value;
+            }, 0);
     }
 
     return {

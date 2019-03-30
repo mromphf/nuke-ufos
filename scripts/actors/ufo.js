@@ -7,6 +7,7 @@ function Ufo(x, y, spawnTime) {
     this.radius = 30;
     this.isEnemy = true;
     this.spawnTime = spawnTime;
+    this.value = 10;
 }
 
 Ufo.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
