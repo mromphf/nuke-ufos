@@ -4,7 +4,7 @@ function Player(x, y) {
     this.x = x;
     this.y = y;
     this.isAlive = true;
-    this.velocity = 10;
+    this.velocity = 8;
     this.radius = 40;
 }
 

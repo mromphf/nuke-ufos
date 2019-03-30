@@ -6,10 +6,11 @@ function Laser(x, y) {
     this.isAlive = true;
     this.radius = 5;
     this.isEnemy = false;
+    this.velocity = 10;
 };
 
 Laser.prototype.hasRoomToMove = function() {
-    return (this.y - 2) > 0;
+    return (this.y - this.velocity) > 0;
 };
 
 Laser.prototype.draw = function(context) {
@@ -20,7 +21,7 @@ Laser.prototype.draw = function(context) {
 };
 
 Laser.prototype.move = function() {
-    return new Laser(this.x, this.y - 5);
+    return new Laser(this.x, this.y - this.velocity);
 };
 
 Laser.prototype.die = function() {
