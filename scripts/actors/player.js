@@ -9,8 +9,32 @@ function Player(x, y) {
 }
 
 Player.prototype.move = function(keysPressed, maxWidth, maxHeight) {
+    // Left and up arrows
+    if (keysPressed[37] && keysPressed[38]) {
+        if (((this.x - this.velocity) > 0) && ((this.y - this.velocity) > 0)) {
+            return new Player(this.x - this.velocity, this.y - this.velocity);
+        }
+    }
+    // Right and up arrows
+    if (keysPressed[39] && keysPressed[38]) {
+        if (((this.x + this.velocity) < maxWidth) && ((this.y - this.velocity) > 0)) {
+            return new Player(this.x + this.velocity, this.y - this.velocity);
+        }
+    }
+    // Left and down arrows
+    if (keysPressed[37] && keysPressed[40]) {
+        if (((this.x - this.velocity) > 0) && ((this.y + this.velocity) < maxHeight)) {
+            return new Player(this.x - this.velocity, this.y + this.velocity);
+        }
+    }
+    // Right and down arrows
+    if (keysPressed[39] && keysPressed[40]) {
+        if (((this.x + this.velocity) < maxWidth) && ((this.y + this.velocity) < maxHeight)) {
+            return new Player(this.x + this.velocity, this.y + this.velocity);
+        }
+    }
     // Left arrow
-    if (keysPressed[37]) {
+    else if (keysPressed[37]) {
         if ((this.x - this.velocity) > 0) {
             return new Player(this.x - this.velocity, this.y);
         }
