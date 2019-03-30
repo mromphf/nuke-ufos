@@ -16,6 +16,11 @@ Ufo.prototype.move = function() {
     return new Ufo(this.x, this.y + 3);
 };
 
+Ufo.prototype.die = function() {
+    this.isAlive = false;
+    return this;
+};
+
 Ufo.prototype.draw = function(c) {
     c.beginPath();
     c.arc(this.x, this.y, 30, 0, 2 * Math.PI);
@@ -66,9 +71,4 @@ Ufo.prototype.draw = function(c) {
     c.arc(this.x, this.y, 15, 0, 2 * Math.PI);
     c.fillStyle = "#f00";
     c.fill();
-};
-
-Ufo.prototype.die = function() {
-    this.isAlive = false;
-    return this;
 };
