@@ -40,14 +40,17 @@ let spawn = (function() {
         return 10;
     }
 
+    function enemyPool(elapsedTime) {
+        if (elapsedTime < 10000) {
+            return [Ufo]
+        }
+        return [Ufo, Kamikaze];
+    }
 
     function generateRandomEnemy(elapsedTime) {
-        if (Math.random() > 0.5) {
-            return new Kamikaze(randomTop(screen.WIDTH), 0, elapsedTime);
-        }
-        else {
-            return new Ufo(randomTop(screen.WIDTH), 0, elapsedTime);
-        }
+        let types = enemyPool(elapsedTime);
+        let selectedType = enemyPool(elapsedTime)[(Math.floor((Math.random() * types.length)) + 1) - 1];
+        return new selectedType(randomTop(screen.WIDTH), 0, elapsedTime);
     }
 
     function lastSpawnTime(enemies) {
