@@ -2,7 +2,7 @@
 
 let interactions = (function() {
     function enemies(actors) {
-        return actors.filter(a => a instanceof Ufo || a instanceof Kamikaze);
+        return actors.filter(a => a.isEnemy);
     }
 
     function lasers(actors) {
@@ -22,12 +22,11 @@ let interactions = (function() {
 
     function detectCollisions(actors) {
         return actors.map(function(actor) {
-            if ((actor instanceof Ufo || actor instanceof Kamikaze) &&
-                    lasers(actors).some(l => collision.hasOccuredBetween(actor, l))) {
+            if (actor.isEnemy && lasers(actors).some(l => collision.hasOccuredBetween(actor, l))) {
                 return actor.die();
             }
             else if (actor instanceof Laser &&
-                        enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
+                     enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
                 return actor.die();
             }
             else {

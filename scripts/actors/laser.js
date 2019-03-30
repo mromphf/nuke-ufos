@@ -5,6 +5,7 @@ function Laser(x, y) {
     this.y = y;
     this.isAlive = true;
     this.radius = 5;
+    this.isEnemy = false;
 };
 
 Laser.prototype.hasRoomToMove = function() {

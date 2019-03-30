@@ -4,6 +4,7 @@ function Star(x, y) {
     this.x = x;
     this.y = y;
     this.isAlive = true;
+    this.isEnemy = false;
 };
 
 Star.prototype.move = function() {

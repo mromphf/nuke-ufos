@@ -5,6 +5,7 @@ function Ufo(x, y) {
     this.y = y;
     this.isAlive = true;
     this.radius = 30;
+    this.isEnemy = true;
 }
 
 Ufo.prototype.hasRoomToMove = function(maxHeight, maxWidth) {

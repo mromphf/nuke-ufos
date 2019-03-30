@@ -6,6 +6,7 @@ function Kamikaze(x, y) {
     this.isAlive = true;
     this.radius = 20;
     this.velocity = 10;
+    this.isEnemy = true;
 }
 
 Kamikaze.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
