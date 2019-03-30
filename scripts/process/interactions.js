@@ -36,7 +36,7 @@ let interactions = (function() {
     }
 
     function playerShoots(gameObjects) {
-        if (lasers(gameObjects.actors).length < 3) {
+        if (lasers(gameObjects.actors).length < config.MAX_LASERS) {
             gameObjects.actors.push(new Laser(gameObjects.player.x, gameObjects.player.y));
         }
     }
