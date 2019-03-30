@@ -1,12 +1,13 @@
 "use strict";
 
-function Kamikaze(x, y) {
+function Kamikaze(x, y, spawnTime) {
     this.x = x;
     this.y = y;
     this.isAlive = true;
     this.radius = 20;
     this.velocity = 10;
     this.isEnemy = true;
+    this.spawnTime = spawnTime;
 }
 
 Kamikaze.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
@@ -14,7 +15,7 @@ Kamikaze.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
 }
 
 Kamikaze.prototype.move = function() {
-    return new Kamikaze(this.x, this.y + this.velocity);
+    return new Kamikaze(this.x, this.y + this.velocity, this.spawnTime);
 }
 
 Kamikaze.prototype.draw = function(context) {

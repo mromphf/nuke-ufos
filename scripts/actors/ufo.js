@@ -1,11 +1,12 @@
 "use strict";
 
-function Ufo(x, y) {
+function Ufo(x, y, spawnTime) {
     this.x = x;
     this.y = y;
     this.isAlive = true;
     this.radius = 30;
     this.isEnemy = true;
+    this.spawnTime = spawnTime;
 }
 
 Ufo.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
@@ -13,7 +14,7 @@ Ufo.prototype.hasRoomToMove = function(maxHeight, maxWidth) {
 };
 
 Ufo.prototype.move = function() {
-    return new Ufo(this.x, this.y + 3);
+    return new Ufo(this.x, this.y + 3, this.spawnTime);
 };
 
 Ufo.prototype.die = function() {

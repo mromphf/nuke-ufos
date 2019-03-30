@@ -5,27 +5,32 @@ let spawn = (function() {
         return Math.floor((Math.random() * screen.WIDTH) + 1);
     }
 
-    function generateRandomEnemy() {
+    function generateRandomEnemy(elapsedTime) {
         if (Math.random() > 0.5) {
-            return new Kamikaze(randomTop(screen.WIDTH), 0);
+            return new Kamikaze(randomTop(screen.WIDTH), 0, elapsedTime);
         }
         else {
-            return new Ufo(randomTop(screen.WIDTH), 0);
+            return new Ufo(randomTop(screen.WIDTH), 0, elapsedTime);
         }
     }
 
-    function ufos(actors) {
-        return actors.filter(a => a instanceof Ufo);
+    function lastSpawnTime(enemies) {
+        if (enemies.length === 0) {
+            return 0;
+        }
+
+        return enemies.sort(function(a, b) {
+            return b.spawnTime - a.spawnTime;
+        })[0].spawnTime;
     }
 
-    function randomEnemy(gameObjects) {
-        if (gameObjects.elapsedTime > 3000
-            && (gameObjects.elapsedTime - gameObjects.lastSpawnTime > 2000)
-            && ufos(gameObjects.actors).length < 3) {
-                gameObjects.actors.push(generateRandomEnemy());
-                gameObjects.lastSpawnTime = gameObjects.elapsedTime;
+    function randomEnemy(actors, elapsedTime) {
+        if (elapsedTime > 3000
+            && (elapsedTime - lastSpawnTime(actors.filter(a => a.isEnemy)) > 2000)
+            && actors.filter(a => a.isEnemy).length < 3) {
+                actors.push(generateRandomEnemy(elapsedTime));
         }
-        return gameObjects.actors;
+        return actors;
     }
 
     return {
