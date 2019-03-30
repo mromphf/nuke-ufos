@@ -36,7 +36,7 @@ let nukeUfos = (function() {
             game.actors = interactions.detectCollisions(game.actors);
             game.score += interactions.tallyScore(game.actors);
             game.actors = game.actors.filter(m => m.isAlive);
-            game.elapsedTime = game.elapsedTime + 17;
+            game.elapsedTime += 17;
 
             if (interactions.isGameOver(game.player, game.actors)) {
                 gameOver(game);
