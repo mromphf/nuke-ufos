@@ -20,14 +20,14 @@ let interactions = (function() {
         });
     }
 
-    function detectCollisions(gameObjects) {
-        return gameObjects.actors.map(function(actor) {
+    function detectCollisions(actors) {
+        return actors.map(function(actor) {
             if ((actor instanceof Ufo || actor instanceof Kamikaze) &&
-                    lasers(gameObjects.actors).some(l => collision.hasOccuredBetween(actor, l))) {
+                    lasers(actors).some(l => collision.hasOccuredBetween(actor, l))) {
                 return actor.die();
             }
             else if (actor instanceof Laser &&
-                        enemies(gameObjects.actors).some(e => collision.hasOccuredBetween(actor, e))) {
+                        enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
                 return actor.die();
             }
             else {
@@ -42,9 +42,9 @@ let interactions = (function() {
         }
     }
 
-    function isGameOver(gameObjects) {
-        return enemies(gameObjects.actors)
-            .map(e => collision.hasOccuredBetween(e, gameObjects.player))
+    function isGameOver(player, actors) {
+        return enemies(actors)
+            .map(e => collision.hasOccuredBetween(e, player))
             .some(c => c === true);
     }
 

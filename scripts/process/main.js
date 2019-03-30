@@ -34,12 +34,12 @@ let nukeUfos = (function() {
             game.actors = randomStar.replenish(game.actors);
             game.actors = spawn.randomEnemy(game);
             game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT);
-            game.actors = interactions.detectCollisions(game);
+            game.actors = interactions.detectCollisions(game.actors);
             game.score += interactions.tallyScore(game.actors);
             game.actors = game.actors.filter(m => m.isAlive);
             game.elapsedTime = game.elapsedTime + 17;
 
-            if (interactions.isGameOver(game)) {
+            if (interactions.isGameOver(game.player, game.actors)) {
                 gameOver(game);
             }
             else {
