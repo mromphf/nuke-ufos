@@ -42,9 +42,7 @@ let interactions = (function() {
     }
 
     function isGameOver(player, actors) {
-        return enemies(actors)
-            .map(e => collision.hasOccuredBetween(e, player))
-            .some(c => c === true);
+        return enemies(actors).some(enemy => collision.hasOccuredBetween(enemy, player));
     }
 
     function tallyScore(actors) {
