@@ -6,6 +6,7 @@ function Star(x, y) {
     this.isAlive = true;
     this.radius = 2;
     this.isEnemy = false;
+    this.isStar = true;
 };
 
 Star.prototype.move = function() {

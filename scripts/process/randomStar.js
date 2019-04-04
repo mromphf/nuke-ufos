@@ -20,7 +20,7 @@ let randomStar = (function() {
     }
 
     function replenish(actors) {
-        if (actors.filter(a => a instanceof Star).length < MAX_STARS) {
+        if (actors.filter(a => a.isStar).length < MAX_STARS) {
             actors.push(somewhereAtTheTop());
         }
 

@@ -6,7 +6,7 @@ let interactions = (function() {
     }
 
     function lasers(actors) {
-        return actors.filter(a => a instanceof Laser);
+        return actors.filter(a => a.isLaser);
     }
 
     function moveEverything(actors, maxWidth, maxHeight) {
@@ -25,8 +25,7 @@ let interactions = (function() {
             if (actor.isEnemy && lasers(actors).some(l => collision.hasOccuredBetween(actor, l))) {
                 return actor.die();
             }
-            else if (actor instanceof Laser &&
-                     enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
+            else if (actor.isLaser && enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
                 return actor.die();
             }
             else {
