@@ -17,7 +17,24 @@ let construct = (function() {
         }
     }
 
+    function laser(x, y) {
+        return {
+            die: behave.die,
+            draw: draw.laser,
+            hasRoomToMove: move.ifHasRoomToGoUp,
+            isAlive: true,
+            isEnemy: false,
+            isLaser: true,
+            move: move.up,
+            radius: 5,
+            velocity: 10,
+            x: x,
+            y: y
+        }
+    }
+
     return {
-        star: star
+        star: star,
+        laser: laser
     }
 })();
