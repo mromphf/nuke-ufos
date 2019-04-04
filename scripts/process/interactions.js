@@ -44,9 +44,13 @@ let interactions = (function() {
         return enemies(actors).some(enemy => collision.hasOccuredBetween(enemy, player));
     }
 
+    function enemiesThatDiedOnScreen(enemy) {
+        return !(enemy.isAlive) && ((enemy.y + enemy.radius) < screen.HEIGHT);
+    }
+
     function tallyScore(actors) {
         return enemies(actors)
-            .filter(a => !(a.isAlive) && (a.y + a.radius) < screen.HEIGHT)
+            .filter(enemiesThatDiedOnScreen)
             .reduce(function(acc, curr) {
                 return acc + curr.value;
             }, 0);
