@@ -3,14 +3,12 @@
 let move = (function() {
     function down() {
         return Object.assign(this, {
-            x: this.x,
             y: this.y + this.velocity
         });
     }
 
     function up() {
         return Object.assign(this, {
-            x: this.x,
             y: this.y - this.velocity
         });
     }
