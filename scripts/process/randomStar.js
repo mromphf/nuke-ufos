@@ -12,11 +12,11 @@ let randomStar = (function() {
     }
 
     function anywhere() {
-        return new Star(randomWidth(), randomHeight());
+        return construct.star(randomWidth(), randomHeight());
     }
 
     function somewhereAtTheTop() {
-        return new Star(randomWidth(), 0);
+        return construct.star(randomWidth(), 0);
     }
 
     function replenish(actors) {
