@@ -33,6 +33,23 @@ let construct = (function() {
         }
     }
 
+    function ufo(x, y, spawnTime) {
+        return {
+            die: behave.die,
+            draw: draw.ufo,
+            hasRoomToMove: move.ifHasRoomToGoDown,
+            isAlive: true,
+            isEnemy: true,
+            move: move.down,
+            radius: 30,
+            spawnTime: spawnTime,
+            value: 10,
+            velocity: 3,
+            x: x,
+            y: y
+        }
+    }
+
     function kamikaze(x, y, spawnTime) {
         return {
             die: behave.die,
@@ -50,14 +67,10 @@ let construct = (function() {
         }
     }
 
-    function ufo(x, y, spawnTime) {
-        return new Ufo(x, y, spawnTime);
-    }
-
     return {
-        star: star,
-        laser: laser,
         kamikaze: kamikaze,
-        ufo
+        laser: laser,
+        star: star,
+        ufo: ufo
     }
 })();
