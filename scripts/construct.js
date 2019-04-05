@@ -71,6 +71,7 @@ let construct = (function() {
         return {
             die: behave.die,
             draw: draw.player,
+            maxLasers: config.MAX_LASERS,
             move: move.player,
             isAlive: true,
             radius: 40,
