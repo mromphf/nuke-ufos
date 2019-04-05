@@ -58,31 +58,18 @@ let spawn = (function() {
         return selectedType(randomTop(screen.WIDTH), 0, elapsedTime);
     }
 
-    function lastSpawnTime(enemies) {
-        if (enemies.length === 0) {
-            return 0;
-        }
-
-        let times = enemies.map(e => e.spawnTime);
-
-        times.sort(function(a, b) {
-            return a - b;
-        })[times.length - 1];
-    }
-
-    function randomEnemy(actors, elapsedTime) {
+    function randomEnemy(actors, elapsedTime, timeOfLastEnemy) {
         if (elapsedTime > 3000
-            && (elapsedTime - lastSpawnTime(actors.filter(a => a.isEnemy)) > delayBetweenSpawns(elapsedTime))
+            && (elapsedTime - timeOfLastEnemy > delayBetweenSpawns(elapsedTime))
             && actors.filter(a => a.isEnemy).length < maximumEnemies(elapsedTime)) {
                 actors.push(generateRandomEnemy(elapsedTime));
         }
         return actors;
     }
 
-    function randomPowerUp(actors, elapsedTime) {
-        console.log(lastSpawnTime(actors.filter(a => a.isPowerUp)));
-        if (elapsedTime > 2000
-            && (elapsedTime - lastSpawnTime(actors.filter(a => a.isPowerUp)) > 5000)
+    function randomPowerUp(actors, elapsedTime, timeOfLastPowerUp) {
+        if (elapsedTime > 30000
+            && (elapsedTime - timeOfLastPowerUp > 60000)
             && actors.filter(a => a.isPowerUp).length < 1) {
                 actors.push(construct.ammo(randomTop(screen.WIDTH), 0, elapsedTime));
         }
