@@ -17,6 +17,22 @@ let construct = (function() {
         }
     }
 
+    function ammo(x, y, spawnTime) {
+        return {
+            die: behave.die,
+            draw: draw.ammo,
+            hasRoomToMove: move.ifHasRoomToGoDown,
+            isAlive: true,
+            isPowerUp: true,
+            move: move.down,
+            radius: 6,
+            spawnTime: spawnTime,
+            velocity: 4,
+            x: x,
+            y: y
+        }
+    }
+
     function laser(x, y) {
         return {
             die: behave.die,
@@ -82,6 +98,7 @@ let construct = (function() {
     }
 
     return {
+        ammo: ammo,
         kamikaze: kamikaze,
         laser: laser,
         player: player,

@@ -34,6 +34,18 @@ let interactions = (function() {
         });
     }
 
+    function detectPlayerCollisions(player, actors) {
+        return actors.map(function(actor) {
+            if (actor.isPowerUp && actor.isAlive && collision.hasOccuredBetween(actor, player)) {
+                player.maxLasers += 1;
+                return actor.die();
+            }
+            else {
+                return actor;
+            }
+        });
+    }
+
     function playerShoots(gameObjects) {
         if (lasers(gameObjects.actors).length < gameObjects.player.maxLasers) {
             gameObjects.actors.push(construct.laser(gameObjects.player.x, gameObjects.player.y));
@@ -58,6 +70,7 @@ let interactions = (function() {
 
     return {
         moveEverything: moveEverything,
+        detectPlayerCollisions: detectPlayerCollisions,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
         playerCollidedWithSomething: playerCollidedWithSomething,

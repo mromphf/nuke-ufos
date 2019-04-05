@@ -63,9 +63,11 @@ let spawn = (function() {
             return 0;
         }
 
-        return enemies.sort(function(a, b) {
-            return b.spawnTime - a.spawnTime;
-        })[0].spawnTime;
+        let times = enemies.map(e => e.spawnTime);
+
+        times.sort(function(a, b) {
+            return a - b;
+        })[times.length - 1];
     }
 
     function randomEnemy(actors, elapsedTime) {
@@ -77,7 +79,18 @@ let spawn = (function() {
         return actors;
     }
 
+    function randomPowerUp(actors, elapsedTime) {
+        console.log(lastSpawnTime(actors.filter(a => a.isPowerUp)));
+        if (elapsedTime > 2000
+            && (elapsedTime - lastSpawnTime(actors.filter(a => a.isPowerUp)) > 5000)
+            && actors.filter(a => a.isPowerUp).length < 1) {
+                actors.push(construct.ammo(randomTop(screen.WIDTH), 0, elapsedTime));
+        }
+        return actors;
+    }
+
     return {
-        randomEnemy: randomEnemy
+        randomEnemy: randomEnemy,
+        randomPowerUp: randomPowerUp
     };
 })();

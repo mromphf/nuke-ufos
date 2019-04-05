@@ -33,6 +33,18 @@ let draw = (function() {
         context.fill();
     }
 
+    function ammo(context) {
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        context.fillStyle = "#0f0";
+        context.fill();
+
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius + 8, 0, 2 * Math.PI);
+        context.strokeStyle = "#0f0";
+        context.stroke();
+    }
+
     function ufo(context) {
         context.beginPath();
         context.arc(this.x, this.y, 30, 0, 2 * Math.PI);
@@ -86,6 +98,7 @@ let draw = (function() {
     }
 
     return {
+        ammo: ammo,
         kamikaze: kamikaze,
         laser: laser,
         player: player,

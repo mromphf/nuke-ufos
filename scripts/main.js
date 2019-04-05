@@ -32,8 +32,10 @@ let nukeUfos = (function() {
             game.player = game.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
             game.actors = randomStar.replenish(game.actors);
             game.actors = spawn.randomEnemy(game.actors, game.elapsedTime);
+            game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime);
             game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT);
             game.actors = interactions.detectCollisions(game.actors);
+            game.actors = interactions.detectPlayerCollisions(game.player, game.actors);
             game.score += interactions.tallyScore(game.actors);
             game.actors = game.actors.filter(m => m.isAlive);
             game.elapsedTime += 17;
