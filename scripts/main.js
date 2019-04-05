@@ -38,7 +38,7 @@ let nukeUfos = (function() {
             game.actors = game.actors.filter(m => m.isAlive);
             game.elapsedTime += 17;
 
-            if (interactions.isGameOver(game.player, game.actors)) {
+            if (interactions.playerCollidedWithSomething(game.player, game.actors.filter(actor => actor.isEnemy))) {
                 gameOver(game);
             }
             else {

@@ -40,8 +40,8 @@ let interactions = (function() {
         }
     }
 
-    function isGameOver(player, actors) {
-        return enemies(actors).some(enemy => collision.hasOccuredBetween(enemy, player));
+    function playerCollidedWithSomething(player, actors) {
+        return actors.some(actor => collision.hasOccuredBetween(actor, player));
     }
 
     function enemiesThatDiedOnScreen(enemy) {
@@ -60,7 +60,7 @@ let interactions = (function() {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
-        isGameOver: isGameOver,
+        playerCollidedWithSomething: playerCollidedWithSomething,
         tallyScore: tallyScore
     };
 })();
