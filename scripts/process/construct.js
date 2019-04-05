@@ -67,9 +67,23 @@ let construct = (function() {
         }
     }
 
+    function player(x, y) {
+        return {
+            die: behave.die,
+            draw: draw.player,
+            move: move.player,
+            isAlive: true,
+            radius: 40,
+            velocity: 8,
+            x: x,
+            y: y
+        };
+    }
+
     return {
         kamikaze: kamikaze,
         laser: laser,
+        player: player,
         star: star,
         ufo: ufo
     }

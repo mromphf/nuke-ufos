@@ -11,7 +11,7 @@ let nukeUfos = (function() {
     }
 
     function playerAtStartingPosition() {
-        return new Player(screen.WIDTH / 2, screen.HEIGHT - (screen.HEIGHT * 0.2));
+        return construct.player(screen.WIDTH / 2, screen.HEIGHT - (screen.HEIGHT * 0.2));
     }
 
     function startGame() {

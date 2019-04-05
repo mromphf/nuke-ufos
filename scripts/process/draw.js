@@ -24,62 +24,72 @@ let draw = (function() {
         context.fill();
     }
 
+    function player(context) {
+        context.beginPath();
+        context.moveTo(this.x, this.y - 40);
+        context.lineTo((this.x - 40), (this.y + 40));
+        context.lineTo((this.x + 40), (this.y + 40));
+        context.fillStyle = "#00f";
+        context.fill();
+    }
+
     function ufo(context) {
         context.beginPath();
-        context.arcontext.this.x, this.y, 30, 0, 2 * Math.PI);
+        context.arc(this.x, this.y, 30, 0, 2 * Math.PI);
         context.fillStyle = "#666";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x, this.y + 23, 2, 0, 2 * Math.PI);
+        context.arc(this.x, this.y + 23, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x, this.y - 23, 2, 0, 2 * Math.PI);
+        context.arc(this.x, this.y - 23, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x + 23, this.y, 2, 0, 2 * Math.PI);
+        context.arc(this.x + 23, this.y, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x - 23, this.y, 2, 0, 2 * Math.PI);
+        context.arc(this.x - 23, this.y, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x + 15, this.y + 15, 2, 0, 2 * Math.PI);
+        context.arc(this.x + 15, this.y + 15, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x - 15, this.y - 15, 2, 0, 2 * Math.PI);
+        context.arc(this.x - 15, this.y - 15, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x - 15, this.y + 15, 2, 0, 2 * Math.PI);
+        context.arc(this.x - 15, this.y + 15, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x + 15, this.y - 15, 2, 0, 2 * Math.PI);
+        context.arc(this.x + 15, this.y - 15, 2, 0, 2 * Math.PI);
         context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
-        context.arcontext.this.x, this.y, 15, 0, 2 * Math.PI);
+        context.arc(this.x, this.y, 15, 0, 2 * Math.PI);
         context.fillStyle = "#f00";
         context.fill();
     }
 
     return {
-        star: star,
+        kamikaze: kamikaze,
         laser: laser,
-        ufo: ufo,
-        kamikaze: kamikaze
+        player: player,
+        star: star,
+        ufo: ufo
     }
 })();
