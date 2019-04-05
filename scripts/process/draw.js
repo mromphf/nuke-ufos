@@ -15,8 +15,18 @@ let draw = (function() {
         context.fill();
     }
 
+    function kamikaze(context) {
+        context.beginPath();
+        context.moveTo(this.x, this.y + 20);
+        context.lineTo((this.x - 20), (this.y - 20));
+        context.lineTo((this.x + 20), (this.y - 20));
+        context.fillStyle = "#c00";
+        context.fill();
+    }
+
     return {
         star: star,
-        laser: laser
+        laser: laser,
+        kamikaze: kamikaze
     }
 })();
