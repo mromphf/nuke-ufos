@@ -1,22 +1,6 @@
 "use strict";
 
 let interactions = (function() {
-    function enemies(actors) {
-        return actors.filter(a => a.isEnemy);
-    }
-
-    function lasers(actors) {
-        return actors.filter(a => a.isLaser);
-    }
-
-    function powerUps(actors) {
-        return actors.filter(a => a.isPowerUp);
-    }
-
-    function player(actors) {
-        return actors.find(a => a.isPlayer);
-    }
-
     function moveEverything(actors, maxWidth, maxHeight, keysPressed) {
         return actors.map(function(actor) {
             if (actor.isPlayer) {
@@ -41,19 +25,6 @@ let interactions = (function() {
                     }
                 });
                 return result;
-            }
-            else {
-                return actor;
-            }
-        });
-    }
-
-    function applyPowerUps(actors) {
-        return actors.map(function(actor) {
-            if (actor.isPlayer && powerUps(actors).filter(actorsThatDiedOnScreen).length > 0) {
-                return actors
-                    .find(a => a.isPowerUp)
-                    .applyTo(actor);
             }
             else {
                 return actor;
