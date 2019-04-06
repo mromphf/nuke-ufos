@@ -52,15 +52,12 @@ let spawn = (function() {
         ];
     }
 
-    function generateRandomEnemy(elapsedTime) {
-        let types = enemyPool(elapsedTime);
-        let selectedType = enemyPool(elapsedTime)[(Math.floor((Math.random() * types.length)) + 1) - 1];
-        return selectedType(randomTop(screen.WIDTH), 0, elapsedTime);
+    function powerUpPool() {
+        return [construct.ammo, construct.speedBoost];
     }
 
-    function generateRandomPowerUp(elapsedTime) {
-        let types = [construct.ammo, construct.speedBoost];
-        let selectedType = types[(Math.floor((Math.random() * types.length)) + 1) - 1];
+    function generateRandomActor(elapsedTime, actorPool) {
+        let selectedType = actorPool[(Math.floor((Math.random() * actorPool.length)) + 1) - 1];
         return selectedType(randomTop(screen.WIDTH), 0, elapsedTime);
     }
 
@@ -68,7 +65,7 @@ let spawn = (function() {
         if (elapsedTime > 3000
             && (elapsedTime - timeOfLastEnemy > delayBetweenSpawns(elapsedTime))
             && actors.filter(a => a.isEnemy).length < maximumEnemies(elapsedTime)) {
-                actors.push(generateRandomEnemy(elapsedTime));
+                actors.push(generateRandomActor(elapsedTime, enemyPool(elapsedTime)));
         }
         return actors;
     }
@@ -77,7 +74,7 @@ let spawn = (function() {
         if (elapsedTime > config.TIME_TO_FIRST_POWER_UP
             && (elapsedTime - timeOfLastPowerUp > config.TIME_BETWEEN_POWER_UPS)
             && actors.filter(a => a.isPowerUp).length < 1) {
-                actors.push(generateRandomPowerUp(elapsedTime));
+                actors.push(generateRandomActor(elapsedTime, powerUpPool(elapsedTime)));
         }
         return actors;
     }
