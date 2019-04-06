@@ -31,10 +31,9 @@ let screen = (function() {
         drawBackground();
     }
 
-    function render(drawables, score) {
+    function render(drawables) {
         drawBackground();
         drawables.forEach(d => d.draw(context));
-        updateScore(score);
     }
 
     function updateScore(score) {
@@ -62,6 +61,7 @@ let screen = (function() {
         WIDTH: WIDTH,
         CENTER: WIDTH / 2,
         render: render,
+        updateScore: updateScore,
         showStartText: showStartText,
         reset: reset,
         showGameOver: showGameOver
