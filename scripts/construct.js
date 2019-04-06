@@ -68,6 +68,15 @@ let construct = (function() {
         }
     }
 
+    function greaterUfo(x, y, spawnTime) {
+        return Object.assign(ufo(x, y, spawnTime), {
+            health: 3,
+            primaryColor: "#444",
+            secondaryColor: "#c00",
+            value: 40
+        });
+    }
+
     function ufo(x, y, spawnTime) {
         return {
             die: behave.die,
@@ -127,6 +136,7 @@ let construct = (function() {
     return {
         ammo: ammo,
         kamikaze: kamikaze,
+        greaterUfo: greaterUfo,
         laser: laser,
         player: player,
         speedBoost: speedBoost,
