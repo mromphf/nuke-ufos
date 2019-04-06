@@ -41,10 +41,16 @@ let spawn = (function() {
     }
 
     function enemyPool(elapsedTime) {
-        if (elapsedTime < 10000) {
+        if (elapsedTime < 20000) {
             return [
                 construct.ufo
             ]
+        }
+        else if (elapsedTime < 30000) {
+            return [
+                construct.kamikaze,
+                construct.ufo
+            ];
         }
         return [
             construct.greaterUfo,
