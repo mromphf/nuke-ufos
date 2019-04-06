@@ -41,7 +41,6 @@ let nukeUfos = (function() {
             game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime, game.timeOfLastPowerUp);
             game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT);
             game.actors = interactions.detectCollisions(game.actors, game.player);
-            game.actors = interactions.collectPowerups(game.player, game.actors);
             game.player = interactions.applyPowerUps(game.player, game.actors.filter(a => a.isPowerUp));
             game.player = interactions.playerCollidedWithSomething(game.player, game.actors.filter(a => a.isEnemy));
 

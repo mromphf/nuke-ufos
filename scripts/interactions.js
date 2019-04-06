@@ -31,15 +31,7 @@ let interactions = (function() {
             else if (actor.isLaser && enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
                 return actor.die();
             }
-            else {
-                return actor;
-            }
-        });
-    }
-
-    function collectPowerups(player, actors) {
-        return actors.map(function(actor) {
-            if (actor.isPowerUp && actor.isAlive && collision.hasOccuredBetween(actor, player)) {
+            else if (actor.isPowerUp && actor.isAlive && collision.hasOccuredBetween(actor, player)) {
                 return actor.die();
             }
             else {
@@ -96,7 +88,6 @@ let interactions = (function() {
 
     return {
         moveEverything: moveEverything,
-        collectPowerups: collectPowerups,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
         playerCollidedWithSomething: playerCollidedWithSomething,
