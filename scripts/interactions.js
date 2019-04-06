@@ -60,6 +60,17 @@ let interactions = (function() {
         return !(enemy.isAlive) && ((enemy.y + enemy.radius) < screen.HEIGHT);
     }
 
+    function timeOfLastSpawn(actors, timeOfLastSpawn) {
+        if (actors.length === 0) {
+            return timeOfLastSpawn;
+        }
+
+        return actors
+            .map(e => e.spawnTime)
+            .sort((a, b) => a - b)
+            .pop();
+    }
+
     function tallyScore(actors) {
         return enemies(actors)
             .filter(enemiesThatDiedOnScreen)
@@ -74,6 +85,7 @@ let interactions = (function() {
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
         playerCollidedWithSomething: playerCollidedWithSomething,
-        tallyScore: tallyScore
+        tallyScore: tallyScore,
+        timeOfLastSpawn: timeOfLastSpawn
     };
 })();
