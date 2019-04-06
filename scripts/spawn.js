@@ -68,8 +68,8 @@ let spawn = (function() {
     }
 
     function randomPowerUp(actors, elapsedTime, timeOfLastPowerUp) {
-        if (elapsedTime > 30000
-            && (elapsedTime - timeOfLastPowerUp > 60000)
+        if (elapsedTime > config.TIME_TO_FIRST_POWER_UP
+            && (elapsedTime - timeOfLastPowerUp > config.TIME_BETWEEN_POWER_UPS)
             && actors.filter(a => a.isPowerUp).length < 1) {
                 actors.push(construct.ammo(randomTop(screen.WIDTH), 0, elapsedTime));
         }

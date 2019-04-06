@@ -46,6 +46,7 @@ let nukeUfos = (function() {
             game.actors = interactions.detectCollisions(game.actors);
             game.actors = interactions.detectPlayerCollisions(game.player, game.actors);
             game.score += interactions.tallyScore(game.actors);
+            game.player = interactions.applyPowerUps(game.player, game.actors.filter(a => a.isPowerUp));
 
             // Clean up
             game.elapsedTime += 17;

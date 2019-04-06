@@ -37,7 +37,6 @@ let interactions = (function() {
     function detectPlayerCollisions(player, actors) {
         return actors.map(function(actor) {
             if (actor.isPowerUp && actor.isAlive && collision.hasOccuredBetween(actor, player)) {
-                player.maxLasers += 1;
                 return actor.die();
             }
             else {
@@ -56,8 +55,19 @@ let interactions = (function() {
         return actors.some(actor => collision.hasOccuredBetween(actor, player));
     }
 
-    function enemiesThatDiedOnScreen(enemy) {
-        return !(enemy.isAlive) && ((enemy.y + enemy.radius) < screen.HEIGHT);
+    function actorsThatDiedOnScreen(actor) {
+        return !(actor.isAlive) && ((actor.y + actor.radius) < screen.HEIGHT);
+    }
+
+    function applyPowerUps(player, powerUps) {
+        if (powerUps.filter(actorsThatDiedOnScreen).length > 0) {
+            return Object.assign(player, {
+                maxLasers: player.maxLasers + 1
+            });
+        }
+        else {
+            return player;
+        }
     }
 
     function timeOfLastSpawn(actors, timeOfLastSpawn) {
@@ -73,7 +83,7 @@ let interactions = (function() {
 
     function tallyScore(actors) {
         return enemies(actors)
-            .filter(enemiesThatDiedOnScreen)
+            .filter(actorsThatDiedOnScreen)
             .reduce(function(acc, curr) {
                 return acc + curr.value;
             }, 0);
@@ -86,6 +96,7 @@ let interactions = (function() {
         playerShoots: playerShoots,
         playerCollidedWithSomething: playerCollidedWithSomething,
         tallyScore: tallyScore,
-        timeOfLastSpawn: timeOfLastSpawn
+        timeOfLastSpawn: timeOfLastSpawn,
+        applyPowerUps: applyPowerUps
     };
 })();
