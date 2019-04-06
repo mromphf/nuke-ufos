@@ -79,12 +79,12 @@ let interactions = (function() {
             .pop();
     }
 
-    function tallyScore(actors) {
+    function tallyScore(currentScore, actors) {
         return enemies(actors)
             .filter(actorsThatDiedOnScreen)
             .reduce(function(acc, curr) {
                 return acc + curr.value;
-            }, 0);
+            }, 0) + currentScore;
     }
 
     return {
