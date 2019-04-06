@@ -7,7 +7,7 @@ let spawn = (function() {
 
     function delayBetweenSpawns(elapsedTime) {
         if (elapsedTime < 15000) {
-            return 2000;
+            return 4000;
         }
         else if (elapsedTime < 30000) {
             return 1500;
