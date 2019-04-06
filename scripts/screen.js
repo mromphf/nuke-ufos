@@ -60,6 +60,7 @@ let screen = (function() {
     return {
         HEIGHT: HEIGHT,
         WIDTH: WIDTH,
+        CENTER: WIDTH / 2,
         render: render,
         showStartText: showStartText,
         reset: reset,
