@@ -7,6 +7,10 @@ let behave = (function() {
         });
     }
 
+    function hit() {
+        return this.die();
+    }
+
     function increaseLasers(player) {
         return Object.assign(player, {
             maxLasers: player.maxLasers + 1
@@ -21,6 +25,7 @@ let behave = (function() {
 
     return {
         die: die,
+        hit: hit,
         increaseLasers: increaseLasers,
         boostSpeed: boostSpeed
     };

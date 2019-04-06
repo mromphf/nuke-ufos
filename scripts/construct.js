@@ -72,6 +72,7 @@ let construct = (function() {
             die: behave.die,
             draw: draw.ufo,
             hasRoomToMove: move.ifHasRoomToGoDown,
+            hit: behave.hit,
             isAlive: true,
             isEnemy: true,
             move: move.down,
@@ -89,6 +90,7 @@ let construct = (function() {
             die: behave.die,
             draw: draw.kamikaze,
             hasRoomToMove: move.ifHasRoomToGoDown,
+            hit: behave.hit,
             isAlive: true,
             isEnemy: true,
             move: move.down,
@@ -105,6 +107,7 @@ let construct = (function() {
         return {
             die: behave.die,
             draw: draw.player,
+            hit: behave.hit,
             maxLasers: config.STARTING_LASERS,
             move: move.player,
             isAlive: true,

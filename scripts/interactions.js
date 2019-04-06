@@ -23,7 +23,7 @@ let interactions = (function() {
     function detectCollisions(actors) {
         return actors.map(function(actor) {
             if (actor.isEnemy && lasers(actors).some(l => collision.hasOccuredBetween(actor, l))) {
-                return actor.die();
+                return actor.hit();
             }
             else if (actor.isLaser && enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
                 return actor.die();
@@ -53,7 +53,7 @@ let interactions = (function() {
 
     function playerCollidedWithSomething(player, actors) {
         if (actors.some(actor => collision.hasOccuredBetween(actor, player))) {
-            return player.die();
+            return player.hit();
         } else {
             return player;
         }
