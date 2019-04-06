@@ -45,6 +45,18 @@ let draw = (function() {
         context.stroke();
     }
 
+    function speedBoost(context) {
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        context.fillStyle = "#00f";
+        context.fill();
+
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius + 8, 0, 2 * Math.PI);
+        context.strokeStyle = "#00f";
+        context.stroke();
+    }
+
     function ufo(context) {
         context.beginPath();
         context.arc(this.x, this.y, 30, 0, 2 * Math.PI);
@@ -102,6 +114,7 @@ let draw = (function() {
         kamikaze: kamikaze,
         laser: laser,
         player: player,
+        speedBoost: speedBoost,
         star: star,
         ufo: ufo
     }

@@ -13,8 +13,15 @@ let behave = (function() {
         });
     }
 
+    function boostSpeed(player) {
+        return Object.assign(player, {
+            velocity: player.velocity + 1
+        });
+    }
+
     return {
         die: die,
-        increaseLasers: increaseLasers
+        increaseLasers: increaseLasers,
+        boostSpeed: boostSpeed
     };
 })();

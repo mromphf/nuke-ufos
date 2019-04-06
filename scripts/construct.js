@@ -34,6 +34,23 @@ let construct = (function() {
         }
     }
 
+    function speedBoost(x, y, spawnTime) {
+        return {
+            applyTo: behave.boostSpeed,
+            die: behave.die,
+            draw: draw.speedBoost,
+            hasRoomToMove: move.ifHasRoomToGoDown,
+            isAlive: true,
+            isPowerUp: true,
+            move: move.down,
+            radius: 6,
+            spawnTime: spawnTime,
+            velocity: 4,
+            x: x,
+            y: y
+        };
+    }
+
     function laser(x, y) {
         return {
             die: behave.die,
@@ -103,6 +120,7 @@ let construct = (function() {
         kamikaze: kamikaze,
         laser: laser,
         player: player,
+        speedBoost: speedBoost,
         star: star,
         ufo: ufo
     }

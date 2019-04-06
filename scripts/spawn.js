@@ -58,6 +58,12 @@ let spawn = (function() {
         return selectedType(randomTop(screen.WIDTH), 0, elapsedTime);
     }
 
+    function generateRandomPowerUp(elapsedTime) {
+        let types = [construct.ammo, construct.speedBoost];
+        let selectedType = types[(Math.floor((Math.random() * types.length)) + 1) - 1];
+        return selectedType(randomTop(screen.WIDTH), 0, elapsedTime);
+    }
+
     function randomEnemy(actors, elapsedTime, timeOfLastEnemy) {
         if (elapsedTime > 3000
             && (elapsedTime - timeOfLastEnemy > delayBetweenSpawns(elapsedTime))
@@ -71,7 +77,7 @@ let spawn = (function() {
         if (elapsedTime > config.TIME_TO_FIRST_POWER_UP
             && (elapsedTime - timeOfLastPowerUp > config.TIME_BETWEEN_POWER_UPS)
             && actors.filter(a => a.isPowerUp).length < 1) {
-                actors.push(construct.ammo(randomTop(screen.WIDTH), 0, elapsedTime));
+                actors.push(generateRandomPowerUp(elapsedTime));
         }
         return actors;
     }
