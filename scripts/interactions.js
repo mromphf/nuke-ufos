@@ -68,8 +68,10 @@ let interactions = (function() {
     }
 
     function playerShoots(gameObjects) {
-        if (lasers(gameObjects.actors).length < player(gameObjects.actors).maxLasers) {
-            gameObjects.actors.push(construct.laser(player(gameObjects.actors).x, player(gameObjects.actors).y - 50));
+        const player = gameObjects.actors.find(a => a.isPlayer);
+        const numLasers = gameObjects.actors.filter(a => a.isLaser).length;
+        if (numLasers < player.maxLasers) {
+            gameObjects.actors.push(construct.laser(player.x, player.y - 50));
         }
     }
 
@@ -89,7 +91,8 @@ let interactions = (function() {
     }
 
     function tallyScore(currentScore, actors) {
-        return enemies(actors)
+        return actors
+            .filter(a => a.isEnemy)
             .filter(actorsThatDiedOnScreen)
             .reduce(function(acc, curr) {
                 return acc + curr.value;
