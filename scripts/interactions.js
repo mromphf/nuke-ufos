@@ -52,7 +52,11 @@ let interactions = (function() {
     }
 
     function playerCollidedWithSomething(player, actors) {
-        return actors.some(actor => collision.hasOccuredBetween(actor, player));
+        if (actors.some(actor => collision.hasOccuredBetween(actor, player))) {
+            return player.die();
+        } else {
+            return player;
+        }
     }
 
     function actorsThatDiedOnScreen(actor) {

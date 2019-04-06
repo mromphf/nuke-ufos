@@ -41,11 +41,9 @@ let nukeUfos = (function() {
             game.actors = interactions.detectCollisions(game.actors);
             game.actors = interactions.collectPowerups(game.player, game.actors);
             game.player = interactions.applyPowerUps(game.player, game.actors.filter(a => a.isPowerUp));
+            game.player = interactions.playerCollidedWithSomething(game.player, game.actors.filter(a => a.isEnemy));
 
-            if (interactions.playerCollidedWithSomething(game.player, game.actors.filter(actor => actor.isEnemy))) {
-                gameOver(game);
-            }
-            else {
+            if (game.player.isAlive) {
                 runGame(Object.assign(game, {
                     timeOfLastSpawn: interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn),
                     timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),
@@ -53,6 +51,9 @@ let nukeUfos = (function() {
                     elapsedTime: game.elapsedTime + FRAME_RATE,
                     actors: game.actors.filter(a => a.isAlive)
                 }));
+            }
+            else {
+                gameOver(game);
             }
         }, FRAME_RATE);
     }
