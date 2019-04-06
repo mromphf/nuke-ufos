@@ -4,7 +4,7 @@ let draw = (function() {
     function star(context) {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        context.fillStyle = "#eee";
+        context.fillStyle = this.primaryColor;
         context.fill();
     }
 
@@ -59,48 +59,42 @@ let draw = (function() {
 
     function ufo(context) {
         context.beginPath();
+        context.fillStyle = this.primaryColor;
         context.arc(this.x, this.y, 30, 0, 2 * Math.PI);
-        context.fillStyle = "#666";
         context.fill();
+
+        context.fillStyle = this.secondaryColor;
 
         context.beginPath();
         context.arc(this.x, this.y + 23, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
         context.arc(this.x, this.y - 23, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
         context.arc(this.x + 23, this.y, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
         context.arc(this.x - 23, this.y, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
         context.arc(this.x + 15, this.y + 15, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
         context.arc(this.x - 15, this.y - 15, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
         context.arc(this.x - 15, this.y + 15, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
         context.arc(this.x + 15, this.y - 15, 2, 0, 2 * Math.PI);
-        context.fillStyle = "#333";
         context.fill();
 
         context.beginPath();
