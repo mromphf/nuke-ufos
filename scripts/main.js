@@ -1,6 +1,8 @@
 "use strict";
 
 let nukeUfos = (function() {
+    const FRAME_RATE = 17;
+
     function newGame() {
         return {
             player: playerAtStartingPosition(),
@@ -48,11 +50,11 @@ let nukeUfos = (function() {
             else {
                 runGame(Object.assign(game, {
                     score: interactions.tallyScore(game.score, game.actors),
-                    elapsedTime: game.elapsedTime + 17,
+                    elapsedTime: game.elapsedTime + FRAME_RATE,
                     actors: game.actors.filter(a => a.isAlive)
                 }));
             }
-        }, 17);
+        }, FRAME_RATE);
     }
 
     screen.showStartText();
