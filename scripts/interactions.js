@@ -34,7 +34,7 @@ let interactions = (function() {
         });
     }
 
-    function detectPlayerCollisions(player, actors) {
+    function collectPowerups(player, actors) {
         return actors.map(function(actor) {
             if (actor.isPowerUp && actor.isAlive && collision.hasOccuredBetween(actor, player)) {
                 return actor.die();
@@ -91,7 +91,7 @@ let interactions = (function() {
 
     return {
         moveEverything: moveEverything,
-        detectPlayerCollisions: detectPlayerCollisions,
+        collectPowerups: collectPowerups,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
         playerCollidedWithSomething: playerCollidedWithSomething,

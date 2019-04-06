@@ -37,16 +37,16 @@ let nukeUfos = (function() {
             game.player = game.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
             game.actors = randomStar.replenish(game.actors);
             game.actors = spawn.randomEnemy(game.actors, game.elapsedTime, game.timeOfLastSpawn);
-            game.timeOfLastSpawn = interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn);
             game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime, game.timeOfLastPowerUp);
+            game.timeOfLastSpawn = interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn);
             game.timeOfLastPowerUp = interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp);
+            game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT);
 
             // Interactions and collisions
-            game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT);
             game.actors = interactions.detectCollisions(game.actors);
-            game.actors = interactions.detectPlayerCollisions(game.player, game.actors);
-            game.score += interactions.tallyScore(game.actors);
+            game.actors = interactions.collectPowerups(game.player, game.actors);
             game.player = interactions.applyPowerUps(game.player, game.actors.filter(a => a.isPowerUp));
+            game.score += interactions.tallyScore(game.actors);
 
             // Clean up
             game.elapsedTime += 17;
