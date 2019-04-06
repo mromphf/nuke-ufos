@@ -21,7 +21,7 @@ let move = (function() {
         return (this.y - this.velocity) > 0;
     }
 
-    function player(keysPressed, maxWidth, maxHeight) {
+    function player(maxWidth, maxHeight, keysPressed) {
         // Left and up arrows
         if (keysPressed[37] && keysPressed[38]) {
             if (((this.x - this.velocity) > 0) && ((this.y - this.velocity) > 0)) {

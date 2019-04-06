@@ -126,6 +126,7 @@ let construct = (function() {
             maxLasers: config.STARTING_LASERS,
             move: move.player,
             isAlive: true,
+            isPlayer: true,
             radius: 40,
             velocity: 8,
             x: x,

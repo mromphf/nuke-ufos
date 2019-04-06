@@ -5,8 +5,7 @@ let nukeUfos = (function() {
 
     function newGame() {
         return {
-            player: playerAtStartingPosition(),
-            actors: randomStar.fill(),
+            actors: randomStar.fill().concat(playerAtStartingPosition()),
             elapsedTime: 0,
             timeOfLastSpawn: 0,
             timeOfLastPowerUp: 0,
@@ -32,19 +31,17 @@ let nukeUfos = (function() {
 
     function runGame(game) {
         setTimeout(function() {
-            screen.render(game.actors.concat(game.player));
+            screen.render(game.actors);
             screen.updateScore(game.score);
 
-            game.player = game.player.move(keyboard.keysPressed, screen.WIDTH, screen.HEIGHT);
             game.actors = randomStar.replenish(game.actors);
             game.actors = spawn.randomEnemy(game.actors, game.elapsedTime, game.timeOfLastSpawn);
             game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime, game.timeOfLastPowerUp);
-            game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT);
-            game.actors = interactions.detectCollisions(game.actors, game.player);
-            game.player = interactions.applyPowerUps(game.player, game.actors.filter(a => a.isPowerUp));
-            game.player = interactions.playerCollidedWithSomething(game.player, game.actors.filter(a => a.isEnemy));
+            game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT, keyboard.keysPressed);
+            game.actors = interactions.detectCollisions(game.actors);
+            game.actors = interactions.applyPowerUps(game.actors);
 
-            if (game.player.isAlive) {
+            if (game.actors.find(a => a.isPlayer).isAlive) {
                 runGame(Object.assign(game, {
                     timeOfLastSpawn: interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn),
                     timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),
