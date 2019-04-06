@@ -19,6 +19,7 @@ let construct = (function() {
 
     function ammo(x, y, spawnTime) {
         return {
+            applyTo: behave.increaseLasers,
             die: behave.die,
             draw: draw.ammo,
             hasRoomToMove: move.ifHasRoomToGoDown,

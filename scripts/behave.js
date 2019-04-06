@@ -7,7 +7,14 @@ let behave = (function() {
         });
     }
 
+    function increaseLasers(player) {
+        return Object.assign(player, {
+            maxLasers: player.maxLasers + 1
+        });
+    }
+
     return {
-        die: die
+        die: die,
+        increaseLasers: increaseLasers
     };
 })();

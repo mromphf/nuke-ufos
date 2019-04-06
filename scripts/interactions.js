@@ -61,9 +61,7 @@ let interactions = (function() {
 
     function applyPowerUps(player, powerUps) {
         if (powerUps.filter(actorsThatDiedOnScreen).length > 0) {
-            return Object.assign(player, {
-                maxLasers: player.maxLasers + 1
-            });
+            return powerUps.shift().applyTo(player);
         }
         else {
             return player;
