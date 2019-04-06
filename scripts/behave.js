@@ -8,7 +8,14 @@ let behave = (function() {
     }
 
     function hit() {
-        return this.die();
+        if (this.health > 1) {
+            return Object.assign(this, {
+                health: this.health - 1
+            });
+        }
+        else {
+            return this.die();
+        }
     }
 
     function increaseLasers(player) {

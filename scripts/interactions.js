@@ -20,10 +20,13 @@ let interactions = (function() {
         });
     }
 
-    function detectCollisions(actors) {
+    function detectCollisions(actors, player) {
         return actors.map(function(actor) {
             if (actor.isEnemy && lasers(actors).some(l => collision.hasOccuredBetween(actor, l))) {
                 return actor.hit();
+            }
+            else if (actor.isEnemy && collision.hasOccuredBetween(actor, player)) {
+                return actor.die();
             }
             else if (actor.isLaser && enemies(actors).some(e => collision.hasOccuredBetween(actor, e))) {
                 return actor.die();
