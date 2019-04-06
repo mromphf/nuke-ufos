@@ -19,6 +19,32 @@ let randomStar = (function() {
         return construct.star(randomWidth(), 0);
     }
 
+    function size() {
+        const rand = Math.random();
+        if ( rand > 0.66 ) {
+            return 3;
+        }
+        else if (rand > 0.33 ) {
+            return 2;
+        }
+        else {
+            return 1;
+        }
+    }
+
+    function color() {
+        const rand = Math.random();
+        if ( rand > 0.66 ) {
+            return "#fff";
+        }
+        else if (rand > 0.33 ) {
+            return "#eee";
+        }
+        else {
+            return "#ddd";
+        }
+    }
+
     function replenish(actors) {
         if (actors.filter(a => a.isStar).length < MAX_STARS) {
             actors.push(somewhereAtTheTop());
@@ -36,7 +62,9 @@ let randomStar = (function() {
     }
 
     return {
+        color: color,
+        fill: fill,
         replenish: replenish,
-        fill: fill
+        size: size
     };
 })();
