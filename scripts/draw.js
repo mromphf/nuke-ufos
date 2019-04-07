@@ -10,10 +10,22 @@ let draw = (function() {
 
     function kamikaze(context) {
         context.beginPath();
+        context.fillStyle = "#c00";
         context.moveTo(this.x, this.y + 20);
         context.lineTo((this.x - 20), (this.y - 20));
         context.lineTo((this.x + 20), (this.y - 20));
-        context.fillStyle = "#c00";
+        context.fill();
+
+        context.beginPath();
+        context.moveTo(this.x, (this.y - 19));
+        context.lineTo((this.x - 19), (this.y - 40));
+        context.lineTo((this.x - 19), (this.y - 19));
+        context.fill();
+
+        context.beginPath();
+        context.moveTo(this.x, (this.y - 19));
+        context.lineTo((this.x + 19), (this.y - 40));
+        context.lineTo((this.x + 19), (this.y - 19));
         context.fill();
     }
 
