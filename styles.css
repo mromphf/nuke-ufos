@@ -4,3 +4,17 @@ body {
     background-color: #000000;
     color: yellow;
 }
+
+canvas {
+    left: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+#background: {
+    z-index: -1;
+}
+
+#foreground {
+    z-index: 0;
+}

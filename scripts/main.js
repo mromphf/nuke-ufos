@@ -31,7 +31,8 @@ let nukeUfos = (function() {
 
     function runGame(game) {
         setTimeout(function() {
-            screen.render(game.actors);
+            screen.renderBackground(game.actors.filter(a => a.isStar));
+            screen.renderForeground(game.actors.filter(a => !a.isStar));
             screen.updateScore(game.score);
 
             game.actors = randomStar.replenish(game.actors);
