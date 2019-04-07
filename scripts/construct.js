@@ -20,23 +20,10 @@ let construct = (function() {
     }
 
     function ammo(x, y, spawnTime) {
-        return {
+        return Object.assign(speedBoost(x, y, spawnTime), {
             applyTo: behave.increaseLasers,
-            die: behave.die,
-            draw: draw.powerUp,
-            hasRoomToMove: move.ifHasRoomToGoDown,
-            isAlive: true,
-            isCollidable: true,
-            isPowerUp: true,
-            collide: collision.powerUpCollides,
-            move: move.down,
-            radius: 6,
-            primaryColor: "#0f0",
-            spawnTime: spawnTime,
-            velocity: 4,
-            x: x,
-            y: y
-        }
+            primaryColor: "#0f0"
+        });
     }
 
     function speedBoost(x, y, spawnTime) {
