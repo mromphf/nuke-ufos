@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 let move = (function() {
     function down() {
