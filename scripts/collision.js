@@ -14,8 +14,11 @@ let collision = (function() {
     }
 
     function enemyCollides(target) {
-        if (!this.isLaser && (target.isLaser || target.isPlayer)) {
+        if (target.isLaser) {
             return this.hit();
+        }
+        else if (target.isPlayer) {
+            return this.die();
         }
         else {
             return this;
@@ -23,7 +26,10 @@ let collision = (function() {
     }
 
     function laserCollides(target) {
-        if (target.isEnemy && !target.isLaser) {
+        if (this.isEnemy && !target.isLaser) {
+            return this.die();
+        }
+        else if (!this.isEnemy && !target.isLaser && target.isEnemy) {
             return this.die();
         }
         else {
