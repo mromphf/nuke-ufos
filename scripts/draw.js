@@ -1,17 +1,10 @@
 "use strict"
 
 let draw = (function() {
-    function star(context) {
+    function circle(context) {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fillStyle = this.primaryColor;
-        context.fill();
-    }
-
-    function laser(context) {
-        context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        context.fillStyle = "#0f0";
         context.fill();
     }
 
@@ -92,11 +85,10 @@ let draw = (function() {
     }
 
     return {
+        circle: circle,
         kamikaze: kamikaze,
-        laser: laser,
         player: player,
         powerUp: powerUp,
-        star: star,
         ufo: ufo
     }
 })();

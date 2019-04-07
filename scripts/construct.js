@@ -4,7 +4,7 @@ let construct = (function() {
     function star(x, y) {
         return {
             die: behave.die,
-            draw: draw.star,
+            draw: draw.circle,
             hasRoomToMove: move.ifHasRoomToGoDown,
             isAlive: true,
             isCollidable: false,
@@ -49,13 +49,14 @@ let construct = (function() {
     function laser(x, y) {
         return {
             die: behave.die,
-            draw: draw.laser,
+            draw: draw.circle,
             hasRoomToMove: move.ifHasRoomToGoUp,
             isAlive: true,
             isCollidable: true,
             isEnemy: false,
             isLaser: true,
             collide: collision.laserCollides,
+            primaryColor: "#0f0",
             move: move.up,
             radius: 5,
             velocity: 10,
