@@ -18,7 +18,7 @@ let interactions = (function() {
     function detectCollisions(actors) {
         return actors.map(function(actor) {
             let result = actor;
-            actors.filter(a => a.isCollidable).forEach(function(target) {
+            actors.forEach(function(target) {
                 if (actor !== target && collision.hasOccuredBetween(actor, target)) {
                     result = actor.collide(target);
                 }
