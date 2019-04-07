@@ -5,7 +5,8 @@ let nukeUfos = (function() {
 
     function newGame() {
         return {
-            actors: randomStar.fill().concat(playerAtStartingPosition()),
+            backgroundObjects: randomStar.fill(),
+            actors: [playerAtStartingPosition()],
             elapsedTime: 0,
             timeOfLastSpawn: 0,
             timeOfLastPowerUp: 0,
@@ -31,11 +32,13 @@ let nukeUfos = (function() {
 
     function runGame(game) {
         setTimeout(function() {
-            screen.renderBackground(game.actors.filter(a => a.isStar));
-            screen.renderForeground(game.actors.filter(a => !a.isStar));
+            screen.renderForeground(game.actors);
+            screen.renderBackground(game.backgroundObjects);
             screen.updateScore(game.score);
 
-            game.actors = randomStar.replenish(game.actors);
+            game.backgroundObjects = randomStar.replenish(game.backgroundObjects);
+            game.backgroundObjects = interactions.moveEverything(game.backgroundObjects, screen.WIDTH, screen.HEIGHT);
+
             game.actors = spawn.randomEnemy(game.actors, game.elapsedTime, game.timeOfLastSpawn);
             game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime, game.timeOfLastPowerUp);
             game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT, keyboard.keysPressed);
@@ -43,6 +46,7 @@ let nukeUfos = (function() {
 
             if (game.actors.find(a => a.isPlayer).isAlive) {
                 runGame(Object.assign(game, {
+                    backgroundObjects: game.backgroundObjects.filter(o => o.isAlive),
                     timeOfLastSpawn: interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn),
                     timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),
                     score: interactions.tallyScore(game.score, game.actors),
