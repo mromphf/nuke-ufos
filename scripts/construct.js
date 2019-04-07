@@ -23,7 +23,7 @@ let construct = (function() {
         return {
             applyTo: behave.increaseLasers,
             die: behave.die,
-            draw: draw.ammo,
+            draw: draw.powerUp,
             hasRoomToMove: move.ifHasRoomToGoDown,
             isAlive: true,
             isCollidable: true,
@@ -31,6 +31,7 @@ let construct = (function() {
             collide: collision.powerUpCollides,
             move: move.down,
             radius: 6,
+            primaryColor: "#0f0",
             spawnTime: spawnTime,
             velocity: 4,
             x: x,
@@ -42,7 +43,7 @@ let construct = (function() {
         return {
             applyTo: behave.boostSpeed,
             die: behave.die,
-            draw: draw.speedBoost,
+            draw: draw.powerUp,
             hasRoomToMove: move.ifHasRoomToGoDown,
             isAlive: true,
             isCollidable: true,
@@ -51,6 +52,7 @@ let construct = (function() {
             move: move.down,
             radius: 6,
             spawnTime: spawnTime,
+            primaryColor: "#00f",
             velocity: 4,
             x: x,
             y: y

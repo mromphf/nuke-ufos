@@ -33,27 +33,15 @@ let draw = (function() {
         context.fill();
     }
 
-    function ammo(context) {
+    function powerUp(context) {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        context.fillStyle = "#0f0";
+        context.fillStyle = this.primaryColor;
         context.fill();
 
         context.beginPath();
         context.arc(this.x, this.y, this.radius + 8, 0, 2 * Math.PI);
-        context.strokeStyle = "#0f0";
-        context.stroke();
-    }
-
-    function speedBoost(context) {
-        context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        context.fillStyle = "#00f";
-        context.fill();
-
-        context.beginPath();
-        context.arc(this.x, this.y, this.radius + 8, 0, 2 * Math.PI);
-        context.strokeStyle = "#00f";
+        context.strokeStyle = this.primaryColor;
         context.stroke();
     }
 
@@ -104,11 +92,10 @@ let draw = (function() {
     }
 
     return {
-        ammo: ammo,
         kamikaze: kamikaze,
         laser: laser,
         player: player,
-        speedBoost: speedBoost,
+        powerUp: powerUp,
         star: star,
         ufo: ufo
     }
