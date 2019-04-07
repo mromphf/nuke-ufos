@@ -93,6 +93,18 @@ let construct = (function() {
         });
     }
 
+    function stalker(x, y, spawnTime) {
+        return Object.assign(ufo(x, y, spawnTime), {
+            move: move.towards,
+            draw: draw.stalker,
+            radius: 20,
+            health: 2,
+            primaryColor: "#f00",
+            secondaryColor: "#555",
+            value: 40
+        });
+    }
+
     function ufo(x, y, spawnTime) {
         return {
             die: behave.die,
@@ -162,6 +174,7 @@ let construct = (function() {
         player: player,
         speedBoost: speedBoost,
         shield: shield,
+        stalker: stalker,
         star: star,
         ufo: ufo
     }

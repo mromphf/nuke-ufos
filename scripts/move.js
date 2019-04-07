@@ -13,6 +13,33 @@ let move = (function() {
         });
     }
 
+    function towards(target) {
+        if (this.x < target.x && this.y < target.y) {
+            return Object.assign(this, {
+                x: this.x + this.velocity,
+                y: this.y + this.velocity
+            });
+        }
+        else if (this.x < target.x && this.y > target.y) {
+            return Object.assign(this, {
+                x: this.x + this.velocity,
+                y: this.y - this.velocity
+            });
+        }
+        else if (this.x > target.x && this.y > target.y) {
+            return Object.assign(this, {
+                x: this.x - this.velocity,
+                y: this.y - this.velocity
+            });
+        }
+        else {
+            return Object.assign(this, {
+                x: this.x - this.velocity,
+                y: this.y + this.velocity
+            });
+        }
+    }
+
     function ifHasRoomToGoDown(maxWidth, maxHeight) {
         return (this.y + this.velocity) < maxHeight;
     }
@@ -99,6 +126,7 @@ let move = (function() {
         ifHasRoomToGoDown: ifHasRoomToGoDown,
         ifHasRoomToGoUp: ifHasRoomToGoUp,
         player: player,
+        towards: towards,
         up: up
     }
 })();

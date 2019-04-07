@@ -66,6 +66,24 @@ let draw = (function() {
         context.stroke();
     }
 
+    function stalker(context) {
+        context.beginPath();
+        context.fillStyle = this.secondaryColor;
+        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.strokeStyle = this.primaryColor;
+        context.arc(this.x, this.y, this.radius * 0.7, 0, 2 * Math.PI);
+        context.lineWidth = 3,
+        context.stroke();
+
+        context.beginPath();
+        context.fillStyle = this.primaryColor;
+        context.arc(this.x, this.y, this.radius * 0.3, 0, 2 * Math.PI);
+        context.fill();
+    }
+
     function ufo(context) {
         context.beginPath();
         context.fillStyle = this.primaryColor;
@@ -118,6 +136,7 @@ let draw = (function() {
         player: player,
         playerWithShield: playerWithShield,
         powerUp: powerUp,
+        stalker: stalker,
         ufo: ufo
     }
 })();
