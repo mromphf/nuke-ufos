@@ -12,8 +12,51 @@ let collision = (function() {
 
         return false;
     }
+
+    function enemyCollides(target) {
+        if (target.isLaser || target.isPlayer) {
+            return this.hit();
+        }
+        else {
+            return this;
+        }
+    }
+
+    function laserCollides(target) {
+        if (target.isEnemy) {
+            return this.die();
+        }
+        else {
+            return this;
+        }
+    }
+
+    function powerUpCollides(target) {
+        if (target.isPlayer) {
+            return this.die();
+        }
+        else {
+            return this;
+        }
+    }
+
+    function playerCollides(target) {
+        if (target.isEnemy) {
+            return this.hit();
+        }
+        else if (target.isPowerUp) {
+            return target.applyTo(this);
+        }
+        else {
+            return this;
+        }
+    }
     
     return {
-        hasOccuredBetween: hasOccuredBetween
+        enemyCollides: enemyCollides,
+        hasOccuredBetween: hasOccuredBetween,
+        laserCollides: laserCollides,
+        playerCollides: playerCollides,
+        powerUpCollides: powerUpCollides
     }
 })();
