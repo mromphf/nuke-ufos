@@ -3,13 +3,17 @@
 let storage = function(){
     function save(name, value) {
         if (typeof(storage) !== undefined) {
-            localStorage.setItem(name, value);
+            localStorage.setItem(name, JSON.stringify(value));
         }
     };
 
     function load(name) {
         if (typeof(storage) !== undefined) {
-            localStorage.getItem(name);
+            let val = localStorage.getItem(name);
+            if (val === null) {
+                return [];
+            }
+            return JSON.parse(val);
         }
         else {
             return [];
@@ -19,5 +23,5 @@ let storage = function(){
     return {
         load: load,
         save: save
-    };
-};
+    }
+}();

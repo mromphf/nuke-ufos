@@ -85,19 +85,32 @@ let screen = (function() {
         hud.fillText("Press ENTER to try again", (WIDTH / 2), (HEIGHT / 2) + 100);
     }
 
-    function showLeaderboard() {
+    function showLeaderboard(scores) {
         reset();
 
         hud.font = "80px arial";
         hud.fillStyle = "yellow";
         hud.textAlign = "center";
-        hud.fillText("LEADERBOARD", (WIDTH / 2), (HEIGHT / 2) - 100);
 
-        hud.font = "40px arial";
-        hud.fillText("No scores yet", (WIDTH / 2), (HEIGHT / 2));
+        hud.fillText("LEADERBOARD", (WIDTH / 2), (HEIGHT / 2) - 300);
 
         hud.font = "20px arial";
-        hud.fillText("(Press Esc to return to main menu)", (WIDTH / 2), (HEIGHT + 400) / 2);
+        hud.fillText("(Press Esc to return to main menu)", (WIDTH / 2), (HEIGHT / 2) - 275);
+
+        if (scores.length > 0) {
+            let line = 1;
+            scores.forEach(function(score) {
+                let name = score.split(',')[0];
+                let value = score.split(',')[1];
+                hud.font = "40px arial";
+                hud.fillText(name + "..............................." + value, (WIDTH / 2), 300 + (line * 50));
+                line += 1;
+            });
+        }
+        else {
+            hud.font = "40px arial";
+            hud.fillText("No scores yet", (WIDTH / 2), (HEIGHT / 2));
+        }
     }
 
     return {
