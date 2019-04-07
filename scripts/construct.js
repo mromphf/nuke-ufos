@@ -44,6 +44,19 @@ let construct = (function() {
         };
     }
 
+    function enemyLaser(x, y, spawnTime) {
+        return Object.assign(laser(x, y), {
+            hit: behave.die,
+            collide: collision.enemyCollides,
+            hasRoomToMove: move.ifHasRoomToGoDown,
+            isEnemy: true,
+            move: move.down,
+            primaryColor: "#f00",
+            spawnTime: spawnTime,
+            value: 0
+        });
+    }
+
     function laser(x, y) {
         return {
             die: behave.die,
@@ -64,6 +77,8 @@ let construct = (function() {
 
     function greaterUfo(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
+            attack: behave.shoot,
+            canAttack: true,
             health: 3,
             primaryColor: "#444",
             secondaryColor: "#c00",
@@ -133,8 +148,9 @@ let construct = (function() {
 
     return {
         ammo: ammo,
-        kamikaze: kamikaze,
+        enemyLaser: enemyLaser,
         greaterUfo: greaterUfo,
+        kamikaze: kamikaze,
         laser: laser,
         player: player,
         speedBoost: speedBoost,

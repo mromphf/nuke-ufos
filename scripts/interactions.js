@@ -29,7 +29,7 @@ let interactions = (function() {
 
     function playerShoots(gameObjects) {
         const player = gameObjects.actors.find(a => a.isPlayer);
-        const numLasers = gameObjects.actors.filter(a => a.isLaser).length;
+        const numLasers = gameObjects.actors.filter(a => a.isLaser && !a.isEnemy).length;
         if (numLasers < player.maxLasers) {
             gameObjects.actors.push(construct.laser(player.x, player.y - 50));
         }
@@ -59,11 +59,19 @@ let interactions = (function() {
             }, 0) + currentScore;
     }
 
+    function triggerAttacks(actors, elapsedTime, timeOfLastSpawn) {
+        actors.filter(a => a.canAttack).forEach(function(actor) {
+            actor.attack(actors, elapsedTime, timeOfLastSpawn);
+        });
+        return actors;
+    }
+
     return {
         moveEverything: moveEverything,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
         tallyScore: tallyScore,
         timeOfLastSpawn: timeOfLastSpawn,
+        triggerAttacks: triggerAttacks
     };
 })();
