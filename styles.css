@@ -11,10 +11,14 @@ canvas {
     position: absolute;
 }
 
-#background: {
-    z-index: -1;
+#hud {
+    z-index: 0;
 }
 
 #foreground {
-    z-index: 0;
+    z-index: -1;
+}
+
+#background {
+    z-index: -2;
 }

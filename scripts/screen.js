@@ -3,14 +3,21 @@
 let screen = (function() {
     const WIDTH = window.innerWidth;
     const HEIGHT = window.innerHeight;
-    let canvasA = document.getElementById("foreground");
-    let canvasB = document.getElementById("background");
-    let foreground = canvasA.getContext("2d");
-    let background = canvasB.getContext("2d");
+    let canvasA = document.getElementById("hud");
+    let canvasB = document.getElementById("foreground");
+    let canvasC = document.getElementById("background");
+    let hud = canvasA.getContext("2d");
+    let foreground = canvasB.getContext("2d");
+    let background = canvasC.getContext("2d");
+
     canvasA.width = WIDTH;
     canvasA.height = HEIGHT;
+
     canvasB.width = WIDTH;
     canvasB.height = HEIGHT;
+
+    canvasC.width = WIDTH;
+    canvasC.height = HEIGHT;
 
     function clearBackground() {
         background.fillStyle = "#020202";
@@ -21,22 +28,27 @@ let screen = (function() {
         foreground.clearRect(0, 0, WIDTH, HEIGHT);
     }
 
+    function clearHud() {
+        hud.clearRect(0, 0, WIDTH, HEIGHT);
+    }
+
     function showStartText() {
-        background.font = "80px arial";
-        background.fillStyle = "yellow";
-        background.textAlign = "center";
-        background.fillText("NUKE UFOS", (WIDTH / 2), (HEIGHT / 2) - 100);
+        hud.font = "80px arial";
+        hud.fillStyle = "yellow";
+        hud.textAlign = "center";
+        hud.fillText("NUKE UFOS", (WIDTH / 2), (HEIGHT / 2) - 100);
 
-        background.font = "40px arial";
-        background.fillText("ARROWS: Move      SPACE: Shoot", (WIDTH / 2), (HEIGHT / 2));
+        hud.font = "40px arial";
+        hud.fillText("ARROWS: Move      SPACE: Shoot", (WIDTH / 2), (HEIGHT / 2));
 
-        background.font = "40px arial";
-        background.fillText("Press Enter to launch", (WIDTH / 2), (HEIGHT + 200) / 2);
+        hud.font = "40px arial";
+        hud.fillText("Press Enter to launch", (WIDTH / 2), (HEIGHT + 200) / 2);
     }
 
     function reset() {
         updateScore(0);
         clearBackground();
+        clearForeground();
     }
 
     function renderBackground(drawables) {
@@ -50,24 +62,26 @@ let screen = (function() {
     }
 
     function updateScore(score) {
-        foreground.font = "20px arial";
-        foreground.fillStyle = "yellow";
-        foreground.fillText(("SCORE: " + score), 30, 30);
+        clearHud();
+        hud.font = "20px arial";
+        hud.fillStyle = "yellow";
+        hud.fillText(("SCORE: " + score), 60, 30);
     }
 
     function showGameOver(score) {
         clearBackground();
         clearForeground();
+        clearHud();
 
-        foreground.font = "80px arial";
-        foreground.fillStyle = "yellow";
-        foreground.textAlign = "center";
-        foreground.fillText("GAME OVER", (WIDTH / 2), (HEIGHT / 2) - 100);
+        hud.font = "80px arial";
+        hud.fillStyle = "yellow";
+        hud.textAlign = "center";
+        hud.fillText("GAME OVER", (WIDTH / 2), (HEIGHT / 2) - 100);
 
-        foreground.font = "40px arial";
-        foreground.fillText("Score: " + score, (WIDTH / 2), (HEIGHT / 2));
+        hud.font = "40px arial";
+        hud.fillText("Score: " + score, (WIDTH / 2), (HEIGHT / 2));
 
-        foreground.fillText("Press ENTER to try again", (WIDTH / 2), (HEIGHT / 2) + 100);
+        hud.fillText("Press ENTER to try again", (WIDTH / 2), (HEIGHT / 2) + 100);
     }
 
     return {
