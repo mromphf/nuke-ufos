@@ -29,6 +29,21 @@ let draw = (function() {
         context.fill();
     }
 
+    function playerWithShield(context) {
+        context.beginPath();
+        context.arc(this.x, this.y + 8, this.radius + 14, 0, 2 * Math.PI);
+        context.lineWidth = 2;
+        context.strokeStyle = "#ff0";
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(this.x, this.y - 40);
+        context.lineTo((this.x - 40), (this.y + 40));
+        context.lineTo((this.x + 40), (this.y + 40));
+        context.fillStyle = "#00f";
+        context.fill();
+    }
+
     function player(context) {
         context.beginPath();
         context.moveTo(this.x, this.y - 40);
@@ -46,6 +61,7 @@ let draw = (function() {
 
         context.beginPath();
         context.arc(this.x, this.y, this.radius + 8, 0, 2 * Math.PI);
+        context.lineWidth = 2;
         context.strokeStyle = this.primaryColor;
         context.stroke();
     }
@@ -100,6 +116,7 @@ let draw = (function() {
         circle: circle,
         kamikaze: kamikaze,
         player: player,
+        playerWithShield: playerWithShield,
         powerUp: powerUp,
         ufo: ufo
     }

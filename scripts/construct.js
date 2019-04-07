@@ -18,6 +18,13 @@ let construct = (function() {
         }
     }
 
+    function shield(x, y, spawnTime) {
+        return Object.assign(speedBoost(x, y, spawnTime), {
+            applyTo: behave.activateShield,
+            primaryColor: "#ff0"
+        });
+    }
+
     function ammo(x, y, spawnTime) {
         return Object.assign(speedBoost(x, y, spawnTime), {
             applyTo: behave.increaseLasers,
@@ -133,7 +140,7 @@ let construct = (function() {
             die: behave.die,
             draw: draw.player,
             health: 1,
-            hit: behave.hit,
+            hit: behave.playerHit,
             maxLasers: config.STARTING_LASERS,
             move: move.player,
             collide: collision.playerCollides,
@@ -154,6 +161,7 @@ let construct = (function() {
         laser: laser,
         player: player,
         speedBoost: speedBoost,
+        shield: shield,
         star: star,
         ufo: ufo
     }

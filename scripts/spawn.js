@@ -60,7 +60,11 @@ let spawn = (function() {
     }
 
     function powerUpPool() {
-        return [construct.ammo, construct.speedBoost];
+        return [
+            construct.ammo,
+            construct.shield,
+            construct.speedBoost
+        ];
     }
 
     function generateRandomActor(elapsedTime, actorPool) {
