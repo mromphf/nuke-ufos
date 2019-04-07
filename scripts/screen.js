@@ -83,6 +83,9 @@ let screen = (function() {
         hud.fillText("Score: " + score, (WIDTH / 2), (HEIGHT / 2));
 
         hud.fillText("Press ENTER to try again", (WIDTH / 2), (HEIGHT / 2) + 100);
+
+        hud.font = "20px arial";
+        hud.fillText("(Press L to view leaderboard)", (WIDTH / 2), (HEIGHT + 400) / 2);
     }
 
     function showLeaderboard(scores) {

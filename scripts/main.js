@@ -42,7 +42,7 @@ let nukeUfos = (function() {
         let scores = storage.load("scores");
         scores.push("ANON," + game.score);
         storage.save("scores", (scores));
-        keyboard.registerStartListeners(startGame);
+        keyboard.registerStartListeners(startGame, showLeaderboard);
         screen.showGameOver(game.score);
     }
 
