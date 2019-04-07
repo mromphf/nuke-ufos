@@ -3,11 +3,25 @@
 let keyboard = (function() {
     let keysPressed = {};
 
-    function registerStartListeners(startGame) {
+    function registerStartListeners(startGame, showLeaderboard) {
         window.onkeydown = function(e) {
             // Enter key
             if (e.keyCode === 13) {
                 startGame();
+            }
+
+            // L key
+            if (e.keyCode === 76) {
+                showLeaderboard();
+            }
+        }
+    }
+
+    function registerLeaderboardListeners(showStartScreen) {
+        window.onkeydown = function(e) {
+            // L key
+            if (e.keyCode === 27) {
+                showStartScreen();
             }
         }
     }
@@ -28,7 +42,8 @@ let keyboard = (function() {
 
     return {
         keysPressed: keysPressed,
-        registerStartListeners: registerStartListeners,
-        registerGameListeners: registerGameListeners
+        registerGameListeners: registerGameListeners,
+        registerLeaderboardListeners: registerLeaderboardListeners,
+        registerStartListeners: registerStartListeners
     }
 })();

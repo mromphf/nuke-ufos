@@ -18,6 +18,18 @@ let nukeUfos = (function() {
         return construct.player(screen.CENTER, screen.HEIGHT - (screen.HEIGHT * 0.2));
     }
 
+    function showStartScreen() {
+        screen.reset();
+        screen.showStartText();
+        keyboard.registerStartListeners(startGame, showLeaderboard);
+    }
+
+    function showLeaderboard() {
+        screen.reset();
+        keyboard.registerLeaderboardListeners(showStartScreen);
+        screen.showLeaderboard();
+    }
+
     function startGame() {
         let game = newGame();
         screen.reset();
@@ -61,6 +73,5 @@ let nukeUfos = (function() {
         }, FRAME_RATE);
     }
 
-    screen.showStartText();
-    keyboard.registerStartListeners(startGame);
+    showStartScreen();
 })();

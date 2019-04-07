@@ -43,10 +43,13 @@ let screen = (function() {
 
         hud.font = "40px arial";
         hud.fillText("Press Enter to launch", (WIDTH / 2), (HEIGHT + 200) / 2);
+
+        hud.font = "20px arial";
+        hud.fillText("(Press L to view leaderboard)", (WIDTH / 2), (HEIGHT + 400) / 2);
     }
 
     function reset() {
-        updateScore(0);
+        clearHud();
         clearBackground();
         clearForeground();
     }
@@ -69,9 +72,7 @@ let screen = (function() {
     }
 
     function showGameOver(score) {
-        clearBackground();
-        clearForeground();
-        clearHud();
+        reset();
 
         hud.font = "80px arial";
         hud.fillStyle = "yellow";
@@ -84,6 +85,21 @@ let screen = (function() {
         hud.fillText("Press ENTER to try again", (WIDTH / 2), (HEIGHT / 2) + 100);
     }
 
+    function showLeaderboard() {
+        reset();
+
+        hud.font = "80px arial";
+        hud.fillStyle = "yellow";
+        hud.textAlign = "center";
+        hud.fillText("LEADERBOARD", (WIDTH / 2), (HEIGHT / 2) - 100);
+
+        hud.font = "40px arial";
+        hud.fillText("No scores yet", (WIDTH / 2), (HEIGHT / 2));
+
+        hud.font = "20px arial";
+        hud.fillText("(Press Esc to return to main menu)", (WIDTH / 2), (HEIGHT + 400) / 2);
+    }
+
     return {
         CENTER: WIDTH / 2,
         HEIGHT: HEIGHT,
@@ -93,6 +109,7 @@ let screen = (function() {
         reset: reset,
         showGameOver: showGameOver,
         showStartText: showStartText,
+        showLeaderboard: showLeaderboard,
         updateScore: updateScore
     };
 })();
