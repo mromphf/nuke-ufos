@@ -75,7 +75,7 @@ let construct = (function() {
         }
     }
 
-    function greaterUfo(x, y, spawnTime) {
+    function dreadnought(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
             attack: behave.shoot,
             canAttack: true,
@@ -148,8 +148,8 @@ let construct = (function() {
 
     return {
         ammo: ammo,
+        dreadnought: dreadnought,
         enemyLaser: enemyLaser,
-        greaterUfo: greaterUfo,
         kamikaze: kamikaze,
         laser: laser,
         player: player,

@@ -53,7 +53,7 @@ let spawn = (function() {
             ];
         }
         return [
-            construct.greaterUfo,
+            construct.dreadnought,
             construct.kamikaze,
             construct.ufo
         ];
