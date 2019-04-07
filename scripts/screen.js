@@ -52,7 +52,7 @@ let screen = (function() {
     function updateScore(score) {
         foreground.font = "20px arial";
         foreground.fillStyle = "yellow";
-        foreground.fillText(("SCORE: " + score), 20, 30);
+        foreground.fillText(("SCORE: " + score), 30, 30);
     }
 
     function showGameOver(score) {
