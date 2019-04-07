@@ -46,12 +46,12 @@ let nukeUfos = (function() {
 
             if (game.actors.find(a => a.isPlayer).isAlive) {
                 runGame(Object.assign(game, {
+                    actors: game.actors.filter(a => a.isAlive),
                     backgroundObjects: game.backgroundObjects.filter(o => o.isAlive),
-                    timeOfLastSpawn: interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn),
-                    timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),
-                    score: interactions.tallyScore(game.score, game.actors),
                     elapsedTime: game.elapsedTime + FRAME_RATE,
-                    actors: game.actors.filter(a => a.isAlive)
+                    score: interactions.tallyScore(game.score, game.actors),
+                    timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),
+                    timeOfLastSpawn: interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn)
                 }));
             }
             else {
