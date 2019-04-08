@@ -46,7 +46,7 @@ let spawn = (function() {
                 construct.ufo
             ]
         }
-        else if (elapsedTime < 30000) {
+        else if (elapsedTime < 40000) {
             return [
                 construct.kamikaze,
                 construct.ufo
