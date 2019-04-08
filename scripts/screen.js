@@ -103,10 +103,8 @@ let screen = (function() {
         if (scores.length > 0) {
             let line = 1;
             scores.forEach(function(score) {
-                let name = score.split(',')[0];
-                let value = score.split(',')[1];
                 hud.font = "40px arial";
-                hud.fillText(name + "..............................." + value, (WIDTH / 2), 300 + (line * 50));
+                hud.fillText(score.name + "..............................." + score.value, (WIDTH / 2), 300 + (line * 50));
                 line += 1;
             });
         }

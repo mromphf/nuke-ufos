@@ -25,9 +25,8 @@ let nukeUfos = (function() {
     }
 
     function showLeaderboard() {
-        let scores = storage.load("scores");
         screen.reset();
-        screen.showLeaderboard(scores);
+        screen.showLeaderboard(storage.load("scores"));
         keyboard.registerLeaderboardListeners(showStartScreen);
     }
 
@@ -40,7 +39,7 @@ let nukeUfos = (function() {
 
     function gameOver(game) {
         let scores = storage.load("scores");
-        scores.push("ANON," + game.score);
+        scores.push({name: "ANON", value: game.score});
         storage.save("scores", (scores));
         keyboard.registerStartListeners(startGame, showLeaderboard);
         screen.showGameOver(game.score);
