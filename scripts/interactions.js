@@ -6,12 +6,7 @@ let interactions = (function() {
             if (actor.isPlayer) {
                 return actor.move(maxWidth, maxHeight, keysPressed);
             }
-            else if (actor.hasRoomToMove(maxWidth, maxHeight)) {
-                return actor.move(actors.find(a => a.isPlayer));
-            }
-            else {
-                return actor.die();
-            }
+            return actor.move(actors.find(a => a.isPlayer));
         });
     }
 

@@ -1,6 +1,14 @@
 "use strict";
 
 let behave = (function() {
+    function withinBounds(maxWidth, maxHeight) {
+        return (
+            this.x > 0 &&
+            this.x < maxWidth &&
+            this.y > 0 &&
+            this.y < maxHeight
+        );
+    }
 
     function die() {
         return Object.assign(this, {
@@ -64,6 +72,7 @@ let behave = (function() {
         hit: hit,
         increaseLasers: increaseLasers,
         playerHit: playerHit,
-        shoot: shoot
+        shoot: shoot,
+        withinBounds: withinBounds
     };
 })();

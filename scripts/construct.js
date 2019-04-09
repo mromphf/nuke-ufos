@@ -13,6 +13,7 @@ let construct = (function() {
             primaryColor: randomStar.color(),
             radius: randomStar.size(),
             velocity: 2,
+            isWithinBounds: behave.withinBounds,
             x: x,
             y: y,
         }
@@ -46,6 +47,7 @@ let construct = (function() {
             spawnTime: spawnTime,
             primaryColor: "#00f",
             velocity: 4,
+            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         };
@@ -77,6 +79,7 @@ let construct = (function() {
             move: move.up,
             radius: 5,
             velocity: 10,
+            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         }
@@ -122,6 +125,7 @@ let construct = (function() {
             spawnTime: spawnTime,
             value: 10,
             velocity: 3,
+            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         }
@@ -142,6 +146,7 @@ let construct = (function() {
             spawnTime: spawnTime,
             value: 30,
             velocity: 10,
+            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         }
@@ -160,6 +165,7 @@ let construct = (function() {
             isPlayer: true,
             radius: 40,
             velocity: 8,
+            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         };
