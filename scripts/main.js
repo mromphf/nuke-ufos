@@ -51,8 +51,9 @@ let nukeUfos = (function() {
             screen.renderBackground(game.backgroundObjects);
             screen.updateScore(game.score);
 
-            game.backgroundObjects = randomStar.replenish(game.backgroundObjects);
-            game.backgroundObjects = game.backgroundObjects.map(o => o.move());
+            game.backgroundObjects = randomStar
+                .replenish(game.backgroundObjects)
+                .map(o => o.move());
 
             game.actors = spawn.randomEnemy(game.actors, game.elapsedTime, game.timeOfLastSpawn);
             game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime, game.timeOfLastPowerUp);
