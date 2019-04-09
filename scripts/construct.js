@@ -3,11 +3,7 @@
 let construct = (function() {
     function star(x, y) {
         return {
-            die: behave.die,
             draw: draw.circle,
-            hasRoomToMove: move.ifHasRoomToGoDown,
-            isAlive: true,
-            isEnemy: false,
             isStar: true,
             move: move.down,
             primaryColor: randomStar.color(),
@@ -38,7 +34,6 @@ let construct = (function() {
             applyTo: behave.boostSpeed,
             die: behave.die,
             draw: draw.powerUp,
-            hasRoomToMove: move.ifHasRoomToGoDown,
             isAlive: true,
             isPowerUp: true,
             collide: collision.powerUpCollides,
@@ -57,7 +52,6 @@ let construct = (function() {
         return Object.assign(laser(x, y), {
             hit: behave.die,
             collide: collision.laserCollides,
-            hasRoomToMove: move.ifHasRoomToGoDown,
             isEnemy: true,
             move: move.down,
             primaryColor: "#f00",
@@ -70,7 +64,6 @@ let construct = (function() {
         return {
             die: behave.die,
             draw: draw.circle,
-            hasRoomToMove: move.ifHasRoomToGoUp,
             isAlive: true,
             isEnemy: false,
             isLaser: true,
@@ -112,7 +105,6 @@ let construct = (function() {
         return {
             die: behave.die,
             draw: draw.ufo,
-            hasRoomToMove: move.ifHasRoomToGoDown,
             health: 1,
             hit: behave.hit,
             isAlive: true,
@@ -135,7 +127,6 @@ let construct = (function() {
         return {
             die: behave.die,
             draw: draw.kamikaze,
-            hasRoomToMove: move.ifHasRoomToGoDown,
             health: 1,
             hit: behave.hit,
             isAlive: true,

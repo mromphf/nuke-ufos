@@ -52,7 +52,7 @@ let nukeUfos = (function() {
             screen.updateScore(game.score);
 
             game.backgroundObjects = randomStar.replenish(game.backgroundObjects);
-            game.backgroundObjects = interactions.moveEverything(game.backgroundObjects, screen.WIDTH, screen.HEIGHT);
+            game.backgroundObjects = game.backgroundObjects.map(o => o.move());
 
             game.actors = spawn.randomEnemy(game.actors, game.elapsedTime, game.timeOfLastSpawn);
             game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime, game.timeOfLastPowerUp);
@@ -63,7 +63,7 @@ let nukeUfos = (function() {
             if (game.actors.find(a => a.isPlayer).isAlive) {
                 runGame(Object.assign(game, {
                     actors: game.actors.filter(a => a.isAlive && a.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
-                    backgroundObjects: game.backgroundObjects.filter(o => o.isAlive && o.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
+                    backgroundObjects: game.backgroundObjects.filter(o => o.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     elapsedTime: game.elapsedTime + FRAME_RATE,
                     score: interactions.tallyScore(game.score, game.actors),
                     timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),

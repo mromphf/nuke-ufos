@@ -123,8 +123,6 @@ let move = (function() {
 
     return {
         down: down,
-        ifHasRoomToGoDown: ifHasRoomToGoDown,
-        ifHasRoomToGoUp: ifHasRoomToGoUp,
         player: player,
         towards: towards,
         up: up
