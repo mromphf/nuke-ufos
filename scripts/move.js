@@ -13,6 +13,46 @@ let move = (function() {
         });
     }
 
+    function left() {
+        return Object.assign(this, {
+            x: this.x - this.velocity
+        });
+    }
+
+    function right() {
+        return Object.assign(this, {
+            x: this.x + this.velocity
+        });
+    }
+
+    function upLeft() {
+        return Object.assign(this, {
+            x: this.x - this.velocity,
+            y: this.y - this.velocity
+        });
+    }
+
+    function upRight() {
+        return Object.assign(this, {
+            x: this.x + this.velocity,
+            y: this.y - this.velocity
+        });
+    }
+
+    function downLeft() {
+        return Object.assign(this, {
+            x: this.x - this.velocity,
+            y: this.y + this.velocity
+        });
+    }
+
+    function downRight() {
+        return Object.assign(this, {
+            x: this.x + this.velocity,
+            y: this.y + this.velocity
+        });
+    }
+
     function towards(target) {
         if (this.x < target.x && this.y < target.y) {
             return Object.assign(this, {
@@ -44,45 +84,31 @@ let move = (function() {
         // Left and up arrows
         if (keysPressed[37] && keysPressed[38]) {
             if (((this.x - this.velocity) > 0) && ((this.y - this.velocity) > 0)) {
-                return Object.assign(this, {
-                    x: this.x - this.velocity,
-                    y: this.y - this.velocity
-                });
+                return upLeft.bind(this)();
             }
         }
         // Right and up arrows
         if (keysPressed[39] && keysPressed[38]) {
             if (((this.x + this.velocity) < maxWidth) && ((this.y - this.velocity) > 0)) {
-                return Object.assign(this, {
-                    x: this.x + this.velocity,
-                    y: this.y - this.velocity
-                });
+                return upRight.bind(this)();
             }
         }
         // Left and down arrows
         if (keysPressed[37] && keysPressed[40]) {
             if (((this.x - this.velocity) > 0) && ((this.y + this.velocity) < maxHeight)) {
-                return Object.assign(this, {
-                    x: this.x - this.velocity,
-                    y: this.y + this.velocity
-                });
+                return downLeft.bind(this)();
             }
         }
         // Right and down arrows
         if (keysPressed[39] && keysPressed[40]) {
             if (((this.x + this.velocity) < maxWidth) && ((this.y + this.velocity) < maxHeight)) {
-                return Object.assign(this, {
-                    x: this.x + this.velocity,
-                    y: this.y + this.velocity
-                });
+                return downRight.bind(this)();
             }
         }
         // Left arrow
         else if (keysPressed[37]) {
             if ((this.x - this.velocity) > 0) {
-                return Object.assign(this, {
-                    x: this.x - this.velocity
-                });
+                return left.bind(this)();
             }
         }
         // Up arrow
@@ -94,9 +120,7 @@ let move = (function() {
         // Right arrow
         else if (keysPressed[39]) {
             if ((this.x + this.velocity) < maxWidth) {
-                return Object.assign(this, {
-                    x: this.x + this.velocity
-                });
+                return right.bind(this)();
             }
         }
         // Down arrow
@@ -111,8 +135,14 @@ let move = (function() {
 
     return {
         down: down,
+        downLeft: downLeft,
+        downRight: downRight,
+        left,
         player: player,
+        right,
         towards: towards,
-        up: up
+        up: up,
+        upLeft: upLeft,
+        upRight: upRight
     }
 })();
