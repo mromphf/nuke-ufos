@@ -40,14 +40,6 @@ let move = (function() {
         }
     }
 
-    function ifHasRoomToGoDown(maxWidth, maxHeight) {
-        return (this.y + this.velocity) < maxHeight;
-    }
-
-    function ifHasRoomToGoUp(maxWidth, maxHeight) {
-        return (this.y - this.velocity) > 0;
-    }
-
     function player(maxWidth, maxHeight, keysPressed) {
         // Left and up arrows
         if (keysPressed[37] && keysPressed[38]) {
