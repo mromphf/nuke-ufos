@@ -2,14 +2,12 @@
 
 let keyboard = (function() {
     let keysPressed = {};
-    let name = "";
 
-    function registerGameOverListeners(onEsc, onSave, score) {
+    function registerGameOverListeners(onEsc, onSave, name, score) {
         window.onkeydown = function(e) {
             // Enter key
             if (e.keyCode === 13) {
                 onSave(name.toUpperCase(), score);
-                name = "";
             }
 
             // ESC key
@@ -18,14 +16,20 @@ let keyboard = (function() {
             }
 
             if (e.keyCode === 8) {
-                name = name.slice(0, name.length - 1);
-                screen.renderName(name.toUpperCase());
+                let n = name.slice(0, name.length - 1);
+                screen.renderName(n.toUpperCase());
+                registerGameOverListeners(onEsc, onSave, n, score);
             }
 
-            if (e.keyCode >= 64 && e.keyCode <= 90 && name.length < 5) {
-                name = name + e.key;
-                screen.renderName(name.toUpperCase());
+            if (e.keyCode >= 64 && e.keyCode <= 90 && name.length < 4) {
+                let n = name;
+                if (name.length < 4) {
+                    n = name + e.key;
+                }
+                screen.renderName(n.toUpperCase());
+                registerGameOverListeners(onEsc, onSave, n, score);
             }
+
         }
     }
 
