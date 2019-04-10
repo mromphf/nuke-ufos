@@ -56,6 +56,9 @@ let move = (function() {
     function towards(target) {
         if (target.y > this.y) {
             if (target.x > this.x) {
+                if (target.x - this.x < 5) {
+                    return down.bind(this)();
+                }
                 return downRight.bind(this)();
             }
             return downLeft.bind(this)();
