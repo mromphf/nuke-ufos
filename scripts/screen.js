@@ -125,7 +125,7 @@ let screen = (function() {
 
         if (scores.length > 0) {
             let line = 1;
-            scores.forEach(function(score) {
+            scores.sort((a, b) => b.value - a.value).forEach(function(score) {
                 hud.font = "40px arial";
                 hud.fillText(score.name + "..............................." + score.value, (WIDTH / 2), 300 + (line * 50));
                 line += 1;
