@@ -54,29 +54,17 @@ let move = (function() {
     }
 
     function towards(target) {
-        if (this.x < target.x && this.y < target.y) {
-            return Object.assign(this, {
-                x: this.x + this.velocity,
-                y: this.y + this.velocity
-            });
-        }
-        else if (this.x < target.x && this.y > target.y) {
-            return Object.assign(this, {
-                x: this.x + this.velocity,
-                y: this.y - this.velocity
-            });
-        }
-        else if (this.x > target.x && this.y > target.y) {
-            return Object.assign(this, {
-                x: this.x - this.velocity,
-                y: this.y - this.velocity
-            });
+        if (target.y > this.y) {
+            if (target.x > this.x) {
+                return downRight.bind(this)();
+            }
+            return downLeft.bind(this)();
         }
         else {
-            return Object.assign(this, {
-                x: this.x - this.velocity,
-                y: this.y + this.velocity
-            });
+            if (target.x > this.x) {
+                return upRight.bind(this)();
+            }
+            return upLeft.bind(this)();
         }
     }
 
