@@ -37,12 +37,17 @@ let nukeUfos = (function() {
         runGame(game);
     }
 
-    function gameOver(game) {
+    function saveScore(n, score) {
         let scores = storage.load("scores");
-        scores.push({name: "ANON", value: game.score});
+        let name = n || "ANON";
+        scores.push({name: name, value: score});
         storage.save("scores", (scores));
-        keyboard.registerStartListeners(startGame, showLeaderboard);
-        screen.showGameOver(game.score);
+        screen.showLeaderboard(scores);
+    }
+
+    function gameOver(game) {
+        keyboard.registerGameOverListeners(showStartScreen, saveScore, game.score);
+        screen.showGameOver(game.score, "");
     }
 
     function runGame(game) {
