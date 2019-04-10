@@ -30,10 +30,6 @@ let interactions = (function() {
         }
     }
 
-    function actorsThatDiedOnScreen(actor) {
-        return !(actor.isAlive) && ((actor.y + actor.radius) < screen.HEIGHT);
-    }
-
     function timeOfLastSpawn(actors, timeOfLastSpawn) {
         if (actors.length === 0) {
             return timeOfLastSpawn;
@@ -47,8 +43,7 @@ let interactions = (function() {
 
     function tallyScore(currentScore, actors) {
         return actors
-            .filter(a => a.isEnemy)
-            .filter(actorsThatDiedOnScreen)
+            .filter(a => a.isEnemy && !a.isAlive)
             .reduce(function(acc, curr) {
                 return acc + curr.value;
             }, 0) + currentScore;

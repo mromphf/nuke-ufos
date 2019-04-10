@@ -71,7 +71,7 @@ let nukeUfos = (function() {
                     actors: game.actors.filter(a => a.isAlive && a.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     backgroundObjects: game.backgroundObjects.filter(o => o.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     elapsedTime: game.elapsedTime + FRAME_RATE,
-                    score: interactions.tallyScore(game.score, game.actors),
+                    score: interactions.tallyScore(game.score, game.actors.filter(a => a.isWithinBounds(screen.WIDTH, screen.HEIGHT))),
                     timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),
                     timeOfLastSpawn: interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn)
                 }));
