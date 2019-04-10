@@ -96,9 +96,7 @@ let move = (function() {
         // Up arrow
         else if (keysPressed[38]) {
             if ((this.y - this.velocity) > 0) {
-                return Object.assign(this, {
-                    y: this.y - this.velocity
-                });
+                return up.bind(this)();
             }
         }
         // Right arrow
@@ -112,9 +110,7 @@ let move = (function() {
         // Down arrow
         else if (keysPressed[40]) {
             if ((this.y + this.velocity) < maxHeight) {
-                return Object.assign(this, {
-                    y: this.y + this.velocity
-                });
+                return down.bind(this)();
             }
         }
 
