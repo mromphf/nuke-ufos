@@ -7,7 +7,7 @@ let nukeUfos = (function() {
         return {
             backgroundObjects: randomStar.fill(),
             actors: [playerAtStartingPosition()],
-            elapsedTime: 0,
+            startTime: new Date(),
             timeOfLastSpawn: 0,
             timeOfLastPowerUp: 0,
             score: 0
@@ -51,6 +51,7 @@ let nukeUfos = (function() {
     }
 
     function runGame(game) {
+        const timeElapsed = new Date() - game.startTime;
         setTimeout(function() {
             screen.renderForeground(game.actors);
             screen.renderBackground(game.backgroundObjects);
@@ -60,17 +61,16 @@ let nukeUfos = (function() {
                 .replenish(game.backgroundObjects)
                 .map(o => o.move());
 
-            game.actors = spawn.randomEnemy(game.actors, game.elapsedTime, game.timeOfLastSpawn);
-            game.actors = spawn.randomPowerUp(game.actors, game.elapsedTime, game.timeOfLastPowerUp);
+            game.actors = spawn.randomEnemy(game.actors, timeElapsed, game.timeOfLastSpawn);
+            game.actors = spawn.randomPowerUp(game.actors, timeElapsed, game.timeOfLastPowerUp);
             game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT, keyboard.keysPressed);
             game.actors = interactions.detectCollisions(game.actors);
-            game.actors = interactions.triggerAttacks(game.actors, game.elapsedTime, game.timeOfLastSpawn);
+            game.actors = interactions.triggerAttacks(game.actors, timeElapsed, game.timeOfLastSpawn);
 
             if (game.actors.find(a => a.isPlayer).isAlive) {
                 runGame(Object.assign(game, {
                     actors: game.actors.filter(a => a.isAlive && a.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     backgroundObjects: game.backgroundObjects.filter(o => o.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
-                    elapsedTime: game.elapsedTime + FRAME_RATE,
                     score: interactions.tallyScore(game.score, game.actors.filter(a => a.isWithinBounds(screen.WIDTH, screen.HEIGHT))),
                     timeOfLastPowerUp: interactions.timeOfLastSpawn(game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp),
                     timeOfLastSpawn: interactions.timeOfLastSpawn(game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn)
