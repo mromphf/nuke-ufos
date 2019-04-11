@@ -84,8 +84,9 @@ let construct = (function() {
             draw: draw.bubble,
             hit: behave.bubbleHit,
             radius: 20,
-            halfLife: 300,
-            primaryColor: "#f00"
+            halfLife: 150,
+            primaryColor: "#f00",
+            value: 30
         });
     }
 
