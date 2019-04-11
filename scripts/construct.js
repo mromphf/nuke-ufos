@@ -78,6 +78,15 @@ let construct = (function() {
         }
     }
 
+    function exploder(x, y, spawnTime) {
+        return Object.assign(ufo(x, y, spawnTime), {
+            draw: draw.exploder,
+            radius: 20,
+            primaryColor: "#f00",
+            value: 30
+        });
+    }
+
     function dreadnought(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
             attack: behave.shoot,
@@ -166,6 +175,7 @@ let construct = (function() {
         ammo: ammo,
         dreadnought: dreadnought,
         enemyLaser: enemyLaser,
+        exploder: exploder,
         kamikaze: kamikaze,
         laser: laser,
         player: player,

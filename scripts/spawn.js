@@ -41,6 +41,7 @@ let spawn = (function() {
     }
 
     function enemyPool(elapsedTime) {
+        return [construct.exploder];
         if (elapsedTime < 20000) {
             return [
                 construct.ufo

@@ -8,6 +8,14 @@ let draw = (function() {
         context.fill();
     }
 
+    function exploder(context) {
+        context.beginPath();
+        context.lineWidth = 8;
+        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        context.strokeStyle = this.primaryColor;
+        context.stroke();
+    }
+
     function kamikaze(context) {
         context.beginPath();
         context.fillStyle = "#c00";
@@ -132,6 +140,7 @@ let draw = (function() {
 
     return {
         circle: circle,
+        exploder: exploder,
         kamikaze: kamikaze,
         player: player,
         playerWithShield: playerWithShield,
