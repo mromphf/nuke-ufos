@@ -69,7 +69,7 @@ let spawn = (function() {
     }
 
     function generateRandomActor(elapsedTime, actorPool) {
-        let selectedType = actorPool[(Math.floor((Math.random() * actorPool.length)) + 1) - 1];
+        let selectedType = arr.randomElement(actorPool);
         return selectedType(randomTop(screen.WIDTH), 0, elapsedTime);
     }
 
