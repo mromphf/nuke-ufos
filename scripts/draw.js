@@ -8,7 +8,7 @@ let draw = (function() {
         context.fill();
     }
 
-    function exploder(context) {
+    function bubble(context) {
         context.beginPath();
         context.lineWidth = 8;
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
@@ -140,7 +140,7 @@ let draw = (function() {
 
     return {
         circle: circle,
-        exploder: exploder,
+        bubble: bubble,
         kamikaze: kamikaze,
         player: player,
         playerWithShield: playerWithShield,

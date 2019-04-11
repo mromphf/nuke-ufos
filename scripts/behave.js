@@ -16,7 +16,7 @@ let behave = (function() {
         });
     }
 
-    function exploderDecay() {
+    function bubbleDecay() {
         if (this.halfLife > 0) {
             return Object.assign(this, {
                 halfLife: this.halfLife - 1,
@@ -39,7 +39,7 @@ let behave = (function() {
         }
     }
 
-    function exploderHit() {
+    function bubbleHit() {
         return Object.assign(this, {
             isDecaying: true
         });
@@ -93,8 +93,8 @@ let behave = (function() {
         boostSpeed: boostSpeed,
         die: die,
         hit: hit,
-        exploderDecay: exploderDecay,
-        exploderHit: exploderHit,
+        bubbleDecay: bubbleDecay,
+        bubbleHit: bubbleHit,
         increaseLasers: increaseLasers,
         playerHit: playerHit,
         shoot: shoot,

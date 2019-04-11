@@ -53,8 +53,8 @@ let spawn = (function() {
             ];
         }
         return [
+            construct.bubble,
             construct.dreadnought,
-            construct.exploder,
             construct.kamikaze,
             construct.stalker,
             construct.ufo

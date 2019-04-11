@@ -78,11 +78,11 @@ let construct = (function() {
         }
     }
 
-    function exploder(x, y, spawnTime) {
+    function bubble(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
-            decay: behave.exploderDecay,
-            draw: draw.exploder,
-            hit: behave.exploderHit,
+            decay: behave.bubbleDecay,
+            draw: draw.bubble,
+            hit: behave.bubbleHit,
             radius: 20,
             halfLife: 300,
             primaryColor: "#f00"
@@ -177,7 +177,7 @@ let construct = (function() {
         ammo: ammo,
         dreadnought: dreadnought,
         enemyLaser: enemyLaser,
-        exploder: exploder,
+        bubble: bubble,
         kamikaze: kamikaze,
         laser: laser,
         player: player,
