@@ -16,6 +16,18 @@ let behave = (function() {
         });
     }
 
+    function exploderDecay() {
+        if (this.halfLife > 0) {
+            return Object.assign(this, {
+                halfLife: this.halfLife - 1,
+                radius: this.radius + 1
+            });
+        }
+        else {
+            return this.die();
+        }
+    }
+
     function hit() {
         if (this.health > 1) {
             return Object.assign(this, {
@@ -25,6 +37,12 @@ let behave = (function() {
         else {
             return this.die();
         }
+    }
+
+    function exploderHit() {
+        return Object.assign(this, {
+            isDecaying: true
+        });
     }
 
     function playerHit() {
@@ -75,6 +93,8 @@ let behave = (function() {
         boostSpeed: boostSpeed,
         die: die,
         hit: hit,
+        exploderDecay: exploderDecay,
+        exploderHit: exploderHit,
         increaseLasers: increaseLasers,
         playerHit: playerHit,
         shoot: shoot,

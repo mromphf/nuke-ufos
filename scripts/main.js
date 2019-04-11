@@ -61,6 +61,7 @@ let nukeUfos = (function() {
             game.actors = spawn.randomPowerUp(game.actors, timeElapsed, game.timeOfLastPowerUp);
             game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT, keyboard.keysPressed);
             game.actors = interactions.detectCollisions(game.actors);
+            game.actors = interactions.decayAll(game.actors);
             game.actors = interactions.triggerAttacks(game.actors, timeElapsed, game.timeOfLastSpawn);
 
             if (game.actors.find(a => a.isPlayer).isAlive) {

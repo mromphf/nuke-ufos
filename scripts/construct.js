@@ -80,10 +80,12 @@ let construct = (function() {
 
     function exploder(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
+            decay: behave.exploderDecay,
             draw: draw.exploder,
+            hit: behave.exploderHit,
             radius: 20,
-            primaryColor: "#f00",
-            value: 30
+            halfLife: 300,
+            primaryColor: "#f00"
         });
     }
 

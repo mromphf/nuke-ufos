@@ -41,7 +41,6 @@ let spawn = (function() {
     }
 
     function enemyPool(elapsedTime) {
-        return [construct.exploder];
         if (elapsedTime < 20000) {
             return [
                 construct.ufo
@@ -54,9 +53,10 @@ let spawn = (function() {
             ];
         }
         return [
-            construct.stalker,
             construct.dreadnought,
+            construct.exploder,
             construct.kamikaze,
+            construct.stalker,
             construct.ufo
         ];
     }

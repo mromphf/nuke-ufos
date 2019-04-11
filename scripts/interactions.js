@@ -55,6 +55,17 @@ let interactions = (function() {
             }, 0) + currentScore;
     }
 
+    function decayAll(actors) {
+        return actors.map(function(a) {
+            if (a.isDecaying) {
+                return a.decay();
+            }
+            else {
+                return a;
+            }
+        });
+    }
+
     function triggerAttacks(actors, elapsedTime, timeOfLastSpawn) {
         actors.filter(a => a.canAttack).forEach(function(actor) {
             actor.attack(actors, elapsedTime, timeOfLastSpawn);
@@ -64,6 +75,7 @@ let interactions = (function() {
 
     return {
         moveEverything: moveEverything,
+        decayAll: decayAll,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
         tallyScore: tallyScore,
