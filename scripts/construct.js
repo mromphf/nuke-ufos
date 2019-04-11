@@ -5,11 +5,11 @@ let construct = (function() {
         return {
             draw: draw.circle,
             isStar: true,
+            isWithinBounds: behave.withinBounds,
             move: move.down,
             primaryColor: randomStar.color(),
             radius: randomStar.size(),
             velocity: 2,
-            isWithinBounds: behave.withinBounds,
             x: x,
             y: y,
         }
@@ -32,17 +32,17 @@ let construct = (function() {
     function speedBoost(x, y, spawnTime) {
         return {
             applyTo: behave.boostSpeed,
+            collide: collision.powerUpCollides,
             die: behave.die,
             draw: draw.powerUp,
             isAlive: true,
             isPowerUp: true,
-            collide: collision.powerUpCollides,
+            isWithinBounds: behave.withinBounds,
             move: move.down,
+            primaryColor: "#00f",
             radius: 6,
             spawnTime: spawnTime,
-            primaryColor: "#00f",
             velocity: 4,
-            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         };
@@ -50,8 +50,8 @@ let construct = (function() {
 
     function enemyLaser(x, y, spawnTime) {
         return Object.assign(laser(x, y), {
-            hit: behave.die,
             collide: collision.laserCollides,
+            hit: behave.die,
             isEnemy: true,
             move: move.down,
             primaryColor: "#f00",
@@ -62,17 +62,17 @@ let construct = (function() {
 
     function laser(x, y) {
         return {
+            collide: collision.laserCollides,
             die: behave.die,
             draw: draw.circle,
             isAlive: true,
             isEnemy: false,
             isLaser: true,
-            collide: collision.laserCollides,
-            primaryColor: "#0f0",
+            isWithinBounds: behave.withinBounds,
             move: move.up,
+            primaryColor: "#0f0",
             radius: 5,
             velocity: 10,
-            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         }
@@ -91,11 +91,11 @@ let construct = (function() {
 
     function stalker(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
-            move: move.towards,
             draw: draw.stalker,
-            radius: 20,
             health: 2,
+            move: move.towards,
             primaryColor: "#f00",
+            radius: 20,
             secondaryColor: "#555",
             value: 40
         });
@@ -103,13 +103,14 @@ let construct = (function() {
 
     function ufo(x, y, spawnTime) {
         return {
+            collide: collision.enemyCollides,
             die: behave.die,
             draw: draw.ufo,
             health: 1,
             hit: behave.hit,
             isAlive: true,
             isEnemy: true,
-            collide: collision.enemyCollides,
+            isWithinBounds: behave.withinBounds,
             move: move.down,
             primaryColor: "#666",
             radius: 30,
@@ -117,7 +118,6 @@ let construct = (function() {
             spawnTime: spawnTime,
             value: 10,
             velocity: 3,
-            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         }
@@ -125,19 +125,19 @@ let construct = (function() {
 
     function kamikaze(x, y, spawnTime) {
         return {
+            collide: collision.enemyCollides,
             die: behave.die,
             draw: draw.kamikaze,
             health: 1,
             hit: behave.hit,
             isAlive: true,
             isEnemy: true,
-            collide: collision.enemyCollides,
+            isWithinBounds: behave.withinBounds,
             move: move.down,
             radius: 20,
             spawnTime: spawnTime,
             value: 30,
             velocity: 10,
-            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         }
@@ -145,18 +145,18 @@ let construct = (function() {
 
     function player(x, y) {
         return {
+            collide: collision.playerCollides,
             die: behave.die,
             draw: draw.player,
             health: 1,
             hit: behave.playerHit,
-            maxLasers: config.STARTING_LASERS,
-            move: move.player,
-            collide: collision.playerCollides,
             isAlive: true,
             isPlayer: true,
+            isWithinBounds: behave.withinBounds,
+            maxLasers: config.STARTING_LASERS,
+            move: move.player,
             radius: 40,
             velocity: 8,
-            isWithinBounds: behave.withinBounds,
             x: x,
             y: y
         };
@@ -169,8 +169,8 @@ let construct = (function() {
         kamikaze: kamikaze,
         laser: laser,
         player: player,
-        speedBoost: speedBoost,
         shield: shield,
+        speedBoost: speedBoost,
         stalker: stalker,
         star: star,
         ufo: ufo
