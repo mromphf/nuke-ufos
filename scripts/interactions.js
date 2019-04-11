@@ -27,8 +27,12 @@ let interactions = (function() {
             a => a.isPlayer);
         const numLasers = gameObjects.actors.filter(
             a => a.isLaser && !a.isEnemy).length;
+
         if (numLasers < player.maxLasers) {
-            gameObjects.actors.push(construct.laser(player.x, player.y - 50));
+            return arr.push(
+                gameObjects.actors,
+                construct.laser(player.x, player.y - 50)
+            );
         }
     }
 

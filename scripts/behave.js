@@ -60,9 +60,14 @@ let behave = (function() {
 
     function shoot(actors, elapsedTime, timeOfLastSpawn) {
         if (elapsedTime - timeOfLastSpawn > 1000) {
-            actors.push(construct.enemyLaser(this.x, this.y + this.radius, elapsedTime));
+            return arr.push(
+                actors,
+                construct.enemyLaser(this.x, this.y + this.radius, elapsedTime)
+            );
         }
-        return actors;
+        else {
+            return actors;
+        }
     }
 
     return {

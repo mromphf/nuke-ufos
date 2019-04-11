@@ -45,10 +45,11 @@ let randomStar = (function() {
 
     function replenish(actors) {
         if (actors.filter(a => a.isStar).length < config.MAX_STARS) {
-            actors.push(somewhereAtTheTop());
+            return arr.push(actors, somewhereAtTheTop());
         }
-
-        return actors;
+        else {
+            return actors;
+        }
     }
 
     function fill() {

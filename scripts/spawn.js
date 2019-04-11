@@ -77,18 +77,27 @@ let spawn = (function() {
         if (elapsedTime > 3000 &&
             elapsedTime - timeOfLastEnemy > delayBetweenSpawns(elapsedTime) &&
             actors.filter(a => a.isEnemy).length < maximumEnemies(elapsedTime)) {
-                actors.push(generateRandomActor(elapsedTime, enemyPool(elapsedTime)));
+                return arr.push(actors,
+                         generateRandomActor(elapsedTime, enemyPool(elapsedTime))
+                );
         }
-        return actors;
+        else {
+            return actors;
+        }
     }
 
     function randomPowerUp(actors, elapsedTime, timeOfLastPowerUp) {
         if (elapsedTime > config.TIME_TO_FIRST_POWER_UP &&
             elapsedTime - timeOfLastPowerUp > config.TIME_BETWEEN_POWER_UPS &&
             actors.filter(a => a.isPowerUp).length < 1) {
-                actors.push(generateRandomActor(elapsedTime, powerUpPool(elapsedTime)));
+                return arr.push(
+                    actors,
+                    generateRandomActor(elapsedTime, powerUpPool(elapsedTime))
+                );
         }
-        return actors;
+        else {
+            return actors;
+        }
     }
 
     return {
