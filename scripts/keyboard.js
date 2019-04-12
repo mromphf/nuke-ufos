@@ -19,6 +19,8 @@ let keyboard = (function() {
 
     function registerGameOverListeners(onEsc, onSave, name, score) {
         window.onkeydown = function(e) {
+            e.preventDefault();
+
             if (e.keyCode === key_code.ENTER) {
                 onSave(name.toUpperCase(), score);
             }
@@ -47,6 +49,8 @@ let keyboard = (function() {
 
     function registerStartListeners(startGame, showLeaderboard) {
         window.onkeydown = function(e) {
+            e.preventDefault();
+
             if (e.keyCode === key_code.ENTER) {
                 startGame();
             }
@@ -59,6 +63,8 @@ let keyboard = (function() {
 
     function registerLeaderboardListeners(showStartScreen) {
         window.onkeydown = function(e) {
+            e.preventDefault();
+
             if (e.keyCode === key_code.ESC) {
                 showStartScreen();
             }
@@ -67,7 +73,9 @@ let keyboard = (function() {
 
     function registerGameListeners(gameObjects) {
         window.onkeydown = function(e) {
+            e.preventDefault();
             keysPressed[e.keyCode || e.which] = true;
+
             if (e.keyCode == key_code.SPACEBAR) {
                 interactions.playerShoots(gameObjects);
             }
