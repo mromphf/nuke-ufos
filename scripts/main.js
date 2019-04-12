@@ -41,6 +41,7 @@ let nukeUfos = (function() {
         let scores = storage.load("scores");
         let name = n || "ANON";
         scores.push({name: name, value: score});
+        scores.sort((a, b) => b.value - a.value).slice(0, 10);
         storage.save("scores", (scores));
         showLeaderboard();
     }
