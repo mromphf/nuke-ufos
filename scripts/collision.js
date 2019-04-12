@@ -14,7 +14,7 @@ let collision = (function() {
     }
 
     function enemyCollides(target) {
-        if (target.isLaser) {
+        if (target.isLaser && !target.isEnemy) {
             return this.hit();
         }
         else if (target.isPlayer) {
