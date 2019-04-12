@@ -4,13 +4,11 @@ let screen = (function() {
     const WIDTH = window.innerWidth;
     const HEIGHT = window.innerHeight;
     let canvasA = document.getElementById("hud");
-    let canvasB = document.getElementById("nameEntry");
-    let canvasC = document.getElementById("foreground");
-    let canvasD = document.getElementById("background");
+    let canvasB = document.getElementById("foreground");
+    let canvasC = document.getElementById("background");
     let hud = canvasA.getContext("2d");
-    let nameEntry = canvasB.getContext("2d");
-    let foreground = canvasC.getContext("2d");
-    let background = canvasD.getContext("2d");
+    let foreground = canvasB.getContext("2d");
+    let background = canvasC.getContext("2d");
 
     canvasA.width = WIDTH;
     canvasA.height = HEIGHT;
@@ -21,16 +19,9 @@ let screen = (function() {
     canvasC.width = WIDTH;
     canvasC.height = HEIGHT;
 
-    canvasD.width = WIDTH;
-    canvasD.height = HEIGHT;
-
     function clearBackground() {
         background.fillStyle = "#020202";
         background.fillRect(0, 0, WIDTH, HEIGHT);
-    }
-
-    function clearNameEntry() {
-        nameEntry.clearRect(0, 0, WIDTH, HEIGHT);
     }
 
     function clearForeground() {
@@ -59,7 +50,6 @@ let screen = (function() {
 
     function reset() {
         clearHud();
-        clearNameEntry();
         clearBackground();
         clearForeground();
     }
@@ -103,12 +93,12 @@ let screen = (function() {
     }
 
     function renderName(name) {
-        nameEntry.textAlign = "center";
-        nameEntry.font = "40px arial";
-        nameEntry.fillStyle = "#020202";
-        nameEntry.fillRect(0, 0, WIDTH, HEIGHT);
-        nameEntry.fillStyle = "#ff0";
-        nameEntry.fillText(name, (WIDTH / 2), (HEIGHT / 2) + 200);
+        foreground.textAlign = "center";
+        foreground.font = "40px arial";
+        foreground.fillStyle = "#020202";
+        foreground.fillRect(0, 0, WIDTH, HEIGHT);
+        foreground.fillStyle = "#ff0";
+        foreground.fillText(name, (WIDTH / 2), (HEIGHT / 2) + 200);
     }
 
     function leaderboardHeader() {
