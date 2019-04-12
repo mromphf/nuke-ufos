@@ -72,54 +72,46 @@ let move = (function() {
     }
 
     function player(maxWidth, maxHeight, keysPressed) {
-        // Left and up arrows
-        if (keysPressed[37] && keysPressed[38]) {
+        if (keysPressed[key_code.ARROW_LEFT] && keysPressed[key_code.ARROW_UP]) {
             if (((this.x - this.radius - this.velocity) > 0) && 
                 ((this.y - this.radius - this.velocity) > 0)) {
                 return upLeft.bind(this)();
             }
         }
-        // Right and up arrows
-        if (keysPressed[39] && keysPressed[38]) {
+        if (keysPressed[key_code.ARROW_RIGHT] && keysPressed[key_code.ARROW_UP]) {
             if (((this.x + this.radius + this.velocity) < maxWidth) && 
                 ((this.y - this.radius - this.velocity) > 0)) {
                 return upRight.bind(this)();
             }
         }
-        // Left and down arrows
-        if (keysPressed[37] && keysPressed[40]) {
+        if (keysPressed[key_code.ARROW_LEFT] && keysPressed[key_code.ARROW_DOWN]) {
             if (((this.x - this.radius - this.velocity) > 0) &&
                 ((this.y + this.radius + this.velocity) < maxHeight)) {
                 return downLeft.bind(this)();
             }
         }
-        // Right and down arrows
-        if (keysPressed[39] && keysPressed[40]) {
+        if (keysPressed[key_code.ARROW_RIGHT] && keysPressed[key_code.ARROW_DOWN]) {
             if (((this.x + this.radius + this.velocity) < maxWidth) && 
                 ((this.y + this.radius + this.velocity) < maxHeight)) {
                 return downRight.bind(this)();
             }
         }
-        // Left arrow
-        else if (keysPressed[37]) {
+        else if (keysPressed[key_code.ARROW_LEFT]) {
             if ((this.x - this.radius - this.velocity) > 0) {
                 return left.bind(this)();
             }
         }
-        // Up arrow
-        else if (keysPressed[38]) {
+        else if (keysPressed[key_code.ARROW_UP]) {
             if ((this.y - this.radius - this.velocity) > 0) {
                 return up.bind(this)();
             }
         }
-        // Right arrow
-        else if (keysPressed[39]) {
+        else if (keysPressed[key_code.ARROW_RIGHT]) {
             if ((this.x + this.radius + this.velocity) < maxWidth) {
                 return right.bind(this)();
             }
         }
-        // Down arrow
-        else if (keysPressed[40]) {
+        else if (keysPressed[key_code.ARROW_DOWN]) {
             if ((this.y + this.radius + this.velocity) < maxHeight) {
                 return down.bind(this)();
             }

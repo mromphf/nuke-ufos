@@ -1,27 +1,39 @@
 "use strict";
 
+const key_code = {
+    A: 65,
+    ARROW_DOWN: 40,
+    ARROW_LEFT: 37,
+    ARROW_RIGHT: 39,
+    ARROW_UP: 38,
+    BACKSPACE: 8,
+    ENTER: 13,
+    ESC: 27,
+    L: 76,
+    SPACEBAR: 32,
+    Z: 90
+};
+
 let keyboard = (function() {
     let keysPressed = {};
 
     function registerGameOverListeners(onEsc, onSave, name, score) {
         window.onkeydown = function(e) {
-            // Enter key
-            if (e.keyCode === 13) {
+            if (e.keyCode === key_code.ENTER) {
                 onSave(name.toUpperCase(), score);
             }
 
-            // ESC key
-            if (e.keyCode === 27) {
+            if (e.keyCode === key_code.ESC) {
                 onEsc();
             }
 
-            if (e.keyCode === 8) {
+            if (e.keyCode === key_code.BACKSPACE) {
                 let n = name.slice(0, name.length - 1);
                 screen.renderName(n.toUpperCase());
                 registerGameOverListeners(onEsc, onSave, n, score);
             }
 
-            if (e.keyCode >= 64 && e.keyCode <= 90 && name.length < 4) {
+            if (e.keyCode >= key_code.A && e.keyCode <= key_code.Z && name.length < 4) {
                 let n = name;
                 if (name.length < 4) {
                     n = name + e.key;
@@ -35,13 +47,11 @@ let keyboard = (function() {
 
     function registerStartListeners(startGame, showLeaderboard) {
         window.onkeydown = function(e) {
-            // Enter key
-            if (e.keyCode === 13) {
+            if (e.keyCode === key_code.ENTER) {
                 startGame();
             }
 
-            // L key
-            if (e.keyCode === 76) {
+            if (e.keyCode === key_code.L) {
                 showLeaderboard();
             }
         }
@@ -49,8 +59,7 @@ let keyboard = (function() {
 
     function registerLeaderboardListeners(showStartScreen) {
         window.onkeydown = function(e) {
-            // ESC key
-            if (e.keyCode === 27) {
+            if (e.keyCode === key_code.ESC) {
                 showStartScreen();
             }
         }
@@ -59,8 +68,7 @@ let keyboard = (function() {
     function registerGameListeners(gameObjects) {
         window.onkeydown = function(e) {
             keysPressed[e.keyCode || e.which] = true;
-            // Space bar
-            if (e.keyCode == 32) {
+            if (e.keyCode == key_code.SPACEBAR) {
                 interactions.playerShoots(gameObjects);
             }
         }
