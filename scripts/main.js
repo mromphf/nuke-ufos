@@ -25,8 +25,14 @@ let nukeUfos = (function() {
     }
 
     function showLeaderboard() {
+        let scores = storage.load("scores");
         screen.reset();
-        screen.showLeaderboard(storage.load("scores"));
+        if (scores.length === 0) {
+            screen.showEmptyLeaderboard();
+        }
+        else {
+            screen.showLeaderboard(scores);
+        }
         keyboard.registerLeaderboardListeners(showStartScreen);
     }
 

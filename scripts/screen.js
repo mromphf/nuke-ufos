@@ -111,9 +111,7 @@ let screen = (function() {
         nameEntry.fillText(name, (WIDTH / 2), (HEIGHT / 2) + 200);
     }
 
-    function showLeaderboard(scores) {
-        reset();
-
+    function leaderboardHeader() {
         hud.font = "80px arial";
         hud.fillStyle = "yellow";
         hud.textAlign = "center";
@@ -122,19 +120,25 @@ let screen = (function() {
 
         hud.font = "20px arial";
         hud.fillText("(Press Esc to return to main menu)", (WIDTH / 2), (HEIGHT / 2) - 275);
+    }
 
-        if (scores.length > 0) {
-            let line = 1;
-            scores.sort((a, b) => b.value - a.value).slice(0, 10).forEach(function(score) {
-                hud.font = "40px arial";
-                hud.fillText(score.name + "..............................." + score.value, (WIDTH / 2), 300 + (line * 50));
-                line += 1;
-            });
-        }
-        else {
+    function showLeaderboard(scores) {
+        reset();
+        leaderboardHeader();
+
+        let line = 1;
+        scores.sort((a, b) => b.value - a.value).slice(0, 10).forEach(function(score) {
             hud.font = "40px arial";
-            hud.fillText("No scores yet", (WIDTH / 2), (HEIGHT / 2));
-        }
+            hud.fillText(score.name + "..............................." + score.value, (WIDTH / 2), 300 + (line * 50));
+            line += 1;
+        });
+    }
+
+    function showEmptyLeaderboard() {
+        reset();
+        leaderboardHeader();
+        hud.font = "40px arial";
+        hud.fillText("No scores yet", (WIDTH / 2), (HEIGHT / 2));
     }
 
     return {
@@ -147,6 +151,7 @@ let screen = (function() {
         reset: reset,
         showGameOver: showGameOver,
         showStartText: showStartText,
+        showEmptyLeaderboard: showEmptyLeaderboard,
         showLeaderboard: showLeaderboard,
         updateScore: updateScore
     };
