@@ -50,7 +50,7 @@ let construct = (function() {
 
     function enemyLaser(x, y, spawnTime) {
         return Object.assign(laser(x, y), {
-            collide: collision.laserCollides,
+            collide: collision.enemyLaserCollides,
             hit: behave.die,
             isEnemy: true,
             move: move.down,

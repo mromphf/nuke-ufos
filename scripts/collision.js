@@ -25,11 +25,17 @@ let collision = (function() {
         }
     }
 
-    function laserCollides(target) {
-        if (this.isEnemy && !target.isLaser) {
+    function enemyLaserCollides(target) {
+        if (target.isPlayer) {
             return this.die();
         }
-        else if (!this.isEnemy && !target.isLaser && target.isEnemy) {
+        else {
+            return this;
+        }
+    }
+
+    function laserCollides(target) {
+        if (target.isEnemy && !target.isLaser) {
             return this.die();
         }
         else {
@@ -60,6 +66,7 @@ let collision = (function() {
     
     return {
         enemyCollides: enemyCollides,
+        enemyLaserCollides: enemyLaserCollides,
         hasOccuredBetween: hasOccuredBetween,
         laserCollides: laserCollides,
         playerCollides: playerCollides,
