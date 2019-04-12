@@ -74,49 +74,53 @@ let move = (function() {
     function player(maxWidth, maxHeight, keysPressed) {
         // Left and up arrows
         if (keysPressed[37] && keysPressed[38]) {
-            if (((this.x - this.velocity) > 0) && ((this.y - this.velocity) > 0)) {
+            if (((this.x - this.radius - this.velocity) > 0) && 
+                ((this.y - this.radius - this.velocity) > 0)) {
                 return upLeft.bind(this)();
             }
         }
         // Right and up arrows
         if (keysPressed[39] && keysPressed[38]) {
-            if (((this.x + this.velocity) < maxWidth) && ((this.y - this.velocity) > 0)) {
+            if (((this.x + this.radius + this.velocity) < maxWidth) && 
+                ((this.y - this.radius - this.velocity) > 0)) {
                 return upRight.bind(this)();
             }
         }
         // Left and down arrows
         if (keysPressed[37] && keysPressed[40]) {
-            if (((this.x - this.velocity) > 0) && ((this.y + this.velocity) < maxHeight)) {
+            if (((this.x - this.radius - this.velocity) > 0) &&
+                ((this.y + this.radius + this.velocity) < maxHeight)) {
                 return downLeft.bind(this)();
             }
         }
         // Right and down arrows
         if (keysPressed[39] && keysPressed[40]) {
-            if (((this.x + this.velocity) < maxWidth) && ((this.y + this.velocity) < maxHeight)) {
+            if (((this.x + this.radius + this.velocity) < maxWidth) && 
+                ((this.y + this.radius + this.velocity) < maxHeight)) {
                 return downRight.bind(this)();
             }
         }
         // Left arrow
         else if (keysPressed[37]) {
-            if ((this.x - this.velocity) > 0) {
+            if ((this.x - this.radius - this.velocity) > 0) {
                 return left.bind(this)();
             }
         }
         // Up arrow
         else if (keysPressed[38]) {
-            if ((this.y - this.velocity) > 0) {
+            if ((this.y - this.radius - this.velocity) > 0) {
                 return up.bind(this)();
             }
         }
         // Right arrow
         else if (keysPressed[39]) {
-            if ((this.x + this.velocity) < maxWidth) {
+            if ((this.x + this.radius + this.velocity) < maxWidth) {
                 return right.bind(this)();
             }
         }
         // Down arrow
         else if (keysPressed[40]) {
-            if ((this.y + this.velocity) < maxHeight) {
+            if ((this.y + this.radius + this.velocity) < maxHeight) {
                 return down.bind(this)();
             }
         }
