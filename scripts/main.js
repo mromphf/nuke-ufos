@@ -68,31 +68,18 @@ let nukeUfos = (function() {
                 runGame(Object.assign(game, {
                     actors: game.actors.filter(
                         a => a.isAlive &&
-                        a.isWithinBounds(screen.WIDTH, screen.HEIGHT)
-                    ),
+                        a.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     backgroundObjects: randomStar
                         .replenish(game.backgroundObjects)
-                        .map(o =>
-                            o.move()
-                        )
-                        .filter(o =>
-                            o.isWithinBounds(screen.WIDTH, screen.HEIGHT)
-                        ),
+                        .map(o => o.move())
+                        .filter(o => o.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     score: interactions.tallyScore(game.score,
-                        game.actors.filter(
-                            a => a.isWithinBounds(screen.WIDTH, screen.HEIGHT)
-                        )
-                    ),
+                        game.actors.filter(a => a.isWithinBounds(screen.WIDTH, screen.HEIGHT))),
                     timeOfLastPowerUp: interactions.timeOfLastSpawn(
-                        game.actors.filter(
-                            a => a.isPowerUp
-                        ),
-                        game.timeOfLastPowerUp
-                    ),
+                        game.actors.filter(a => a.isPowerUp),
+                        game.timeOfLastPowerUp),
                     timeOfLastSpawn: interactions.timeOfLastSpawn(
-                        game.actors.filter(
-                            a => a.isEnemy
-                        ),
+                        game.actors.filter(a => a.isEnemy),
                         game.timeOfLastSpawn)
                 }));
             }
