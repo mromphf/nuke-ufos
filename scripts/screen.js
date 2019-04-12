@@ -1,8 +1,8 @@
 "use strict";
 
 let screen = (function() {
-    const WIDTH = window.innerWidth;
-    const HEIGHT = window.innerHeight;
+    const WIDTH = Math.max(1920, window.outerWidth);
+    const HEIGHT = Math.max(1080, window.outerHeight);
     let canvasA = document.getElementById("hud");
     let canvasB = document.getElementById("foreground");
     let canvasC = document.getElementById("background");
