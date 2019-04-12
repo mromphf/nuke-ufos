@@ -44,19 +44,20 @@ let draw = (function() {
         context.strokeStyle = "#ff0";
         context.stroke();
 
-        context.beginPath();
-        context.moveTo(this.x, this.y - 40);
-        context.lineTo((this.x - 40), (this.y + 40));
-        context.lineTo((this.x + 40), (this.y + 40));
-        context.fillStyle = "#00f";
-        context.fill();
+        player.bind(this)(context);
     }
 
     function player(context) {
+        const y = this.y - 45;
+
         context.beginPath();
-        context.moveTo(this.x, this.y - 40);
-        context.lineTo((this.x - 40), (this.y + 40));
-        context.lineTo((this.x + 40), (this.y + 40));
+        context.moveTo(this.x, y);
+        context.quadraticCurveTo(this.x + 50, y + 50, this.x + 25, y + 100);
+        context.quadraticCurveTo(this.x + 25, y + 75, this.x, y + 50);
+
+        context.moveTo(this.x, y);
+        context.quadraticCurveTo(this.x - 50, y + 50, this.x - 25, y + 100);
+        context.quadraticCurveTo(this.x - 25, y + 75, this.x, y + 50);
         context.fillStyle = "#00f";
         context.fill();
     }
