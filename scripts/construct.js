@@ -82,7 +82,7 @@ let construct = (function() {
         return Object.assign(ufo(x, y, spawnTime), {
             decay: behave.bubbleDecay,
             draw: draw.bubble,
-            hit: behave.bubbleHit,
+            hit: behave.startBubbleDecay,
             radius: 20,
             halfLife: 150,
             primaryColor: "#f00",
@@ -93,22 +93,28 @@ let construct = (function() {
     function dreadnought(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
             attack: behave.shoot,
+            decay: behave.dreadnoughtDecay,
             canAttack: true,
             health: 3,
+            hit: behave.startDecay,
+            halfLife: 3,
             primaryColor: "#444",
-            secondaryColor: "#c00",
+            secondaryColor: "#f00",
             value: 40
         });
     }
 
     function stalker(x, y, spawnTime) {
         return Object.assign(ufo(x, y, spawnTime), {
+            decay: behave.dreadnoughtDecay,
             draw: draw.stalker,
             health: 2,
+            halfLife: 3,
+            hit: behave.startDecay,
             move: move.towards,
-            primaryColor: "#f00",
+            primaryColor: "#444",
             radius: 20,
-            secondaryColor: "#555",
+            secondaryColor: "#f00",
             value: 40
         });
     }

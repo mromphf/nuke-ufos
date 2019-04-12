@@ -76,18 +76,18 @@ let draw = (function() {
 
     function stalker(context) {
         context.beginPath();
-        context.fillStyle = this.secondaryColor;
+        context.fillStyle = this.primaryColor;
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.strokeStyle = this.primaryColor;
+        context.strokeStyle = this.secondaryColor;
         context.arc(this.x, this.y, this.radius * 0.7, 0, 2 * Math.PI);
         context.lineWidth = 3,
         context.stroke();
 
         context.beginPath();
-        context.fillStyle = this.primaryColor;
+        context.fillStyle = this.secondaryColor;
         context.arc(this.x, this.y, this.radius * 0.3, 0, 2 * Math.PI);
         context.fill();
     }

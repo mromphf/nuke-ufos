@@ -16,6 +16,22 @@ let behave = (function() {
         });
     }
 
+    function dreadnoughtDecay() {
+        if (this.halfLife > 0) {
+            return Object.assign(this, {
+                halfLife: this.halfLife - 1,
+                primaryColor: "#666"
+            });
+        }
+        else {
+            return Object.assign(this, {
+                primaryColor: "#444",
+                halfLife: 5,
+                isDecaying: false
+            });
+        }
+    }
+
     function bubbleDecay() {
         if (this.halfLife > 0) {
             return Object.assign(this, {
@@ -39,10 +55,22 @@ let behave = (function() {
         }
     }
 
-    function bubbleHit() {
+    function startBubbleDecay() {
         return Object.assign(this, {
             isDecaying: true
         });
+    }
+
+    function startDecay() {
+        if (this.health > 1) {
+            return Object.assign(this, {
+                isDecaying: true,
+                health: this.health - 1
+            });
+        }
+        else {
+            return this.die();
+        }
     }
 
     function playerHit() {
@@ -93,8 +121,10 @@ let behave = (function() {
         boostSpeed: boostSpeed,
         die: die,
         hit: hit,
+        dreadnoughtDecay: dreadnoughtDecay,
         bubbleDecay: bubbleDecay,
-        bubbleHit: bubbleHit,
+        startDecay: startDecay,
+        startBubbleDecay: startBubbleDecay,
         increaseLasers: increaseLasers,
         playerHit: playerHit,
         shoot: shoot,
