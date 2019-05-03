@@ -25,8 +25,8 @@ let randomStar = (function() {
         return arr.randomElement(["#ddd", "#eee", "#fff"]);
     }
 
-    function replenish(actors) {
-        if (actors.filter(a => a.isStar).length < config.MAX_STARS) {
+    function replenish(actors, maxStars) {
+        if (actors.filter(a => a.isStar).length < maxStars) {
             return arr.push(actors, somewhereAtTheTop());
         }
         else {
@@ -34,9 +34,9 @@ let randomStar = (function() {
         }
     }
 
-    function fill() {
+    function fill(maxStars) {
         let result = [];
-        for (let i = 0; i < config.MAX_STARS; i++) {
+        for (let i = 0; i < maxStars; i++) {
             result.push(anywhere());
         }
         return result;

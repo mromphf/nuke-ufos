@@ -5,7 +5,7 @@ let nukeUfos = (function() {
 
     function newGame() {
         return {
-            backgroundObjects: randomStar.fill(),
+            backgroundObjects: randomStar.fill(config.MAX_STARS),
             actors: [playerAtStartingPosition()],
             startTime: new Date(),
             timeOfLastSpawn: 0,
@@ -76,7 +76,7 @@ let nukeUfos = (function() {
                         a => a.isAlive &&
                         a.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     backgroundObjects: randomStar
-                        .replenish(game.backgroundObjects)
+                        .replenish(game.backgroundObjects, config.MAX_STARS)
                         .map(o => o.move())
                         .filter(o => o.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
                     score: interactions.tallyScore(game.score,
