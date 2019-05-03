@@ -18,29 +18,11 @@ let randomStar = (function() {
     }
 
     function size() {
-        const rand = Math.random();
-        if ( rand > 0.66 ) {
-            return 3;
-        }
-        else if (rand > 0.33 ) {
-            return 2;
-        }
-        else {
-            return 1;
-        }
+        return arr.randomElement([1, 2, 3]);
     }
 
     function color() {
-        const rand = Math.random();
-        if ( rand > 0.66 ) {
-            return "#fff";
-        }
-        else if (rand > 0.33 ) {
-            return "#eee";
-        }
-        else {
-            return "#ddd";
-        }
+        return arr.randomElement(["#ddd", "#eee", "#fff"]);
     }
 
     function replenish(actors) {
