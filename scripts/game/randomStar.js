@@ -25,12 +25,12 @@ let randomStar = (function() {
         return arr.randomElement(["#ddd", "#eee", "#fff"]);
     }
 
-    function replenish(actors, maxStars) {
-        if (actors.filter(a => a.isStar).length < maxStars) {
-            return arr.push(actors, somewhereAtTheTop());
+    function replenish(stars) {
+        if (stars.length < config.MAX_STARS) {
+            return arr.push(stars, somewhereAtTheTop());
         }
         else {
-            return actors;
+            return stars;
         }
     }
 
