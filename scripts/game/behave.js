@@ -55,13 +55,13 @@ let behave = (function() {
         }
     }
 
-    function startBubbleDecay() {
+    function startDecay() {
         return Object.assign(this, {
             isDecaying: true
         });
     }
 
-    function startDecay() {
+    function startDecayWithHit() {
         if (this.health > 1) {
             return Object.assign(this, {
                 isDecaying: true,
@@ -124,7 +124,7 @@ let behave = (function() {
         dreadnoughtDecay: dreadnoughtDecay,
         bubbleDecay: bubbleDecay,
         startDecay: startDecay,
-        startBubbleDecay: startBubbleDecay,
+        startDecayWithHit: startDecayWithHit,
         increaseLasers: increaseLasers,
         playerHit: playerHit,
         shoot: shoot,
