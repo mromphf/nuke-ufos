@@ -4,7 +4,6 @@ let construct = (function() {
     function star(x, y) {
         return {
             draw: draw.circle,
-            isStar: true,
             isWithinBounds: behave.withinBounds,
             move: move.down,
             primaryColor: randomStar.color(),
