@@ -36,10 +36,7 @@ let keyboard = (function() {
             }
 
             if (e.keyCode >= key_code.A && e.keyCode <= key_code.Z && name.length < 4) {
-                let n = name;
-                if (name.length < 4) {
-                    n = name + e.key;
-                }
+                let n = name + e.key;
                 screen.renderName(n.toUpperCase());
                 registerGameOverListeners(onEsc, onSave, n, score);
             }
