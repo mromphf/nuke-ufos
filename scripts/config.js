@@ -1,3 +1,5 @@
+"use strict";
+
 const config = {
     MAX_STARS: 30,
     STARTING_LASERS: 3,
