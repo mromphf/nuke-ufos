@@ -1,13 +1,13 @@
 "use strict";
 
-let storage = function(){
-    function save(name, value) {
+const storage = {
+    save: function(name, value) {
         if (typeof(storage) !== undefined) {
             localStorage.setItem(name, JSON.stringify(value));
         }
-    };
+    },
 
-    function load(name) {
+    load: function(name) {
         if (typeof(storage) !== undefined) {
             let val = localStorage.getItem(name);
             if (val === null) {
@@ -18,10 +18,5 @@ let storage = function(){
         else {
             return [];
         }
-    };
-
-    return {
-        load: load,
-        save: save
     }
-}();
+};
