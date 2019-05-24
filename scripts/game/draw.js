@@ -1,22 +1,22 @@
 "use strict";
 
-let draw = (function() {
-    function circle(context) {
+const draw = {
+    circle: function(context) {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fillStyle = this.primaryColor;
         context.fill();
-    }
+    },
 
-    function bubble(context) {
+    bubble: function(context) {
         context.beginPath();
         context.lineWidth = 8;
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.strokeStyle = this.primaryColor;
         context.stroke();
-    }
+    },
 
-    function kamikaze(context) {
+    kamikaze: function(context) {
         context.beginPath();
         context.fillStyle = "#c00";
         context.moveTo(this.x, this.y + 20);
@@ -35,19 +35,19 @@ let draw = (function() {
         context.lineTo((this.x + 19), (this.y - 40));
         context.lineTo((this.x + 19), (this.y - 19));
         context.fill();
-    }
+    },
 
-    function playerWithShield(context) {
+    playerWithShield: function(context) {
         context.beginPath();
         context.arc(this.x, this.y + 8, this.radius + 14, 0, 2 * Math.PI);
         context.lineWidth = 2;
         context.strokeStyle = "#ff0";
         context.stroke();
 
-        player.bind(this)(context);
-    }
+        draw.player.bind(this)(context);
+    },
 
-    function player(context) {
+    player: function(context) {
         const y = this.y - 45;
 
         context.beginPath();
@@ -60,9 +60,9 @@ let draw = (function() {
         context.quadraticCurveTo(this.x - 25, y + 75, this.x, y + 50);
         context.fillStyle = "#00f";
         context.fill();
-    }
+    },
 
-    function powerUp(context) {
+    powerUp: function(context) {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fillStyle = this.primaryColor;
@@ -73,9 +73,9 @@ let draw = (function() {
         context.lineWidth = 2;
         context.strokeStyle = this.primaryColor;
         context.stroke();
-    }
+    },
 
-    function stalker(context) {
+    stalker: function(context) {
         context.beginPath();
         context.fillStyle = this.primaryColor;
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
@@ -91,9 +91,9 @@ let draw = (function() {
         context.fillStyle = this.secondaryColor;
         context.arc(this.x, this.y, this.radius * 0.3, 0, 2 * Math.PI);
         context.fill();
-    }
+    },
 
-    function ufo(context) {
+    ufo: function(context) {
         context.beginPath();
         context.fillStyle = this.primaryColor;
         context.arc(this.x, this.y, 30, 0, 2 * Math.PI);
@@ -138,15 +138,4 @@ let draw = (function() {
         context.fillStyle = "#f00";
         context.fill();
     }
-
-    return {
-        circle: circle,
-        bubble: bubble,
-        kamikaze: kamikaze,
-        player: player,
-        playerWithShield: playerWithShield,
-        powerUp: powerUp,
-        stalker: stalker,
-        ufo: ufo
-    }
-})();
+};
