@@ -46,8 +46,6 @@ let keyboard = (function() {
 
     function registerStartListeners(startGame, showLeaderboard) {
         window.onkeydown = function(e) {
-            e.preventDefault();
-
             if (e.keyCode === key_code.ENTER) {
                 startGame();
             }
