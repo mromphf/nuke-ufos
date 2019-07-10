@@ -17,24 +17,29 @@ const draw = {
     },
 
     kamikaze: function(context) {
+        context.save();
+        context.translate(this.x, this.y);
+
         context.beginPath();
         context.fillStyle = "#c00";
-        context.moveTo(this.x, this.y + 20);
-        context.lineTo((this.x - 20), (this.y - 20));
-        context.lineTo((this.x + 20), (this.y - 20));
+        context.moveTo(0, 20);
+        context.lineTo(-20, -20);
+        context.lineTo(20, -20);
         context.fill();
 
         context.beginPath();
-        context.moveTo(this.x, (this.y - 19));
-        context.lineTo((this.x - 19), (this.y - 40));
-        context.lineTo((this.x - 19), (this.y - 19));
+        context.moveTo(0, -19);
+        context.lineTo(-19, -40);
+        context.lineTo(-19, -19);
         context.fill();
 
         context.beginPath();
-        context.moveTo(this.x, (this.y - 19));
-        context.lineTo((this.x + 19), (this.y - 40));
-        context.lineTo((this.x + 19), (this.y - 19));
+        context.moveTo(0, -19);
+        context.lineTo(19, -40);
+        context.lineTo(19, -19);
         context.fill();
+
+        context.restore();
     },
 
     playerWithShield: function(context) {
@@ -48,18 +53,21 @@ const draw = {
     },
 
     player: function(context) {
-        const y = this.y - 45;
+        context.save();
+        context.translate(this.x, this.y - 45);
 
         context.beginPath();
-        context.moveTo(this.x, y);
-        context.quadraticCurveTo(this.x + 50, y + 50, this.x + 25, y + 100);
-        context.quadraticCurveTo(this.x + 25, y + 75, this.x, y + 50);
+        context.moveTo(0, 0);
+        context.quadraticCurveTo(50, 50, 25, 100);
+        context.quadraticCurveTo(25, 75, 0, 50);
 
-        context.moveTo(this.x, y);
-        context.quadraticCurveTo(this.x - 50, y + 50, this.x - 25, y + 100);
-        context.quadraticCurveTo(this.x - 25, y + 75, this.x, y + 50);
+        context.moveTo(0, 0);
+        context.quadraticCurveTo(-50, 50, -25, 100);
+        context.quadraticCurveTo(-25, 75, 0, 50);
         context.fillStyle = "#00f";
         context.fill();
+
+        context.restore();
     },
 
     powerUp: function(context) {
@@ -94,48 +102,53 @@ const draw = {
     },
 
     ufo: function(context) {
+        context.save();
+        context.translate(this.x, this.y);
+
         context.beginPath();
         context.fillStyle = this.primaryColor;
-        context.arc(this.x, this.y, 30, 0, 2 * Math.PI);
+        context.arc(0, 0, 30, 0, 2 * Math.PI);
         context.fill();
 
         context.fillStyle = this.secondaryColor;
 
         context.beginPath();
-        context.arc(this.x, this.y + 23, 2, 0, 2 * Math.PI);
+        context.arc(0, 23, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x, this.y - 23, 2, 0, 2 * Math.PI);
+        context.arc(0, -23, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x + 23, this.y, 2, 0, 2 * Math.PI);
+        context.arc(23, 0, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x - 23, this.y, 2, 0, 2 * Math.PI);
+        context.arc(-23, 0, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x + 15, this.y + 15, 2, 0, 2 * Math.PI);
+        context.arc(15, 15, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x - 15, this.y - 15, 2, 0, 2 * Math.PI);
+        context.arc(-15, -15, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x - 15, this.y + 15, 2, 0, 2 * Math.PI);
+        context.arc(-15, 15, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x + 15, this.y - 15, 2, 0, 2 * Math.PI);
+        context.arc(15, -15, 2, 0, 2 * Math.PI);
         context.fill();
 
         context.beginPath();
-        context.arc(this.x, this.y, 15, 0, 2 * Math.PI);
+        context.arc(0, 0, 15, 0, 2 * Math.PI);
         context.fillStyle = "#f00";
         context.fill();
+
+        context.restore();
     }
 };
