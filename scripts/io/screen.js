@@ -87,9 +87,6 @@ let screen = (function() {
         if (name.length > 0) {
             renderName(name);
         }
-
-        hud.font = "20px arial";
-        hud.fillText("(Press L to view leaderboard)", (WIDTH / 2), (HEIGHT / 2) + 400);
     }
 
     function renderName(name) {
@@ -106,10 +103,10 @@ let screen = (function() {
         hud.fillStyle = "yellow";
         hud.textAlign = "center";
 
-        hud.fillText("LEADERBOARD", (WIDTH / 2), (HEIGHT / 2) - 300);
+        hud.fillText("LEADERBOARD", (WIDTH / 2), (HEIGHT / 2) - (HEIGHT * 0.3));
 
         hud.font = "20px arial";
-        hud.fillText("(Press Esc to return to main menu)", (WIDTH / 2), (HEIGHT / 2) - 275);
+        hud.fillText("(Press Esc to return to main menu)", (WIDTH / 2), (HEIGHT / 2) - (HEIGHT * 0.25));
     }
 
     function showLeaderboard(scores) {
@@ -119,7 +116,7 @@ let screen = (function() {
         let line = 1;
         scores.sort((a, b) => b.value - a.value).slice(0, 10).forEach(function(score) {
             hud.font = "40px arial";
-            hud.fillText(score.name + "..............................." + score.value, (WIDTH / 2), 300 + (line * 50));
+            hud.fillText(score.name + "..............................." + score.value, (WIDTH / 2), (HEIGHT * 0.3) + (line * 50));
             line += 1;
         });
     }

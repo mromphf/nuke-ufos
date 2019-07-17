@@ -58,8 +58,6 @@ let keyboard = (function() {
 
     function registerLeaderboardListeners(showStartScreen) {
         window.onkeydown = function(e) {
-            e.preventDefault();
-
             if (e.keyCode === key_code.ESC) {
                 showStartScreen();
             }
