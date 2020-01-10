@@ -63,35 +63,64 @@ let nukeUfos = (function() {
             screen.renderBackground(game.backgroundObjects);
             screen.updateScore(game.score);
 
-            game.actors = spawn.randomEnemy(game.actors, timeElapsed, game.timeOfLastSpawn);
-            game.actors = spawn.randomPowerUp(game.actors, timeElapsed, game.timeOfLastPowerUp);
-            game.actors = interactions.moveEverything(game.actors, screen.WIDTH, screen.HEIGHT, keyboard.keysPressed);
+            game.actors = spawn.randomEnemy(
+                game.actors, timeElapsed, game.timeOfLastSpawn
+            );
+
+            game.actors = spawn.randomPowerUp(
+                game.actors, timeElapsed, game.timeOfLastPowerUp
+            );
+
+            game.actors = interactions.moveEverything(
+                game.actors, screen.WIDTH, screen.HEIGHT, keyboard.keysPressed
+            );
+
             game.actors = interactions.detectCollisions(game.actors);
             game.actors = interactions.decayAll(game.actors);
-            game.actors = interactions.triggerAttacks(game.actors, timeElapsed, game.timeOfLastSpawn);
 
-            if (game.actors.find(a => a.isPlayer).isAlive) {
-                runGame(Object.assign(game, {
-                    actors: game.actors.filter(
-                        a => a.isAlive &&
-                        a.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
-                    backgroundObjects: randomStar
-                        .replenish(game.backgroundObjects, config.MAX_STARS)
-                        .map(o => o.move())
-                        .filter(o => o.isWithinBounds(screen.WIDTH, screen.HEIGHT)),
-                    score: interactions.tallyScore(game.score,
-                        game.actors.filter(a => a.isWithinBounds(screen.WIDTH, screen.HEIGHT))),
-                    timeOfLastPowerUp: interactions.timeOfLastSpawn(
-                        game.actors.filter(a => a.isPowerUp),
-                        game.timeOfLastPowerUp),
-                    timeOfLastSpawn: interactions.timeOfLastSpawn(
-                        game.actors.filter(a => a.isEnemy),
-                        game.timeOfLastSpawn)
-                }));
+            game.actors = interactions.triggerAttacks(
+                game.actors, timeElapsed, game.timeOfLastSpawn
+            );
+
+            const player = game.actors.find(a => a.isPlayer);
+
+            const livingActorsWithinBounds = game.actors.filter(
+                a => a.isAlive && a.isWithinBounds(screen.WIDTH, screen.HEIGHT
+                ));
+
+            const replinishedStars = randomStar
+                .replenish(game.backgroundObjects, config.MAX_STARS)
+                .map(o => o.move())
+                .filter(o => o.isWithinBounds(screen.WIDTH, screen.HEIGHT));
+
+            const updatedScore = interactions.tallyScore(
+                game.score, game.actors.filter(
+                    a => a.isWithinBounds(screen.WIDTH, screen.HEIGHT))
+            );
+
+            const updatedTimeOfLastPowerUp = interactions.timeOfLastSpawn(
+                game.actors.filter(a => a.isPowerUp), game.timeOfLastPowerUp
+            );
+
+            const updatedTimeOfLastSpawn = interactions.timeOfLastSpawn(
+                game.actors.filter(a => a.isEnemy), game.timeOfLastSpawn
+            );
+
+            const updatedGameState = (Object.assign(game, {
+                actors: livingActorsWithinBounds,
+                backgroundObjects: replinishedStars,
+                score: updatedScore,
+                timeOfLastPowerUp: updatedTimeOfLastPowerUp,
+                timeOfLastSpawn: updatedTimeOfLastSpawn
+            }));
+
+            if (player.isAlive) {
+                runGame(updatedGameState);
             }
             else {
                 gameOver(game);
             }
+
         }, FRAME_RATE);
     }
 
