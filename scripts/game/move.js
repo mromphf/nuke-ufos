@@ -53,7 +53,7 @@ let move = (function() {
         });
     }
 
-    function towards(target) {
+    function towards(maxWidth, maxHeight, keysPressed, target) {
         if (target.y > this.y) {
             if (target.x > this.x) {
                 if (target.x - this.x < 5) {
@@ -71,7 +71,7 @@ let move = (function() {
         }
     }
 
-    function player(maxWidth, maxHeight, keysPressed) {
+    function player(maxWidth, maxHeight, keysPressed, target) {
         if (keysPressed[key_code.ARROW_LEFT] && keysPressed[key_code.ARROW_UP]) {
             if (((this.x - this.radius - this.velocity) > 0) && 
                 ((this.y - this.radius - this.velocity) > 0)) {

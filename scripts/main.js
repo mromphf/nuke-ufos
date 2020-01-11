@@ -63,6 +63,8 @@ let nukeUfos = (function() {
             screen.renderBackground(game.backgroundObjects);
             screen.updateScore(game.score);
 
+            const player = game.actors.find(a => a.isPlayer);
+
             game.actors = spawn.randomEnemy(
                 game.actors, timeElapsed, game.timeOfLastSpawn
             );
@@ -71,9 +73,13 @@ let nukeUfos = (function() {
                 game.actors, timeElapsed, game.timeOfLastPowerUp
             );
 
-            game.actors = interactions.moveEverything(
-                game.actors, screen.WIDTH, screen.HEIGHT, keyboard.keysPressed
-            );
+            game.actors = game.actors.map(
+                a => a.move(
+                    screen.WIDTH,
+                    screen.HEIGHT,
+                    keyboard.keysPressed,
+                    player
+            ));
 
             game.actors = interactions.detectCollisions(game.actors);
             game.actors = interactions.decayAll(game.actors);
@@ -81,8 +87,6 @@ let nukeUfos = (function() {
             game.actors = interactions.triggerAttacks(
                 game.actors, timeElapsed, game.timeOfLastSpawn
             );
-
-            const player = game.actors.find(a => a.isPlayer);
 
             const livingActorsWithinBounds = game.actors.filter(
                 a => a.isAlive && a.isWithinBounds(screen.WIDTH, screen.HEIGHT

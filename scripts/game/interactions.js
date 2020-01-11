@@ -1,15 +1,6 @@
 "use strict";
 
 let interactions = (function() {
-    function moveEverything(actors, maxWidth, maxHeight, keysPressed) {
-        return actors.map(function(actor) {
-            if (actor.isPlayer) {
-                return actor.move(maxWidth, maxHeight, keysPressed);
-            }
-            return actor.move(actors.find(a => a.isPlayer));
-        });
-    }
-
     function detectCollisions(actors) {
         return actors.map(function(actor) {
             let result = actor;
@@ -74,7 +65,6 @@ let interactions = (function() {
     }
 
     return {
-        moveEverything: moveEverything,
         decayAll: decayAll,
         detectCollisions: detectCollisions,
         playerShoots: playerShoots,
