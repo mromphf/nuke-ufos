@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://04l32t5knkbw"]
+
+[ext_resource type="Texture2D" uid="uid://b4uh1qwin86vx" path="res://imgs/ship01.svg" id="1_kuxae"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppmw3"]
+radius = 40.0
+height = 200.0
+
+[node name="Player" type="Area2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_kuxae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 20)
+shape = SubResource("CapsuleShape2D_ppmw3")
