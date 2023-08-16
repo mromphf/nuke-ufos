@@ -21,3 +21,6 @@ func _process(delta):
 		velocity = velocity.normalized() * _SPEED
 
 	position += velocity * delta
+
+func _on_collide(body):
+	print("Collision detected")
