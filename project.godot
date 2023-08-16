@@ -20,6 +20,10 @@ config/icon="res://imgs/icon.svg"
 window/size/viewport_width=1880
 window/size/viewport_height=1000
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_up={
