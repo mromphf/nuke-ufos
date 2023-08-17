@@ -1,10 +1,17 @@
 extends Area2D
 
+@export var laser: PackedScene
 var _SPEED = 400
 
 
-func _ready():
-	pass
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed(&"fire"):
+		var l = laser.instantiate()
+		l.set_as_top_level(true)
+		l.global_position = $Gun.global_position
+		add_child(l)
+		$Laser.play()
+
 
 func _process(delta):
 	var velocity = Vector2.ZERO

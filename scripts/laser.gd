@@ -10,3 +10,4 @@ func _process(_delta):
 	if position.y <= 0:
 		print("Goodbye!")
 		queue_free()
+
