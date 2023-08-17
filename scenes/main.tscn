@@ -2,18 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://04l32t5knkbw" path="res://scenes/player.tscn" id="1_ac4kw"]
 [ext_resource type="PackedScene" uid="uid://djxx44o1f3muv" path="res://scenes/ufo.tscn" id="2_olvic"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_b7h47"]
+[ext_resource type="PackedScene" uid="uid://cwf7tdma3ruh8" path="res://scenes/background.tscn" id="3_4ajvc"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Background" type="TextureRect" parent="."]
-modulate = Color(0.054902, 0.054902, 0.054902, 1)
-offset_left = -80.0
-offset_top = -80.0
-offset_right = 1960.0
-offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_b7h47")
+[node name="background" parent="." instance=ExtResource("3_4ajvc")]
 
 [node name="ufo" parent="." instance=ExtResource("2_olvic")]
 position = Vector2(1280, 120)

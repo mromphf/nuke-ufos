@@ -1,8 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://6qx3iv5u0naa"]
 
-[ext_resource type="Texture2D" uid="uid://cuhi2g42r53ly" path="res://imgs/star01.svg" id="1_naj8v"]
-[ext_resource type="Script" path="res://scripts/star.gd" id="2_gstfj"]
+[ext_resource type="Texture2D" uid="uid://cg8qm76kruvqs" path="res://imgs/white_circle.svg" id="1_sjsew"]
+[ext_resource type="Script" path="res://scripts/star.gd" id="2_a8wpf"]
 
 [node name="star" type="Sprite2D"]
-texture = ExtResource("1_naj8v")
-script = ExtResource("2_gstfj")
+scale = Vector2(0.1, 0.092)
+texture = ExtResource("1_sjsew")
+script = ExtResource("2_a8wpf")
