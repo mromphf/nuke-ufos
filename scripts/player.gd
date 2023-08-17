@@ -2,6 +2,7 @@ extends Area2D
 
 var _SPEED = 400
 
+
 func _ready():
 	pass
 
@@ -22,5 +23,5 @@ func _process(delta):
 
 	position += velocity * delta
 
-func _on_collide(body):
+func _on_collide(_body):
 	print("Collision detected")

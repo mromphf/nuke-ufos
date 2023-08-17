@@ -17,4 +17,8 @@ texture = ExtResource("1_kuxae")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ppmw3")
 
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(0, -60)
+
+[connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="body_entered" from="." to="." method="_on_collide"]

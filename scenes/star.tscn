@@ -4,6 +4,6 @@
 [ext_resource type="Script" path="res://scripts/star.gd" id="2_a8wpf"]
 
 [node name="star" type="Sprite2D"]
-scale = Vector2(0.1, 0.092)
+scale = Vector2(0.075, 0.075)
 texture = ExtResource("1_sjsew")
 script = ExtResource("2_a8wpf")
