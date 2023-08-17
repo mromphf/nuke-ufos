@@ -7,9 +7,8 @@ var _SPEED = 400
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed(&"fire"):
 		var l = laser.instantiate()
-		l.set_as_top_level(true)
 		l.global_position = $Gun.global_position
-		add_child(l)
+		get_parent().add_child(l)
 		$Laser.play()
 
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cglij72l41pr8"]
+[gd_scene load_steps=5 format=3 uid="uid://cglij72l41pr8"]
 
 [ext_resource type="Script" path="res://scripts/ufo.gd" id="1_i05al"]
 [ext_resource type="Texture2D" uid="uid://6wu5nb2hnd1t" path="res://imgs/ufo01.svg" id="1_svj4m"]
+[ext_resource type="AudioStream" uid="uid://cwjqlj8qivkyi" path="res://sfx/bomb.mp3" id="3_x5gb3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7v411"]
 radius = 60.0
@@ -15,5 +16,9 @@ texture = ExtResource("1_svj4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7v411")
+
+[node name="Boom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x5gb3")
+volume_db = -20.0
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]
