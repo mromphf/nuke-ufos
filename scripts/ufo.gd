@@ -2,9 +2,6 @@ extends Enemy
 
 var _VELOCITY: Vector2 = Vector2(0, 2)
 
-func _despawn():
-	queue_free()
-
 func _process(_delta):
 	rotate(PI / 180)
 	position += _VELOCITY
@@ -14,9 +11,8 @@ func _process(_delta):
 
 func _on_collide(_body):
 	if _body is Laser:
-		hide()
 		Soundboard.play($Boom)
-		$Despawn.start()
+		queue_free()
 
 func _ready():
 	$Sprite.play()
