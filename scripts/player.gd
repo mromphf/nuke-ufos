@@ -2,11 +2,17 @@ extends Area2D
 
 @export var laser: PackedScene
 var _SPEED = 400
+var ammo = 3
+
+func ammo_up():
+	ammo = min(3, ammo + 1)
 
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed(&"fire"):
+	if Input.is_action_just_pressed(&"fire") and ammo > 0:
+		ammo -= 1
 		var l = laser.instantiate()
+		l.connect(&"despawned", ammo_up)
 		l.global_position = $Gun.global_position
 		get_parent().add_child(l)
 		Soundboard.play($Laser)
