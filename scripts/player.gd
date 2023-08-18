@@ -9,7 +9,7 @@ func _unhandled_input(_event):
 		var l = laser.instantiate()
 		l.global_position = $Gun.global_position
 		get_parent().add_child(l)
-		$Laser.play()
+		Soundboard.play($Laser)
 
 
 func _process(delta):
@@ -30,4 +30,5 @@ func _process(delta):
 	position += velocity * delta
 
 func _on_collide(_body):
-	print("Collision detected")
+	if _body is Enemy:
+		print("Collision with enemey")

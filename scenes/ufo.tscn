@@ -21,4 +21,9 @@ shape = SubResource("CircleShape2D_7v411")
 stream = ExtResource("3_x5gb3")
 volume_db = -20.0
 
+[node name="Despawn" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_collide"]
+[connection signal="timeout" from="Despawn" to="." method="_despawn"]

@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://kd8jf0otlx4q"]
+[gd_scene load_steps=5 format=3 uid="uid://kd8jf0otlx4q"]
 
 [ext_resource type="PackedScene" uid="uid://04l32t5knkbw" path="res://scenes/player.tscn" id="1_ac4kw"]
+[ext_resource type="PackedScene" uid="uid://byhe20wnoej5m" path="res://scenes/spawner.tscn" id="2_fgw4o"]
 [ext_resource type="PackedScene" uid="uid://cglij72l41pr8" path="res://scenes/ufo.tscn" id="2_olvic"]
 [ext_resource type="PackedScene" uid="uid://cwf7tdma3ruh8" path="res://scenes/background.tscn" id="3_4ajvc"]
 
 [node name="Main" type="Node2D"]
 
 [node name="background" parent="." instance=ExtResource("3_4ajvc")]
+
+[node name="spawner" parent="." instance=ExtResource("2_fgw4o")]
 
 [node name="ufo" parent="." instance=ExtResource("2_olvic")]
 position = Vector2(1280, 120)
