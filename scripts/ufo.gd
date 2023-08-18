@@ -17,3 +17,6 @@ func _on_collide(_body):
 		hide()
 		Soundboard.play($Boom)
 		$Despawn.start()
+
+func _ready():
+	$Sprite.play()

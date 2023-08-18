@@ -1,8 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cglij72l41pr8"]
+[gd_scene load_steps=7 format=3 uid="uid://cglij72l41pr8"]
 
 [ext_resource type="Script" path="res://scripts/ufo.gd" id="1_i05al"]
 [ext_resource type="Texture2D" uid="uid://6wu5nb2hnd1t" path="res://imgs/ufo01.svg" id="1_svj4m"]
+[ext_resource type="Texture2D" uid="uid://5n8yhg1qlf8o" path="res://imgs/ufo02.svg" id="3_gvj5y"]
 [ext_resource type="AudioStream" uid="uid://cwjqlj8qivkyi" path="res://sfx/bomb.mp3" id="3_x5gb3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lopwg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_svj4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gvj5y")
+}],
+"loop": true,
+"name": &"flash",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7v411"]
 radius = 60.0
@@ -10,9 +25,11 @@ radius = 60.0
 [node name="ufo" type="Area2D"]
 script = ExtResource("1_i05al")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_svj4m")
+sprite_frames = SubResource("SpriteFrames_lopwg")
+animation = &"flash"
+frame_progress = 0.88875
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7v411")
