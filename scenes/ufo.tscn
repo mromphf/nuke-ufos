@@ -23,12 +23,15 @@ animations = [{
 radius = 60.0
 
 [node name="ufo" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_i05al")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_lopwg")
 animation = &"flash"
+autoplay = "flash"
 frame_progress = 0.88875
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

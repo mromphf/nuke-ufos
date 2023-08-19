@@ -1,4 +1,4 @@
-extends Enemy
+extends Area2D
 
 var _VELOCITY: Vector2 = Vector2(0, 2)
 
@@ -10,9 +10,7 @@ func _process(_delta):
 		queue_free()
 
 func _on_collide(_body):
-	if _body is Laser:
-		Soundboard.play($Boom)
-		queue_free()
+	queue_free()
 
 func _ready():
 	$Sprite.play()

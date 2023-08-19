@@ -36,5 +36,4 @@ func _process(delta):
 	position += velocity * delta
 
 func _on_collide(_body):
-	if _body is Enemy:
-		print("Collision with enemey")
+	print("Player collided with something")
