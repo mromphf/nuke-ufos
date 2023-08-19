@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Player
+
 signal hit
 signal burn
 

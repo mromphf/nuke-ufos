@@ -50,7 +50,7 @@ _data = {
 
 [node name="ufo" type="Area2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_i05al")
 death = ExtResource("2_cqlan")
 
