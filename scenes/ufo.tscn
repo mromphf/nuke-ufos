@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cglij72l41pr8"]
+[gd_scene load_steps=10 format=3 uid="uid://cglij72l41pr8"]
 
 [ext_resource type="Script" path="res://scripts/ufo.gd" id="1_i05al"]
 [ext_resource type="Texture2D" uid="uid://6wu5nb2hnd1t" path="res://imgs/ufo01.svg" id="1_svj4m"]
@@ -25,6 +25,27 @@ point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7v411"]
 radius = 60.0
+
+[sub_resource type="Animation" id="Animation_udk3t"]
+resource_name = "flash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iecvp"]
+_data = {
+"flash": SubResource("Animation_udk3t")
+}
 
 [node name="ufo" type="Area2D"]
 collision_layer = 2
@@ -59,10 +80,16 @@ scale_amount_curve = SubResource("Curve_tbu5v")
 color = Color(1, 1, 0.117647, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_7v411")
 
 [node name="Boom" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_x5gb3")
 volume_db = -20.0
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iecvp")
+}
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]

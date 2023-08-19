@@ -12,8 +12,7 @@ func _process(_delta):
 
 func _on_collide(_body):
 	_hp -= 1
-	$Sprite/Particles.emitting = true
-	$Sprite/Particles.restart()
+	$Animation.play(&"flash")
 	if _hp <= 0:
 		queue_free()
 
