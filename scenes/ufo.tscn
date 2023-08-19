@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/ufo.gd" id="1_i05al"]
 [ext_resource type="Texture2D" uid="uid://6wu5nb2hnd1t" path="res://imgs/ufo01.svg" id="1_svj4m"]
+[ext_resource type="PackedScene" uid="uid://3of21cq40nav" path="res://scenes/death.tscn" id="2_cqlan"]
 [ext_resource type="Texture2D" uid="uid://5n8yhg1qlf8o" path="res://imgs/ufo02.svg" id="3_gvj5y"]
-[ext_resource type="AudioStream" uid="uid://cwjqlj8qivkyi" path="res://sfx/bomb.mp3" id="3_x5gb3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h5np8"]
 animations = [{
@@ -51,6 +51,7 @@ _data = {
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_i05al")
+death = ExtResource("2_cqlan")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -82,10 +83,6 @@ color = Color(1, 1, 0.117647, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_7v411")
-
-[node name="Boom" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_x5gb3")
-volume_db = -20.0
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {

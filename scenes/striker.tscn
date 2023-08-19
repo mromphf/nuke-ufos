@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddty6tjmd8g7l"]
+[gd_scene load_steps=5 format=3 uid="uid://ddty6tjmd8g7l"]
 
 [ext_resource type="Script" path="res://scripts/striker.gd" id="1_ohojj"]
 [ext_resource type="Texture2D" uid="uid://7ao2p8so1cji" path="res://imgs/striker01.svg" id="1_uhfpw"]
+[ext_resource type="PackedScene" uid="uid://3of21cq40nav" path="res://scenes/death.tscn" id="2_cruh1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sakv3"]
 radius = 20.0
@@ -11,6 +12,7 @@ height = 120.0
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_ohojj")
+death = ExtResource("2_cruh1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_uhfpw")

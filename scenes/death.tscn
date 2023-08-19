@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://3of21cq40nav"]
+
+[ext_resource type="Script" path="res://scripts/death.gd" id="1_8jmvx"]
+[ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="2_4urls"]
+
+[node name="death" type="Node2D"]
+script = ExtResource("1_8jmvx")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 240.0
+initial_velocity_max = 240.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color = Color(1, 1, 0, 1)
+
+[node name="Boom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4urls")
+volume_db = -15.0
+
+[connection signal="finished" from="Boom" to="." method="_clean"]
