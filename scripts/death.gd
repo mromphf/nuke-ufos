@@ -6,5 +6,5 @@ func _ready():
 	$Boom.play()
 
 
-func _clean():
+func _despawn():
 	queue_free()

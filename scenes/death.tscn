@@ -26,4 +26,4 @@ color = Color(1, 1, 0, 1)
 stream = ExtResource("2_4urls")
 volume_db = -15.0
 
-[connection signal="finished" from="Boom" to="." method="_clean"]
+[connection signal="finished" from="Boom" to="." method="_despawn"]
