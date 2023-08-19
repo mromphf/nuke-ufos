@@ -1,10 +1,12 @@
 extends Area2D
 
 signal hit
+signal burn
 
 @export var laser: PackedScene
 var _SPEED = 400
 var ammo = 3
+var fuel = 100
 
 func ammo_up():
 	ammo = min(3, ammo + 1)
@@ -24,6 +26,14 @@ func _unhandled_input(_event):
 		Soundboard.play($Laser)
 
 
+func _speed():
+	if Input.is_action_pressed(&"speed") and fuel > 0:
+		fuel -= 1
+		emit_signal(&"burn")
+		return _SPEED * 2
+	return _SPEED
+
+
 func _process(delta):
 	var velocity = Vector2.ZERO
 
@@ -37,9 +47,10 @@ func _process(delta):
 		velocity.x += 1
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * _SPEED
+		velocity = velocity.normalized() * _speed()
 
 	position += velocity * delta
+
 
 func _on_collide(_body):
 	emit_signal(&"hit")

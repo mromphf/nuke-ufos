@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm1ipsjni1a37"]
+[gd_scene load_steps=6 format=3 uid="uid://bm1ipsjni1a37"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_faov2"]
 
@@ -7,6 +7,12 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_55lrj"]
 texture = SubResource("CanvasTexture_8k0nm")
 modulate_color = Color(0, 1, 0.498039, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vfq85"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ny7yq"]
+texture = SubResource("CanvasTexture_vfq85")
+modulate_color = Color(1, 0, 0, 1)
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -20,5 +26,15 @@ offset_top = 40.0
 offset_right = 400.0
 offset_bottom = 80.0
 theme_override_styles/fill = SubResource("StyleBoxTexture_55lrj")
+value = 100.0
+show_percentage = false
+
+[node name="Fuel" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 400.0
+offset_bottom = 120.0
+theme_override_styles/fill = SubResource("StyleBoxTexture_ny7yq")
 value = 100.0
 show_percentage = false
