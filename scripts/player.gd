@@ -7,7 +7,7 @@ signal burn
 var _SPEED = 400
 var _hp = 3
 var ammo = 3
-var fuel = 100
+var fuel: float = 100
 
 func ammo_up():
 	ammo = min(3, ammo + 1)
@@ -30,13 +30,18 @@ func _unhandled_input(_event):
 func _speed():
 	if Input.is_action_pressed(&"speed") and fuel > 0:
 		fuel -= 1
-		emit_signal(&"burn")
+		emit_signal(&"burn", -1)
 		return _SPEED * 2
+
 	return _SPEED
 
 
 func _process(delta):
 	var velocity = Vector2.ZERO
+
+	if not Input.is_action_pressed(&"speed") and fuel < 100:
+		fuel += 0.1
+		emit_signal(&"burn", 0.1)
 
 	if Input.is_action_pressed(&"move_up"):
 		velocity.y -= 1

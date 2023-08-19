@@ -5,8 +5,8 @@ extends Control
 @onready var fuel = $Fuel
 
 
-func on_burn_fuel():
-	fuel.value -= 1
+func on_burn_fuel(f):
+	fuel.value += f
 
 
 func on_player_hit():
