@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cglij72l41pr8"]
+[gd_scene load_steps=8 format=3 uid="uid://cglij72l41pr8"]
 
 [ext_resource type="Script" path="res://scripts/ufo.gd" id="1_i05al"]
 [ext_resource type="Texture2D" uid="uid://6wu5nb2hnd1t" path="res://imgs/ufo01.svg" id="1_svj4m"]
 [ext_resource type="Texture2D" uid="uid://5n8yhg1qlf8o" path="res://imgs/ufo02.svg" id="3_gvj5y"]
 [ext_resource type="AudioStream" uid="uid://cwjqlj8qivkyi" path="res://sfx/bomb.mp3" id="3_x5gb3"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lopwg"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_h5np8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -15,9 +15,13 @@ animations = [{
 "texture": ExtResource("3_gvj5y")
 }],
 "loop": true,
-"name": &"flash",
+"name": &"beep",
 "speed": 5.0
 }]
+
+[sub_resource type="Curve" id="Curve_tbu5v"]
+_data = [Vector2(0.249123, 1), 0.0, 0.0, 0, 0, Vector2(0.996491, 0.0210526), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7v411"]
 radius = 60.0
@@ -29,10 +33,30 @@ script = ExtResource("1_i05al")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
-sprite_frames = SubResource("SpriteFrames_lopwg")
-animation = &"flash"
-autoplay = "flash"
-frame_progress = 0.88875
+sprite_frames = SubResource("SpriteFrames_h5np8")
+animation = &"beep"
+
+[node name="Particles" type="CPUParticles2D" parent="Sprite"]
+scale = Vector2(1.33333, 1.33333)
+emitting = false
+amount = 15
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.89
+randomness = 0.09
+lifetime_randomness = 0.23
+emission_shape = 2
+emission_sphere_radius = 0.5
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 162.05
+initial_velocity_max = 235.38
+angle_min = 45.0
+angle_max = 45.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_tbu5v")
+color = Color(1, 1, 0.117647, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7v411")
