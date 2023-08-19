@@ -1,6 +1,7 @@
 extends Area2D
 
 var _VELOCITY: Vector2 = Vector2(0, 2)
+var _hp = 2
 
 func _process(_delta):
 	rotate(PI / 180)
@@ -10,7 +11,9 @@ func _process(_delta):
 		queue_free()
 
 func _on_collide(_body):
-	queue_free()
+	_hp -= 1
+	if _hp <= 0:
+		queue_free()
 
 func _ready():
 	$Sprite.play()
