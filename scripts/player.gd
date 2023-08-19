@@ -1,11 +1,17 @@
 extends Area2D
 
+signal hit
+
 @export var laser: PackedScene
 var _SPEED = 400
 var ammo = 3
 
 func ammo_up():
 	ammo = min(3, ammo + 1)
+
+
+func on_death():
+	queue_free()
 
 
 func _unhandled_input(_event):
@@ -36,4 +42,4 @@ func _process(delta):
 	position += velocity * delta
 
 func _on_collide(_body):
-	print("Player collided with something")
+	emit_signal(&"hit")
