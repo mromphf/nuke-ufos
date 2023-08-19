@@ -22,4 +22,3 @@ position = Vector2(960, 800)
 
 [connection signal="burn" from="Game/Player" to="Hud/hud" method="on_burn_fuel"]
 [connection signal="hit" from="Game/Player" to="Hud/hud" method="on_player_hit"]
-[connection signal="player_dead" from="Hud/hud" to="Game/Player" method="on_death"]

@@ -5,6 +5,7 @@ signal burn
 
 @export var laser: PackedScene
 var _SPEED = 400
+var _hp = 3
 var ammo = 3
 var fuel = 100
 
@@ -53,4 +54,7 @@ func _process(delta):
 
 
 func _on_collide(_body):
+	_hp -= 1
 	emit_signal(&"hit")
+	if _hp <= 0:
+		on_death()
