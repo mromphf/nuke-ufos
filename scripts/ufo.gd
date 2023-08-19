@@ -15,6 +15,7 @@ func _process(_delta):
 func _on_collide(_body):
 	_hp -= 1
 	$Animation.play(&"flash")
+	$Punch.play()
 	if _hp <= 0:
 		var d = death.instantiate()
 		d.position = position
