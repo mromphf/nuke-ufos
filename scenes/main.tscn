@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://kd8jf0otlx4q"]
 
 [ext_resource type="PackedScene" uid="uid://04l32t5knkbw" path="res://scenes/player.tscn" id="1_ac4kw"]
-[ext_resource type="PackedScene" path="res://scenes/spawner.tscn" id="2_fgw4o"]
+[ext_resource type="PackedScene" uid="uid://dnfajwqg4f1qk" path="res://scenes/spawner.tscn" id="2_fgw4o"]
 [ext_resource type="PackedScene" uid="uid://cwf7tdma3ruh8" path="res://scenes/background.tscn" id="3_4ajvc"]
 
 [node name="Main" type="Node2D"]

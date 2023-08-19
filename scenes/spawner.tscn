@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnfajwqg4f1qk"]
+[gd_scene load_steps=5 format=3 uid="uid://dnfajwqg4f1qk"]
 
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="1_7giky"]
 [ext_resource type="PackedScene" uid="uid://cglij72l41pr8" path="res://scenes/ufo.tscn" id="2_gmx3w"]
+[ext_resource type="PackedScene" uid="uid://ddty6tjmd8g7l" path="res://scenes/striker.tscn" id="3_qti5h"]
 
 [sub_resource type="Curve2D" id="Curve2D_sxpcc"]
 _data = {
@@ -11,7 +12,8 @@ point_count = 2
 
 [node name="spawner" type="Node2D"]
 script = ExtResource("1_7giky")
-mob = ExtResource("2_gmx3w")
+ufo = ExtResource("2_gmx3w")
+striker = ExtResource("3_qti5h")
 
 [node name="Spawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_sxpcc")
