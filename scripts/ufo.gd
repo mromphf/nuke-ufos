@@ -1,5 +1,7 @@
 extends Traveler
 
+signal dead
+
 @export var death: PackedScene
 
 var _hp = 2
@@ -21,6 +23,7 @@ func _on_collide(_body):
 		var d = death.instantiate()
 		d.position = position
 		get_parent().add_child(d)
+		emit_signal(&"dead", 10)
 		queue_free()
 
 

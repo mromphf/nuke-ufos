@@ -38,3 +38,14 @@ offset_bottom = 120.0
 theme_override_styles/fill = SubResource("StyleBoxTexture_ny7yq")
 value = 100.0
 show_percentage = false
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 40.0
+offset_right = 1880.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1

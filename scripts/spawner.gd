@@ -10,5 +10,6 @@ func _tick():
 	
 	var mob = spawn_pool.pick_random().instantiate()
 	mob.position = $Spawn/SpawnPoint.position
+	mob.connect(&"dead", get_parent().get_parent().get_node("Hud").get_node("hud").update_score)
 	
 	get_parent().add_child(mob)
