@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://6wu5nb2hnd1t" path="res://imgs/ufo01.svg" id="1_svj4m"]
 [ext_resource type="PackedScene" uid="uid://3of21cq40nav" path="res://scenes/death.tscn" id="2_cqlan"]
 [ext_resource type="Texture2D" uid="uid://5n8yhg1qlf8o" path="res://imgs/ufo02.svg" id="3_gvj5y"]
-[ext_resource type="AudioStream" uid="uid://di31wl7q6goj" path="res://sfx/punch1.mp3" id="5_fb6vt"]
+[ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="5_2qvd1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h5np8"]
 animations = [{
@@ -90,8 +90,8 @@ libraries = {
 "": SubResource("AnimationLibrary_iecvp")
 }
 
-[node name="Punch" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_fb6vt")
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2qvd1")
 volume_db = -10.0
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]
