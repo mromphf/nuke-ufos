@@ -62,6 +62,7 @@ func _process(delta):
 
 
 func _on_collide(_body):
+	$Animation.play(&"hurt")
 	_hp -= 1
 	emit_signal(&"hit")
 	if _hp <= 0:
