@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuolnrawceou0"]
+[gd_scene load_steps=13 format=3 uid="uid://cuolnrawceou0"]
 
 [ext_resource type="Script" path="res://scripts/dark_ufo.gd" id="1_mx2jc"]
 [ext_resource type="Texture2D" uid="uid://bnuu4t1dk37cf" path="res://imgs/ufo_dark01.svg" id="2_tq0jo"]
 [ext_resource type="Texture2D" uid="uid://dqc4b0wovck6t" path="res://imgs/ufo_dark02.svg" id="3_6ee5g"]
 [ext_resource type="Texture2D" uid="uid://ce0vb0ap2uw0h" path="res://imgs/ufo_hurt.svg" id="4_hescp"]
 [ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="5_i2j31"]
+[ext_resource type="AudioStream" uid="uid://bn1cwl15wt114" path="res://sfx/laser.mp3" id="6_jcy34"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5jwcm"]
 animations = [{
@@ -44,11 +45,16 @@ _data = {
 "flash": SubResource("Animation_2v1sd")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pk8re"]
+size = Vector2(120, 980)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_b7vlm"]
+
 [node name="DarkUfo" type="Area2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mx2jc")
-hp = 5
+hp = 4
 speed = 2.0
 direction = Vector2(0, 1)
 
@@ -75,11 +81,34 @@ libraries = {
 stream = ExtResource("5_i2j31")
 volume_db = -10.0
 
+[node name="Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jcy34")
+volume_db = -25.0
+pitch_scale = 0.75
+
 [node name="Gun" type="Node2D" parent="."]
 visible = false
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+
+[node name="Sight" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="SightShape" type="CollisionShape2D" parent="Sight"]
+position = Vector2(0, 530)
+shape = SubResource("RectangleShape2D_pk8re")
+
+[node name="TextureRect" type="TextureRect" parent="Sight"]
+visible = false
+modulate = Color(0, 0, 1, 0.113725)
+offset_left = -60.0
+offset_top = 40.0
+offset_right = 60.0
+offset_bottom = 1020.0
+texture = SubResource("CanvasTexture_b7vlm")
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="screen_exited" from="Notifier" to="." method="despawn"]
+[connection signal="timeout" from="Timer" to="." method="_fire"]
+[connection signal="area_entered" from="Sight" to="." method="_open_fire"]
+[connection signal="area_exited" from="Sight" to="." method="_close_fire"]

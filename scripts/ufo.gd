@@ -4,7 +4,7 @@ class_name Ufo
 
 func _process(_delta):
 	super(_delta)
-	rotate(PI / 180)
+	$Sprite.rotate(PI / 180)
 
 
 func _on_collide(body):
