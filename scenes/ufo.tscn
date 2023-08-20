@@ -114,4 +114,7 @@ libraries = {
 stream = ExtResource("5_2qvd1")
 volume_db = -10.0
 
+[node name="Notifier" type="VisibleOnScreenEnabler2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_collide"]
+[connection signal="screen_exited" from="Notifier" to="." method="despawn"]

@@ -7,3 +7,7 @@
 scale = Vector2(0.075, 0.075)
 texture = ExtResource("1_sjsew")
 script = ExtResource("2_a8wpf")
+
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="Notifier" to="." method="despawn"]

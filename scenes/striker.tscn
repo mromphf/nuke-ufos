@@ -21,4 +21,7 @@ texture = ExtResource("1_uhfpw")
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sakv3")
 
+[node name="Notifier" type="VisibleOnScreenEnabler2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_collide"]
+[connection signal="screen_exited" from="Notifier" to="." method="despawn"]
