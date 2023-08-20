@@ -2,10 +2,10 @@ extends Node2D
 
 class_name Spawner
 
-@export var ufo: PackedScene
-@export var striker: PackedScene
-
-@onready var spawn_pool = [ufo, striker]
+var spawn_pool = [
+	preload("res://scenes/ufo.tscn"),
+	preload("res://scenes/striker.tscn"),
+]
 
 func _tick():
 	$Spawn/SpawnPoint.progress = randi()
