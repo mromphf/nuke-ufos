@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://04l32t5knkbw"]
+[gd_scene load_steps=13 format=3 uid="uid://04l32t5knkbw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ficju"]
 [ext_resource type="Texture2D" uid="uid://djxbesycvm5c6" path="res://imgs/ship_hurt.svg" id="3_2a6em"]
@@ -44,8 +44,24 @@ tracks/0/keys = {
 "values": [true, false, true, false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_3piyl"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikomn"]
 _data = {
+"die": SubResource("Animation_3piyl"),
 "hurt": SubResource("Animation_7ga47"),
 "power_up": SubResource("Animation_c6bp2")
 }
@@ -65,6 +81,24 @@ texture = ExtResource("3_2a6em")
 [node name="Power" type="Sprite2D" parent="Sprite"]
 visible = false
 texture = ExtResource("4_dcwsj")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+scale = Vector2(0.75, 0.75)
+emitting = false
+amount = 50
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+angle_max = 45.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(1, 0, 0, 1)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ppmw3")
@@ -91,4 +125,3 @@ libraries = {
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="body_entered" from="." to="." method="_on_collide"]
-[connection signal="finished" from="Explode" to="." method="_despawn"]

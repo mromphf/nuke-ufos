@@ -16,16 +16,8 @@ var fuel: float = 100
 func ammo_up():
 	ammo = min(ammo_max, ammo + 1)
 
-
-func _despawn():
-	queue_free()
-
-
 func on_death():
-	visible = false
-	$Collision.disabled = true
-	$Explode.play()
-
+	queue_free()
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed(&"fire") and ammo > 0:
