@@ -10,10 +10,11 @@ var laser: PackedScene = preload("res://scenes/laser.tscn")
 var _SPEED = 400
 var _hp = 3
 var ammo = 3
+var ammo_max = 3
 var fuel: float = 100
 
 func ammo_up():
-	ammo = min(3, ammo + 1)
+	ammo = min(ammo_max, ammo + 1)
 
 
 func on_death():
@@ -61,9 +62,14 @@ func _process(delta):
 	position += direction * delta
 
 
-func _on_collide(_body):
-	$Animation.play(&"hurt")
-	_hp -= 1
-	emit_signal(&"hit")
-	if _hp <= 0:
-		on_death()
+func _on_collide(body):
+	if body is PowerUp:
+		ammo += 1
+		ammo_max += 1
+	
+	if body is Enemy:
+		$Animation.play(&"hurt")
+		_hp -= 1
+		emit_signal(&"hit")
+		if _hp <= 0:
+			on_death()

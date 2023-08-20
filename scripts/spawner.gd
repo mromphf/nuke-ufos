@@ -9,7 +9,10 @@ var ufo = preload("res://scenes/ufo.tscn")
 var dark_ufo = preload("res://scenes/dark_ufo.tscn")
 var striker = preload("res://scenes/striker.tscn")
 
+var ammo = preload("res://scenes/ammo.tscn")
+
 var spawn_pool = [ufo]
+var power_up_pool = [ammo]
 
 
 func _phase4():
@@ -35,14 +38,22 @@ func _range():
 	return randf_range(_bound_left, _bound_right)
 
 
+func _power_ups():
+	var mob = power_up_pool.pick_random().instantiate()
+	_spawn(mob)
+
+
 func _tick():
-	$Spawn/SpawnPoint.progress_ratio = _range()
-	
 	var mob = spawn_pool.pick_random().instantiate()
-	mob.position = $Spawn/SpawnPoint.position
-	
 	mob.connect(&"dead", get_parent().get_node("hud").update_score)
+	_spawn(mob)
+
+
+func _spawn(mob):
+	$Spawn/SpawnPoint.progress_ratio = _range()
+	mob.position = $Spawn/SpawnPoint.position
 	add_child(mob)
 
 func _ready():
+	$PowerUps.start()
 	$Phase2.start()
