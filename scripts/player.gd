@@ -5,7 +5,8 @@ class_name Player
 signal hit
 signal burn
 
-@export var laser: PackedScene
+var laser: PackedScene = preload("res://scenes/laser.tscn")
+
 var _SPEED = 400
 var _hp = 3
 var ammo = 3
