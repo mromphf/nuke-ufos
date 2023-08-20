@@ -5,7 +5,7 @@ class_name Enemy
 signal dead
 
 @export var death: PackedScene
-var _hp = 1
+@export var hp: int = 1
 
 func _die():
 	var d = death.instantiate()
@@ -15,7 +15,7 @@ func _die():
 	queue_free()
 
 func _on_collide(body):
-	_hp -= 1
+	hp -= 1
 
-	if body is Player or _hp <= 0:
+	if body is Player or hp <= 0:
 		_die()

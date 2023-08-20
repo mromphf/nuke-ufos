@@ -53,6 +53,8 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_i05al")
 death = ExtResource("2_cqlan")
+hp = 2
+velocity = Vector2(0, 2)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
