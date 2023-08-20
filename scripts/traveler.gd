@@ -4,11 +4,12 @@ class_name Traveler
 
 signal despawned
 
-@export var velocity = Vector2.ZERO
+@export var speed: float = 0.0
+@export var direction: Vector2 = Vector2.ZERO
 
 func despawn():
 	emit_signal(&"despawned")
 	queue_free()
 
 func _process(_delta):
-	position += velocity
+	position += direction.normalized() * speed
