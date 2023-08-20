@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://04l32t5knkbw"]
+[gd_scene load_steps=11 format=3 uid="uid://04l32t5knkbw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ficju"]
 [ext_resource type="Texture2D" uid="uid://djxbesycvm5c6" path="res://imgs/ship_hurt.svg" id="3_2a6em"]
 [ext_resource type="Texture2D" uid="uid://dgxtktmeaoglh" path="res://imgs/ship02.svg" id="3_07ap4"]
 [ext_resource type="AudioStream" uid="uid://bn1cwl15wt114" path="res://sfx/laser.mp3" id="3_tqnon"]
+[ext_resource type="Texture2D" uid="uid://cntjrpsny3guc" path="res://imgs/ship_green.svg" id="4_dcwsj"]
+[ext_resource type="AudioStream" uid="uid://cn4iavqktf4fm" path="res://sfx/power_up.mp3" id="5_ue026"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppmw3"]
 radius = 60.0
@@ -25,9 +27,26 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_c6bp2"]
+resource_name = "power_up"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Power:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikomn"]
 _data = {
-"hurt": SubResource("Animation_7ga47")
+"hurt": SubResource("Animation_7ga47"),
+"power_up": SubResource("Animation_c6bp2")
 }
 
 [node name="Player" type="Area2D"]
@@ -42,6 +61,10 @@ texture = ExtResource("3_07ap4")
 visible = false
 texture = ExtResource("3_2a6em")
 
+[node name="Power" type="Sprite2D" parent="Sprite"]
+visible = false
+texture = ExtResource("4_dcwsj")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ppmw3")
 
@@ -51,6 +74,10 @@ position = Vector2(0, -80)
 [node name="Laser" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_tqnon")
 volume_db = -25.0
+
+[node name="PowerUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ue026")
+volume_db = -20.0
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {

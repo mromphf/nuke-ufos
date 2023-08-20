@@ -64,10 +64,11 @@ func _process(delta):
 
 func _on_collide(body):
 	if body is PowerUp:
+		$PowerUp.play()
+		$Animation.play(&"power_up")
 		ammo += 1
 		ammo_max += 1
-	
-	if body is Enemy:
+	else:
 		$Animation.play(&"hurt")
 		_hp -= 1
 		emit_signal(&"hit")
