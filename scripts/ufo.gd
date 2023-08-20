@@ -1,5 +1,6 @@
 extends Enemy
 
+class_name Ufo
 
 func _process(_delta):
 	super(_delta)

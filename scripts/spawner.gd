@@ -4,6 +4,7 @@ class_name Spawner
 
 var spawn_pool = [
 	preload("res://scenes/ufo.tscn"),
+	preload("res://scenes/dark_ufo.tscn"),
 	preload("res://scenes/striker.tscn"),
 ]
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cglij72l41pr8"]
+[gd_scene load_steps=11 format=3 uid="uid://cglij72l41pr8"]
 
 [ext_resource type="Script" path="res://scripts/ufo.gd" id="1_i05al"]
 [ext_resource type="Texture2D" uid="uid://6wu5nb2hnd1t" path="res://imgs/ufo01.svg" id="1_svj4m"]
-[ext_resource type="PackedScene" uid="uid://3of21cq40nav" path="res://scenes/death.tscn" id="2_cqlan"]
 [ext_resource type="Texture2D" uid="uid://5n8yhg1qlf8o" path="res://imgs/ufo02.svg" id="3_gvj5y"]
 [ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="5_2qvd1"]
 [ext_resource type="Texture2D" uid="uid://ce0vb0ap2uw0h" path="res://imgs/ufo_hurt.svg" id="5_ypvcd"]
@@ -65,7 +64,6 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_i05al")
-death = ExtResource("2_cqlan")
 hp = 2
 velocity = Vector2(0, 2)
 

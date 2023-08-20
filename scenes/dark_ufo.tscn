@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://cuolnrawceou0"]
+
+[ext_resource type="Script" path="res://scripts/dark_ufo.gd" id="1_mx2jc"]
+[ext_resource type="Texture2D" uid="uid://bnuu4t1dk37cf" path="res://imgs/ufo_dark01.svg" id="2_tq0jo"]
+[ext_resource type="Texture2D" uid="uid://dqc4b0wovck6t" path="res://imgs/ufo_dark02.svg" id="3_6ee5g"]
+[ext_resource type="Texture2D" uid="uid://ce0vb0ap2uw0h" path="res://imgs/ufo_hurt.svg" id="4_hescp"]
+[ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="5_i2j31"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5jwcm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tq0jo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6ee5g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkgpj"]
+radius = 60.0
+
+[sub_resource type="Animation" id="Animation_2v1sd"]
+resource_name = "flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hurt:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uoj6h"]
+_data = {
+"flash": SubResource("Animation_2v1sd")
+}
+
+[node name="DarkUfo" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_mx2jc")
+hp = 5
+velocity = Vector2(0, 2)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_5jwcm")
+
+[node name="Hurt" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_hescp")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gkgpj")
+
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uoj6h")
+}
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_i2j31")
+volume_db = -10.0
+
+[node name="Gun" type="Node2D" parent="."]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="area_entered" from="." to="." method="_on_collide"]
+[connection signal="screen_exited" from="Notifier" to="." method="despawn"]

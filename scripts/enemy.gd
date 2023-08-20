@@ -4,7 +4,8 @@ class_name Enemy
 
 signal dead
 
-@export var death: PackedScene
+var death: PackedScene = preload("res://scenes/death.tscn")
+
 @export var hp: int = 1
 
 func _die():
