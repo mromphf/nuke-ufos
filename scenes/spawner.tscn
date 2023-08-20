@@ -10,7 +10,7 @@ _data = {
 }
 point_count = 2
 
-[node name="spawner" type="Node2D"]
+[node name="Spawner" type="Node2D"]
 script = ExtResource("1_7giky")
 ufo = ExtResource("2_gmx3w")
 striker = ExtResource("3_qti5h")

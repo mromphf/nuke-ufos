@@ -7,18 +7,14 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Game" type="CanvasLayer" parent="."]
+[node name="Spawner" parent="." instance=ExtResource("2_fgw4o")]
 
-[node name="background" parent="Game" instance=ExtResource("3_4ajvc")]
+[node name="background" parent="Spawner" instance=ExtResource("3_4ajvc")]
 
-[node name="spawner" parent="Game" instance=ExtResource("2_fgw4o")]
-
-[node name="Player" parent="Game" instance=ExtResource("1_ac4kw")]
+[node name="Player" parent="Spawner" instance=ExtResource("1_ac4kw")]
 position = Vector2(960, 800)
 
-[node name="Hud" type="CanvasLayer" parent="."]
+[node name="hud" parent="." instance=ExtResource("4_phi1w")]
 
-[node name="hud" parent="Hud" instance=ExtResource("4_phi1w")]
-
-[connection signal="burn" from="Game/Player" to="Hud/hud" method="on_burn_fuel"]
-[connection signal="hit" from="Game/Player" to="Hud/hud" method="on_player_hit"]
+[connection signal="burn" from="Spawner/Player" to="hud" method="on_burn_fuel"]
+[connection signal="hit" from="Spawner/Player" to="hud" method="on_player_hit"]
