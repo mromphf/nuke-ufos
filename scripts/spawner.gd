@@ -9,7 +9,7 @@ var spawn_pool = [
 ]
 
 func _tick():
-	$Spawn/SpawnPoint.progress = randi()
+	$Spawn/SpawnPoint.progress_ratio = randf_range(0.25, 0.75)
 	
 	var mob = spawn_pool.pick_random().instantiate()
 	mob.position = $Spawn/SpawnPoint.position
