@@ -12,11 +12,16 @@ var striker = preload("res://scenes/striker.tscn")
 var spawn_pool = [ufo]
 
 
+func _phase4():
+	$Timer.wait_time = 0.75
+
+
 func _phase3():
-	_bound_left = 0
-	_bound_right = 1
+	_bound_left = 0.05
+	_bound_right = 0.95
 	spawn_pool.push_back(dark_ufo)
 	$Timer.wait_time = 1.5
+	$Phase4.start()
 
 
 func _phase2():
