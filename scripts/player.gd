@@ -40,25 +40,25 @@ func _speed():
 
 
 func _process(delta):
-	var velocity = Vector2.ZERO
+	var direction = Vector2.ZERO
 
 	if not Input.is_action_pressed(&"speed") and fuel < 100:
 		fuel += 0.1
 		emit_signal(&"burn", 0.1)
 
 	if Input.is_action_pressed(&"move_up"):
-		velocity.y -= 1
+		direction.y -= 1
 	if Input.is_action_pressed(&"move_down"):
-		velocity.y += 1
+		direction.y += 1
 	if Input.is_action_pressed(&"move_left"):
-		velocity.x -= 1
+		direction.x -= 1
 	if Input.is_action_pressed(&"move_right"):
-		velocity.x += 1
+		direction.x += 1
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * _speed()
+	if direction.length() > 0:
+		direction = direction.normalized() * _speed()
 
-	position += velocity * delta
+	position += direction * delta
 
 
 func _on_collide(_body):
