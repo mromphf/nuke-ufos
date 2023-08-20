@@ -17,8 +17,14 @@ func ammo_up():
 	ammo = min(ammo_max, ammo + 1)
 
 
-func on_death():
+func _despawn():
 	queue_free()
+
+
+func on_death():
+	visible = false
+	$Collision.disabled = true
+	$Explode.play()
 
 
 func _unhandled_input(_event):

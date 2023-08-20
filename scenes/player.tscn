@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://04l32t5knkbw"]
+[gd_scene load_steps=12 format=3 uid="uid://04l32t5knkbw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ficju"]
 [ext_resource type="Texture2D" uid="uid://djxbesycvm5c6" path="res://imgs/ship_hurt.svg" id="3_2a6em"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bn1cwl15wt114" path="res://sfx/laser.mp3" id="3_tqnon"]
 [ext_resource type="Texture2D" uid="uid://cntjrpsny3guc" path="res://imgs/ship_green.svg" id="4_dcwsj"]
 [ext_resource type="AudioStream" uid="uid://cn4iavqktf4fm" path="res://sfx/power_up.mp3" id="5_ue026"]
+[ext_resource type="AudioStream" uid="uid://c84dxpkoc6dcp" path="res://sfx/big-explode.mp3" id="7_d2cbd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppmw3"]
 radius = 60.0
@@ -65,7 +66,7 @@ texture = ExtResource("3_2a6em")
 visible = false
 texture = ExtResource("4_dcwsj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ppmw3")
 
 [node name="Gun" type="Node2D" parent="."]
@@ -79,6 +80,10 @@ volume_db = -25.0
 stream = ExtResource("5_ue026")
 volume_db = -20.0
 
+[node name="Explode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_d2cbd")
+volume_db = -25.0
+
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ikomn")
@@ -86,3 +91,4 @@ libraries = {
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="body_entered" from="." to="." method="_on_collide"]
+[connection signal="finished" from="Explode" to="." method="_despawn"]
