@@ -45,7 +45,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hurt:visible")
+tracks/1/path = NodePath("Sprite/Hurt:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -73,6 +73,10 @@ scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_h5np8")
 animation = &"beep"
 
+[node name="Hurt" type="Sprite2D" parent="Sprite"]
+visible = false
+texture = ExtResource("5_ypvcd")
+
 [node name="Particles" type="CPUParticles2D" parent="Sprite"]
 scale = Vector2(1.33333, 1.33333)
 emitting = false
@@ -94,11 +98,6 @@ scale_amount_min = 2.0
 scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_tbu5v")
 color = Color(1, 1, 0.117647, 1)
-
-[node name="Hurt" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("5_ypvcd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

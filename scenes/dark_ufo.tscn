@@ -30,7 +30,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Hurt:visible")
+tracks/0/path = NodePath("Sprite/Hurt:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,9 +62,8 @@ direction = Vector2(0, 1)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_5jwcm")
 
-[node name="Hurt" type="Sprite2D" parent="."]
+[node name="Hurt" type="Sprite2D" parent="Sprite"]
 visible = false
-scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_hescp")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
