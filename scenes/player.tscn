@@ -6,11 +6,14 @@
 [ext_resource type="AudioStream" uid="uid://bn1cwl15wt114" path="res://sfx/laser.mp3" id="3_tqnon"]
 [ext_resource type="Texture2D" uid="uid://cntjrpsny3guc" path="res://imgs/ship_green.svg" id="4_dcwsj"]
 [ext_resource type="AudioStream" uid="uid://cn4iavqktf4fm" path="res://sfx/power_up.mp3" id="5_ue026"]
-[ext_resource type="AudioStream" uid="uid://c84dxpkoc6dcp" path="res://sfx/big-explode.mp3" id="7_d2cbd"]
+[ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="7_t2j85"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppmw3"]
 radius = 60.0
 height = 120.0
+
+[sub_resource type="Animation" id="Animation_3piyl"]
+resource_name = "die"
 
 [sub_resource type="Animation" id="Animation_7ga47"]
 resource_name = "hurt"
@@ -44,21 +47,6 @@ tracks/0/keys = {
 "values": [true, false, true, false, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_3piyl"]
-resource_name = "die"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Particles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikomn"]
 _data = {
 "die": SubResource("Animation_3piyl"),
@@ -82,24 +70,6 @@ texture = ExtResource("3_2a6em")
 visible = false
 texture = ExtResource("4_dcwsj")
 
-[node name="Particles" type="CPUParticles2D" parent="."]
-scale = Vector2(0.75, 0.75)
-emitting = false
-amount = 50
-lifetime = 2.0
-one_shot = true
-explosiveness = 0.9
-emission_shape = 1
-emission_sphere_radius = 10.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 300.0
-initial_velocity_max = 300.0
-angle_max = 45.0
-scale_amount_min = 3.0
-scale_amount_max = 3.0
-color = Color(1, 0, 0, 1)
-
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ppmw3")
 
@@ -114,9 +84,9 @@ volume_db = -25.0
 stream = ExtResource("5_ue026")
 volume_db = -20.0
 
-[node name="Explode" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_d2cbd")
-volume_db = -25.0
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_t2j85")
+volume_db = -10.0
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
