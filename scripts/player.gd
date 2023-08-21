@@ -30,6 +30,7 @@ func _unhandled_input(_event):
 		l.connect(&"despawned", ammo_up)
 		l.global_position = $Gun.global_position
 		get_parent().add_child(l)
+		$Animation.play(&"shoot")
 		Soundboard.play($Laser)
 
 
