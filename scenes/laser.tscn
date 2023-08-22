@@ -6,9 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_l16ia"]
 radius = 13.0384
 
-[node name="laser" type="Area2D"]
-collision_layer = 4
-collision_mask = 2
+[node name="Laser" type="Node2D"]
 script = ExtResource("1_xha1y")
 speed = 10.0
 direction = Vector2(0, -1)
@@ -20,8 +18,12 @@ texture = ExtResource("2_0olkn")
 
 [node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 shape = SubResource("CircleShape2D_l16ia")
 
-[connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="screen_exited" from="Notifier" to="." method="despawn"]
+[connection signal="area_entered" from="Collider" to="." method="_on_collide"]
