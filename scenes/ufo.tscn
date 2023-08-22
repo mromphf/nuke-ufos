@@ -90,16 +90,13 @@ _data = {
 "spin": SubResource("Animation_ddwvv")
 }
 
-[node name="ufo" type="Area2D"]
-collision_layer = 2
-collision_mask = 5
+[node name="Ufo" type="Node2D"]
 script = ExtResource("1_i05al")
 hp = 2
 speed = 2.0
 direction = Vector2(0, 1)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-rotation = 0.300546
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_h5np8")
 animation = &"beep"
@@ -127,7 +124,11 @@ scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_tbu5v")
 color = Color(1, 1, 0.117647, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 visible = false
 shape = SubResource("CircleShape2D_7v411")
 
@@ -148,5 +149,4 @@ volume_db = -10.0
 
 [node name="Notifier" type="VisibleOnScreenEnabler2D" parent="."]
 
-[connection signal="area_entered" from="." to="." method="_on_collide"]
-[connection signal="screen_exited" from="Notifier" to="." method="despawn"]
+[connection signal="area_entered" from="Collider" to="." method="_on_collide"]

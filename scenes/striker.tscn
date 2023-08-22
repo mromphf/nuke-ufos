@@ -7,9 +7,7 @@
 radius = 20.0
 height = 120.0
 
-[node name="striker" type="Area2D"]
-collision_layer = 2
-collision_mask = 5
+[node name="striker" type="Node2D"]
 script = ExtResource("1_pg1t6")
 speed = 5.0
 direction = Vector2(0, 1)
@@ -17,10 +15,14 @@ direction = Vector2(0, 1)
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_uhfpw")
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_sakv3")
-
 [node name="Notifier" type="VisibleOnScreenEnabler2D" parent="."]
 
-[connection signal="area_entered" from="." to="." method="_on_collide"]
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("CapsuleShape2D_sakv3")
+
 [connection signal="screen_exited" from="Notifier" to="." method="despawn"]
+[connection signal="area_entered" from="Collider" to="." method="_on_damaged"]

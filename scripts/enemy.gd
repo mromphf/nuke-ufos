@@ -17,7 +17,7 @@ func _die():
 	emit_signal(&"dead", value)
 	queue_free()
 
-func _on_collide(body):
+func _on_damaged(body):
 	hp -= 1
 
 	if body is Player or hp <= 0:

@@ -29,9 +29,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gkgpj"]
-radius = 60.0
-
 [sub_resource type="Animation" id="Animation_2v1sd"]
 resource_name = "flash"
 length = 0.1
@@ -80,9 +77,10 @@ size = Vector2(120, 980)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_b7vlm"]
 
-[node name="DarkUfo" type="Area2D"]
-collision_layer = 2
-collision_mask = 5
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkgpj"]
+radius = 60.0
+
+[node name="DarkUfo" type="Node2D"]
 script = ExtResource("1_mx2jc")
 hp = 3
 value = 50
@@ -93,9 +91,6 @@ direction = Vector2(0, 1)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_5jwcm")
 autoplay = "default"
-
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_gkgpj")
 
 [node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -139,8 +134,14 @@ offset_right = 60.0
 offset_bottom = 1020.0
 texture = SubResource("CanvasTexture_b7vlm")
 
-[connection signal="area_entered" from="." to="." method="_on_collide"]
-[connection signal="screen_exited" from="Notifier" to="." method="despawn"]
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="Collision" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("CircleShape2D_gkgpj")
+
 [connection signal="timeout" from="Timer" to="." method="_fire"]
 [connection signal="area_entered" from="Sight" to="." method="_open_fire"]
 [connection signal="area_exited" from="Sight" to="." method="_close_fire"]
+[connection signal="area_entered" from="Collider" to="." method="_on_collide"]

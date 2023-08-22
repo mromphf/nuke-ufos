@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://pbhyx6nagm3l" path="res://imgs/green_circle.svg" id="2_yb018"]
 [ext_resource type="Texture2D" uid="uid://dm1hlle1k8a2g" path="res://imgs/ring_green.svg" id="3_tfnpc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nyoj5"]
-radius = 40.0
-
 [sub_resource type="Animation" id="Animation_06jq4"]
 resource_name = "spin"
 length = 4.0
@@ -29,8 +26,10 @@ _data = {
 "spin": SubResource("Animation_06jq4")
 }
 
-[node name="Ammo" type="Area2D"]
-collision_layer = 16
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyoj5"]
+radius = 40.0
+
+[node name="Ammo" type="Node2D"]
 script = ExtResource("1_umdxp")
 speed = 2.0
 direction = Vector2(0, 1)
@@ -43,9 +42,6 @@ texture = ExtResource("2_yb018")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_tfnpc")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_nyoj5")
-
 [node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Spin" type="AnimationPlayer" parent="."]
@@ -54,5 +50,11 @@ libraries = {
 "": SubResource("AnimationLibrary_sytwv")
 }
 
-[connection signal="area_entered" from="." to="." method="_on_collide"]
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="Collision" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("CircleShape2D_nyoj5")
+
 [connection signal="screen_exited" from="Notifier" to="." method="despawn"]
+[connection signal="area_entered" from="Collider" to="." method="_on_collide"]
