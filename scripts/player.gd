@@ -7,7 +7,6 @@ signal burn
 signal shoot
 
 var laser: PackedScene = preload("res://scenes/laser.tscn")
-var _DEATH: PackedScene = preload("res://scenes/player_death.tscn")
 
 var _SPEED = 400
 var _hp = 3
@@ -17,12 +16,6 @@ var fuel: float = 100
 
 func ammo_up():
 	ammo = min(ammo_max, ammo + 1)
-
-func on_death():
-	var d = _DEATH.instantiate()
-	d.position = position
-	get_parent().add_child(d)
-	queue_free()
 
 
 func _unhandled_input(_event):
@@ -74,7 +67,5 @@ func _on_power_up_collect(_body):
 
 func _on_collide(_body):
 	_hp -= 1
-	$Animation.play(&"hurt")
+	$Animation.play(&"hurt" if _hp > 0 else &"death")
 	emit_signal(&"hit")
-	if _hp <= 0:
-		on_death()

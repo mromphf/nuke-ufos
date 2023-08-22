@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://04l32t5knkbw"]
+[gd_scene load_steps=18 format=3 uid="uid://04l32t5knkbw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ficju"]
 [ext_resource type="Texture2D" uid="uid://djxbesycvm5c6" path="res://imgs/ship_hurt.svg" id="3_2a6em"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cntjrpsny3guc" path="res://imgs/ship_green.svg" id="4_dcwsj"]
 [ext_resource type="Texture2D" uid="uid://bfkshyle41avj" path="res://imgs/ship_shoot.svg" id="5_nmlvb"]
 [ext_resource type="AudioStream" uid="uid://cn4iavqktf4fm" path="res://sfx/power_up.mp3" id="5_ue026"]
+[ext_resource type="AudioStream" uid="uid://c84dxpkoc6dcp" path="res://sfx/big-explode.mp3" id="6_0put7"]
 [ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="7_t2j85"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppmw3"]
@@ -40,9 +41,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [ExtResource("3_2a6em"), ExtResource("3_07ap4")]
 }
-
-[sub_resource type="Animation" id="Animation_3piyl"]
-resource_name = "die"
 
 [sub_resource type="Animation" id="Animation_7ga47"]
 resource_name = "hurt"
@@ -128,10 +126,88 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_o7exf"]
+resource_name = "death"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boom:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikomn"]
 _data = {
 "_TEST": SubResource("Animation_4pmyw"),
-"die": SubResource("Animation_3piyl"),
+"death": SubResource("Animation_o7exf"),
 "hurt": SubResource("Animation_7ga47"),
 "power_up": SubResource("Animation_c6bp2"),
 "shoot": SubResource("Animation_cx65l")
@@ -142,6 +218,7 @@ radius = 60.0
 
 [node name="Player" type="Area2D"]
 collision_mask = 10
+priority = 225
 script = ExtResource("1_ficju")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -166,10 +243,32 @@ volume_db = -20.0
 stream = ExtResource("7_t2j85")
 volume_db = -10.0
 
+[node name="Boom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0put7")
+volume_db = -25.0
+
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ikomn")
 }
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+scale = Vector2(0.75, 0.75)
+emitting = false
+amount = 50
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+angle_max = 45.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(1, 0, 0, 1)
 
 [node name="PowerUpCollector" type="Area2D" parent="."]
 collision_layer = 0
