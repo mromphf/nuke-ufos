@@ -50,6 +50,7 @@ func _power_ups():
 func _tick():
 	var mob = spawn_pool.pick_random().instantiate()
 	mob.connect(&"dead", get_parent().get_node("hud").update_score)
+	mob.connect(&"attack", _shot_fired)
 	_spawn(mob)
 
 

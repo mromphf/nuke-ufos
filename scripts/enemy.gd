@@ -3,6 +3,7 @@ extends Traveler
 class_name Enemy
 
 signal dead
+signal attack
 
 var death: PackedScene = preload("res://scenes/death.tscn")
 

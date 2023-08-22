@@ -21,4 +21,4 @@ func _fire():
 	shot.set_collision_layer_value(3, false)
 	shot.set_collision_mask_value(2, false)
 	shot.direction = Vector2(0, 1)
-	get_parent().add_child(shot)
+	emit_signal(&"attack", shot)
