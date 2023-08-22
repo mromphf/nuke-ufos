@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://04l32t5knkbw"]
+[gd_scene load_steps=16 format=3 uid="uid://04l32t5knkbw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ficju"]
 [ext_resource type="Texture2D" uid="uid://djxbesycvm5c6" path="res://imgs/ship_hurt.svg" id="3_2a6em"]
@@ -18,54 +18,83 @@ resource_name = "die"
 
 [sub_resource type="Animation" id="Animation_7ga47"]
 resource_name = "hurt"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/Hurt:visible")
+tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1001, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [ExtResource("3_2a6em"), ExtResource("3_07ap4"), ExtResource("3_2a6em"), ExtResource("3_07ap4")]
 }
 
 [sub_resource type="Animation" id="Animation_c6bp2"]
 resource_name = "power_up"
-length = 0.6
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/Power:visible")
+tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false]
+"values": [ExtResource("4_dcwsj"), ExtResource("3_07ap4"), ExtResource("4_dcwsj"), ExtResource("3_07ap4"), ExtResource("4_dcwsj"), ExtResource("3_07ap4")]
 }
 
 [sub_resource type="Animation" id="Animation_cx65l"]
 resource_name = "shoot"
-length = 0.1
+length = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/Shoot:visible")
+tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_nmlvb"), ExtResource("3_07ap4")]
+}
+
+[sub_resource type="Animation" id="Animation_4pmyw"]
+resource_name = "_TEST"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [ExtResource("3_2a6em"), ExtResource("3_07ap4")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikomn"]
 _data = {
+"_TEST": SubResource("Animation_4pmyw"),
 "die": SubResource("Animation_3piyl"),
 "hurt": SubResource("Animation_7ga47"),
 "power_up": SubResource("Animation_c6bp2"),
@@ -79,18 +108,6 @@ script = ExtResource("1_ficju")
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_07ap4")
-
-[node name="Hurt" type="Sprite2D" parent="Sprite"]
-visible = false
-texture = ExtResource("3_2a6em")
-
-[node name="Power" type="Sprite2D" parent="Sprite"]
-visible = false
-texture = ExtResource("4_dcwsj")
-
-[node name="Shoot" type="Sprite2D" parent="Sprite"]
-visible = false
-texture = ExtResource("5_nmlvb")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ppmw3")

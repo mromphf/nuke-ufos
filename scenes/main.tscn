@@ -12,7 +12,7 @@
 [node name="background" parent="Spawner" instance=ExtResource("3_4ajvc")]
 
 [node name="Player" parent="Spawner" instance=ExtResource("1_ac4kw")]
-position = Vector2(960, 800)
+position = Vector2(960, 880)
 
 [node name="hud" parent="." instance=ExtResource("4_phi1w")]
 
