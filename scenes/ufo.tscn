@@ -150,3 +150,4 @@ volume_db = -10.0
 [node name="Notifier" type="VisibleOnScreenEnabler2D" parent="."]
 
 [connection signal="area_entered" from="Collider" to="." method="_on_collide"]
+[connection signal="screen_exited" from="Notifier" to="." method="despawn"]
