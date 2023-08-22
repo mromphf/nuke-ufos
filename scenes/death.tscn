@@ -1,10 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://3of21cq40nav"]
+[gd_scene load_steps=4 format=3 uid="uid://3of21cq40nav"]
 
-[ext_resource type="Script" path="res://scripts/death.gd" id="1_8jmvx"]
 [ext_resource type="AudioStream" uid="uid://y3gdggnqxegb" path="res://sfx/explode.mp3" id="2_4urls"]
 
+[sub_resource type="Animation" id="Animation_k63cs"]
+resource_name = "boom"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boom:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_63kv8"]
+_data = {
+"boom": SubResource("Animation_k63cs")
+}
+
 [node name="death" type="Node2D"]
-script = ExtResource("1_8jmvx")
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 emitting = false
@@ -26,4 +71,8 @@ color = Color(1, 1, 0, 1)
 stream = ExtResource("2_4urls")
 volume_db = -15.0
 
-[connection signal="finished" from="Boom" to="." method="_despawn"]
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "boom"
+libraries = {
+"": SubResource("AnimationLibrary_63kv8")
+}

@@ -33,7 +33,6 @@ func _unhandled_input(_event):
 		shot.global_position = $Gun.global_position
 		emit_signal(&"shoot", shot)
 		$Animation.play(&"shoot")
-		$Laser.play()
 
 
 func _speed():
@@ -70,13 +69,11 @@ func _process(delta):
 func _on_power_up_collect(_body):
 	ammo += 1
 	ammo_max += 1
-	$PowerUp.play()
 	$Animation.play(&"power_up")
 
 
 func _on_collide(_body):
 	_hp -= 1
-	$Hit.play()
 	$Animation.play(&"hurt")
 	emit_signal(&"hit")
 	if _hp <= 0:

@@ -1,14 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://dytrwkp4vylrp"]
+[gd_scene load_steps=4 format=3 uid="uid://dytrwkp4vylrp"]
 
 [ext_resource type="AudioStream" uid="uid://c84dxpkoc6dcp" path="res://sfx/big-explode.mp3" id="1_r5yde"]
-[ext_resource type="Script" path="res://scripts/death.gd" id="1_yca37"]
+
+[sub_resource type="Animation" id="Animation_4h3ne"]
+resource_name = "boom"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boom:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yso2b"]
+_data = {
+"boom": SubResource("Animation_4h3ne")
+}
 
 [node name="player_death" type="Node2D"]
-script = ExtResource("1_yca37")
-
-[node name="Boom" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_r5yde")
-volume_db = -25.0
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -28,4 +69,12 @@ scale_amount_min = 3.0
 scale_amount_max = 3.0
 color = Color(1, 0, 0, 1)
 
-[connection signal="finished" from="Boom" to="." method="_despawn"]
+[node name="Boom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_r5yde")
+volume_db = -25.0
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "boom"
+libraries = {
+"": SubResource("AnimationLibrary_yso2b")
+}

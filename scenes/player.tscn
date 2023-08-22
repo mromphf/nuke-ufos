@@ -59,6 +59,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("3_2a6em"), ExtResource("3_07ap4"), ExtResource("3_2a6em"), ExtResource("3_07ap4")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hit:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_c6bp2"]
 resource_name = "power_up"
@@ -75,6 +87,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("4_dcwsj"), ExtResource("3_07ap4"), ExtResource("4_dcwsj"), ExtResource("3_07ap4"), ExtResource("4_dcwsj"), ExtResource("3_07ap4")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PowerUp:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_cx65l"]
 resource_name = "shoot"
@@ -90,6 +114,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("5_nmlvb"), ExtResource("3_07ap4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laser:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikomn"]

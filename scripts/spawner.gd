@@ -34,10 +34,6 @@ func _phase2():
 	$Phase3.start()
 
 
-func _range():
-	return randf_range(_bound_left, _bound_right)
-
-
 func _shot_fired(mob):
 	add_child(mob)
 
@@ -55,7 +51,7 @@ func _tick():
 
 
 func _spawn(mob):
-	$Spawn/SpawnPoint.progress_ratio = _range()
+	$Spawn/SpawnPoint.progress_ratio = randf_range(_bound_left, _bound_right)
 	mob.position = $Spawn/SpawnPoint.position
 	add_child(mob)
 
