@@ -38,6 +38,10 @@ func _range():
 	return randf_range(_bound_left, _bound_right)
 
 
+func _shot_fired(mob):
+	add_child(mob)
+
+
 func _power_ups():
 	var mob = power_up_pool.pick_random().instantiate()
 	_spawn(mob)
@@ -53,6 +57,7 @@ func _spawn(mob):
 	$Spawn/SpawnPoint.progress_ratio = _range()
 	mob.position = $Spawn/SpawnPoint.position
 	add_child(mob)
+
 
 func _ready():
 	$PowerUps.start()

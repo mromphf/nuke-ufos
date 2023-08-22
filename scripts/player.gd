@@ -4,6 +4,7 @@ class_name Player
 
 signal hit
 signal burn
+signal shoot
 
 var laser: PackedScene = preload("res://scenes/laser.tscn")
 var _DEATH: PackedScene = preload("res://scenes/player_death.tscn")
@@ -23,15 +24,16 @@ func on_death():
 	get_parent().add_child(d)
 	queue_free()
 
+
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed(&"fire") and ammo > 0:
+		var shot = laser.instantiate()
 		ammo -= 1
-		var l = laser.instantiate()
-		l.connect(&"despawned", ammo_up)
-		l.global_position = $Gun.global_position
-		get_parent().add_child(l)
+		shot.connect(&"despawned", ammo_up)
+		shot.global_position = $Gun.global_position
+		emit_signal(&"shoot", shot)
 		$Animation.play(&"shoot")
-		Soundboard.play($Laser)
+		$Laser.play()
 
 
 func _speed():

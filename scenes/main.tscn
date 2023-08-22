@@ -18,3 +18,4 @@ position = Vector2(960, 880)
 
 [connection signal="burn" from="Spawner/Player" to="hud" method="on_burn_fuel"]
 [connection signal="hit" from="Spawner/Player" to="hud" method="on_player_hit"]
+[connection signal="shoot" from="Spawner/Player" to="Spawner" method="_shot_fired"]
