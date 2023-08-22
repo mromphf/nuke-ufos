@@ -65,16 +65,17 @@ func _process(delta):
 	position += direction * delta
 
 
-func _on_collide(body):
-	if body is PowerUp:
-		$PowerUp.play()
-		$Animation.play(&"power_up")
-		ammo += 1
-		ammo_max += 1
-	else:
-		$Hit.play()
-		$Animation.play(&"hurt")
-		_hp -= 1
-		emit_signal(&"hit")
-		if _hp <= 0:
-			on_death()
+func _on_power_up_collect(_body):
+	ammo += 1
+	ammo_max += 1
+	$PowerUp.play()
+	$Animation.play(&"power_up")
+
+
+func _on_collide(_body):
+	_hp -= 1
+	$Hit.play()
+	$Animation.play(&"hurt")
+	emit_signal(&"hit")
+	if _hp <= 0:
+		on_death()

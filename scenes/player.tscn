@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://04l32t5knkbw"]
+[gd_scene load_steps=17 format=3 uid="uid://04l32t5knkbw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ficju"]
 [ext_resource type="Texture2D" uid="uid://djxbesycvm5c6" path="res://imgs/ship_hurt.svg" id="3_2a6em"]
@@ -12,6 +12,34 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppmw3"]
 radius = 60.0
 height = 120.0
+
+[sub_resource type="Animation" id="Animation_4pmyw"]
+resource_name = "_TEST"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_2a6em"), ExtResource("3_07ap4")]
+}
 
 [sub_resource type="Animation" id="Animation_3piyl"]
 resource_name = "die"
@@ -64,34 +92,6 @@ tracks/0/keys = {
 "values": [ExtResource("5_nmlvb"), ExtResource("3_07ap4")]
 }
 
-[sub_resource type="Animation" id="Animation_4pmyw"]
-resource_name = "_TEST"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_2a6em"), ExtResource("3_07ap4")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikomn"]
 _data = {
 "_TEST": SubResource("Animation_4pmyw"),
@@ -101,8 +101,11 @@ _data = {
 "shoot": SubResource("Animation_cx65l")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lnils"]
+radius = 60.0
+
 [node name="Player" type="Area2D"]
-collision_mask = 26
+collision_mask = 10
 script = ExtResource("1_ficju")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -132,5 +135,14 @@ libraries = {
 "": SubResource("AnimationLibrary_ikomn")
 }
 
+[node name="PowerUpCollector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUpCollector"]
+shape = SubResource("CircleShape2D_lnils")
+debug_color = Color(0.803922, 0.411765, 0.164706, 0.419608)
+
 [connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="body_entered" from="." to="." method="_on_collide"]
+[connection signal="area_entered" from="PowerUpCollector" to="." method="_on_power_up_collect"]
