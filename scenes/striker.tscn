@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddty6tjmd8g7l"]
 
-[ext_resource type="Script" path="res://scripts/striker.gd" id="1_ohojj"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pg1t6"]
 [ext_resource type="Texture2D" uid="uid://7ao2p8so1cji" path="res://imgs/striker01.svg" id="1_uhfpw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sakv3"]
@@ -10,7 +10,7 @@ height = 120.0
 [node name="striker" type="Area2D"]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_ohojj")
+script = ExtResource("1_pg1t6")
 speed = 5.0
 direction = Vector2(0, 1)
 

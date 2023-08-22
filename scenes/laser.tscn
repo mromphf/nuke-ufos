@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d20yyv5hpgiao"]
 
-[ext_resource type="Script" path="res://scripts/laser.gd" id="1_m1e8i"]
-[ext_resource type="Texture2D" uid="uid://pbhyx6nagm3l" path="res://imgs/green_circle.svg" id="2_d0iyx"]
+[ext_resource type="Script" path="res://scripts/traveler.gd" id="1_xha1y"]
+[ext_resource type="Texture2D" uid="uid://cg8qm76kruvqs" path="res://imgs/white_circle.svg" id="2_0olkn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l16ia"]
 radius = 13.0384
@@ -9,18 +9,19 @@ radius = 13.0384
 [node name="laser" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_m1e8i")
+script = ExtResource("1_xha1y")
 speed = 10.0
 direction = Vector2(0, -1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_l16ia")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_d0iyx")
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0olkn")
 
 [node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l16ia")
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="screen_exited" from="Notifier" to="." method="despawn"]

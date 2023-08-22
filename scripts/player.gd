@@ -29,7 +29,7 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed(&"fire") and ammo > 0:
 		var shot = laser.instantiate()
 		ammo -= 1
-		shot.connect(&"despawned", ammo_up)
+		shot.connect(&"tree_exited", ammo_up)
 		shot.global_position = $Gun.global_position
 		emit_signal(&"shoot", shot)
 		$Animation.play(&"shoot")

@@ -1,15 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckxc00h1lt3u7"]
+[gd_scene load_steps=7 format=3 uid="uid://ckxc00h1lt3u7"]
 
-[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_vb0c1"]
+[ext_resource type="Script" path="res://scripts/traveler.gd" id="1_umdxp"]
 [ext_resource type="Texture2D" uid="uid://pbhyx6nagm3l" path="res://imgs/green_circle.svg" id="2_yb018"]
 [ext_resource type="Texture2D" uid="uid://dm1hlle1k8a2g" path="res://imgs/ring_green.svg" id="3_tfnpc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyoj5"]
 radius = 40.0
 
+[sub_resource type="Animation" id="Animation_06jq4"]
+resource_name = "spin"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sytwv"]
+_data = {
+"spin": SubResource("Animation_06jq4")
+}
+
 [node name="Ammo" type="Area2D"]
 collision_layer = 16
-script = ExtResource("1_vb0c1")
+script = ExtResource("1_umdxp")
 speed = 2.0
 direction = Vector2(0, 1)
 
@@ -25,6 +47,12 @@ texture = ExtResource("3_tfnpc")
 shape = SubResource("CircleShape2D_nyoj5")
 
 [node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Spin" type="AnimationPlayer" parent="."]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_sytwv")
+}
 
 [connection signal="area_entered" from="." to="." method="_on_collide"]
 [connection signal="screen_exited" from="Notifier" to="." method="despawn"]
