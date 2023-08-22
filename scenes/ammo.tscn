@@ -24,4 +24,7 @@ texture = ExtResource("3_tfnpc")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nyoj5")
 
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_collide"]
+[connection signal="screen_exited" from="Notifier" to="." method="despawn"]
