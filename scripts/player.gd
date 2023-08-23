@@ -34,6 +34,9 @@ func _unhandled_input(_event):
 
 func _speed():
 	if Input.is_action_pressed(&"speed") and fuel > 0:
+		if Input.is_action_just_pressed(&"speed"):
+			$Whoosh.play()
+		$Burner.emitting = true
 		fuel -= 1
 		emit_signal(&"burn", -1)
 		return _SPEED * 2
@@ -45,6 +48,7 @@ func _process(delta):
 	var direction = Vector2.ZERO
 
 	if not Input.is_action_pressed(&"speed") and fuel < 100:
+		$Burner.emitting = false
 		fuel += 0.1
 		emit_signal(&"burn", 0.1)
 
