@@ -6,6 +6,10 @@ signal hit
 signal burn
 signal shoot
 
+const _BUFFER = Vector2(50, 50)
+
+@onready var _BOUNDS = (get_viewport_rect().size - _BUFFER)
+
 var laser: PackedScene = preload("res://scenes/laser.tscn")
 
 var _SPEED = 400
@@ -57,6 +61,7 @@ func _process(delta):
 		direction = direction.normalized() * _speed()
 
 	position += direction * delta
+	position = position.clamp(_BUFFER, _BOUNDS)
 
 
 func _on_power_up_collect(_body):
